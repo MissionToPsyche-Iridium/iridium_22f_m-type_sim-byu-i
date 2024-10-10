@@ -13,21 +13,24 @@
 - Cost: Starting at $12.00/month
 - Performance: Utilizes AWS infrastructure for genrally fast load speeds
 - Scalability: Scales with usage
-- Documentation/Support: Covers setup, features, and use cases for each supported framework. Access to AWS Academy and support plans.
+- Documentation: Covers setup, features, and use cases for each supported framework
+- Support: Access to AWS Academy and support plans
 
 ### 2. [Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/) (Microsoft)
 
 - Cost: Starting at $9.49/month
 - Performance: Optimizes for various web apps
 - Scalability: Manual and auto-scaling options
-- Documentation/Support: Extensive coverage, especially for Microsoft based use cases. Access to osupport plans and community forums.
+- Documentation: Extensive coverage, especially for Microsoft based use cases
+- Support: Access to support plans and community forums
 
 ### 3. [Firebase Hosting](https://firebase.google.com/docs/hosting) (Google)
 
 - Cost: Starting at $9.37/month
 - Performance: Optimized for static content
 - Scalability: Auto-scaling based on traffic
-- Documentation/Support: Offers uick-start guides, API references, and troubleshooting tips. Access to forums and Google provided options.
+- Documentation: Offers uick-start guides, API references, and troubleshooting tips
+- Support: Access to forums and Google provided options
 
 ## Web Frameworks
 
@@ -61,4 +64,3 @@ Framework specifically for creating asynchronous servers and clients in connecte
 Web app framework written in Ruby that follows the MVC pattern.
 - Emphasizes convention over configuration, making it easier to get started with web development. 
 - Includes built-in tools for routing, database migrations, and testing for streamlined development.
-
