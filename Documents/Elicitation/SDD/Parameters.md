@@ -25,7 +25,7 @@ These parameters are to be defined by the developer and unable to be tweaked by 
 
 These parameters are to be adjusted by the user before (and perhaps during for some) the simulation. 
 
-- **Starting location of the lander:** Depending on whether the simulation will be in 2D or 3D would determine whether Psyche is depicted as spherical or circular, thus changing how the location of the lander is calculated. Below are the necessary parameters for either scenario.
+- **Starting location of the lander:** Depending on whether the simulation will be in 2D or 3D would determine whether Psyche is depicted as circular or spherical respectively, thus changing how the location of the lander is calculated. Below are the necessary parameters for either scenario.
     - **Polar coordinates (2D):** Radial distance (ρ), polar angle (θ)
     - **Spherical coordinates (3D):** Radial distance (ρ), polar angle (θ), azimuthal angle (φ)
 - Facing angle of lander (same conditions from lander location apply here)
