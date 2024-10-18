@@ -6,7 +6,7 @@
 
 #### **Team Member assigned:** _Ryan Funk_
 
-The following documentation fulfills these parts of the SRS:
+The following documentation addresses these parts of the SRS:
 - 3.1.5.2
 - 3.1.5.4
 
