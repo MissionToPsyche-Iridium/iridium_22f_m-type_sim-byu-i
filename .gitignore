@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/aspnetcore,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=aspnetcore,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/react,aspnetcore
+# Edit at https://www.toptal.com/developers/gitignore?templates=react,aspnetcore
 
 ### ASPNETCore ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -271,23 +271,19 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/
 
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+### react ###
+.DS_*
+logs
+**/*.backup.*
+**/*.back.*
 
-# Local History for Visual Studio Code
-.history/
+node_modules
+bower_components
 
-# Built Visual Studio Code Extensions
-*.vsix
+*.sublime*
 
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
+psd
+thumb
+sketch
 
-# End of https://www.toptal.com/developers/gitignore/api/aspnetcore,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/react,aspnetcore
