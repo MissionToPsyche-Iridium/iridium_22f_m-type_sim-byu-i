@@ -9,13 +9,11 @@ This repository houses the web application and work done for CSE397 Team 3's NAS
 ### Front End:
 - [Jerry Lane](https://github.com/JRLane-CS)
 - [Cayeigh Leishman](https://github.com/CayleighLeishman)
+- [Kristin Thumstedter](https://github.com/kristint22)
+- [Brycen Williams](https://github.com/Brycenjwill)
 
 ### Back End:
 - [Colton Pritchett](https://github.com/ColtonPritchett)
 - [Levi Johnson](https://github.com/levijohnson1227)
 - [Ryan Funk](https://github.com/RyanFunk2000)
-
-### Database:
 - [Gerin Wilde](https://github.com/GerinWilde1)
-- [Kristin Thumstedter](https://github.com/kristint22)
-- [Brycen Williams](https://github.com/Brycenjwill)
