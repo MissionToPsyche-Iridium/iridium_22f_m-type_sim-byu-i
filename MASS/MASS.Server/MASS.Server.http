@@ -1,4 +1,4 @@
-@MASS.Server_HostAddress = http://localhost:5160
+@MASS.Server_HostAddress = http://localhost:5003
 
 GET {{MASS.Server_HostAddress}}/weatherforecast/
 Accept: application/json
