@@ -15,22 +15,19 @@ namespace MASS.Server.Models
         public float ShipRadius { get; set; } // 1.1 m
         public float ShipRotationSpeed { get; set; } // 0 for novice level
         public float ShipMass { get; set; } // 1300 kg
-     // public float ShipStartVx { get; set; }
-        public float ShipStartVy { get; set; } // 0 m/s
+        public float ShipStartVelocity { get; set; } // 0 m/s
         public float FeetRadius { get; set; } // 5% of ship radius
         public int FuelStartCapacity { get; set; } // 200 kg
         public float OOBThreshold { get; set; } // >400 km
         public int DmgThreshold { get; set; } // ##% (how much impact feet can sustain before ship is damaged)
 
         // Configurable parameters (for levels above novice)
-        // public float ShipStartX { get; set; }
         [Range(0,400)]
-        public float ShipStartY { get; set; } // 400 km for novice level
+        public float ShipStartDistance { get; set; } // 400 km for novice level
         public float ShipStartAngle { get; set; }
         public float ShipStartFacing { get; set; } // 90 degrees for novice level
-     // public float ThrustStartX { get; set; }
-        [Range(0, 400)]
-        public float ThrustStartY { get; set; }
+        [Range(0,400)]
+        public float ThrustStartDistance { get; set; }
         [Range(0,250)]
         public float ThrustLevel { get; set; } // 250 N for novice level
         public float ThrustAngle { get; set; } // 180 degrees for novice level
@@ -45,16 +42,14 @@ namespace MASS.Server.Models
         public int FuelRemaining { get; set; }
         [Range(0,8.5)] // grams per second
         public int FuelConsumeRate { get; set; }
-        // public float ShipVx { get; set; }
-        public float ShipVy { get; set; }
+        public float ShipVelocity { get; set; }
         public float ShipTotalAccel { get; set; } // Gravity +/- Thrust
         public float ShipAngle { get; set; }
         public float ShipFacing { get; set; }
-     // public float ThrustVx { get; set; }
-        public float ThrustVy { get; set; }
+        public float ThrustVelocity { get; set; }
         public float ThrustAccel { get; set; }
         [Range(0,100)]
-        public int ShipDmg { get; set; } // ShipVy * 100 when ship collides with asteroid or impact from feet exceeds DmgThreshold
+        public int ShipDmg { get; set; } // ShipVelocity * 100 when ship collides with asteroid or impact from feet exceeds DmgThreshold
         public DateTime TimeStart { get; set; }
         public DateTime TimeElapsed { get; set; } // Current DateTime - TimeStart
     }
