@@ -14,6 +14,7 @@ function Welcome() {
                     Welcome to the Psyche
                 </h1>
             </div>
+            
             <div style={{
                 display: "flex",
                 alignItems: "inherit",
