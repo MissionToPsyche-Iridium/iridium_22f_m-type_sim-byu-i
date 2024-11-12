@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react';
-import './App.css'
-import Home from './components/Home';
+import Welcome from './components/Welcome';
+import Logo from './components/Logo';
+import Activate from './components/Activate';
+import Info from './components/Info';
+import './App.css';
 
 function App() {
 
     return (
 
-        <Home />
-
+        <>
+            <Welcome />
+            <Logo />
+            <Activate />
+            <Info />
+        </>
+        
     );
  
 
