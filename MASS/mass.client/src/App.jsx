@@ -3,6 +3,7 @@ import './App.css'
 import Welcome from './components/Welcome';
 import Logo from './components/Logo';
 import Activate from './components/Activate';
+import Simulation from './components/Simulation';
 
 function App() {
 
@@ -11,7 +12,9 @@ function App() {
         <>
             <Welcome />
             <Logo />
+            <Simulation />
             <Activate />
+
         </>
     );
  
