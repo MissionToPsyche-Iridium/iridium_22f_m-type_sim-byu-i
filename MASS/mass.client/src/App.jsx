@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import Home from './components/Home';
+import Simulation from './components/Simulation';
 import './App.css';
 
 function App() {
 
     return (
 
-        <Home />
+        <Simulation />
         
     );
  
