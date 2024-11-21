@@ -37,7 +37,7 @@ function About() {
                 Brycen Williams
             </p>
 
-            <button size="large" type="button" onClick={handleButtonClick} >
+            <button size="large" type="button" onClick={handleButtonClick}>
                 Return to Home page
             </button>
 
