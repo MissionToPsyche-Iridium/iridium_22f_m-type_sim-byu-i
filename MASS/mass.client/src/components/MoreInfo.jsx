@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
 function MoreInfo() {
 
     const navigate = useNavigate();
@@ -9,7 +8,6 @@ function MoreInfo() {
         navigate('/');
     };
 
-
     return (
         <div>
             <h1>
@@ -17,7 +15,6 @@ function MoreInfo() {
             </h1>
 
             <button size="large" type="button" onClick={handleButtonClick}>
-
                 Return to Home page
             </button>
         </div>
