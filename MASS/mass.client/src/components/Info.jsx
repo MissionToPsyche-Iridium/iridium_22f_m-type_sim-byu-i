@@ -1,5 +1,13 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Info() {
+
+    const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        navigate('/more-info-page');
+    };
 
     return (
 
@@ -9,7 +17,7 @@ function Info() {
             justifyContent: "center",
             height: "100%"
         }} >
-            <button size="large" type="button" onclick="">Learn more about NASA's <br /> mission to Psyche!</button>
+            <button size="large" type="button" onClick={handleButtonClick}>Learn more about NASA's <br /> mission to Psyche!</button>
         </div>
 
     );
