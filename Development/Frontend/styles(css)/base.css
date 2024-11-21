@@ -18,9 +18,18 @@ body{
 header{
     display:flex;
     justify-content: center;
-    background-color: var(--nasa-blue);
+    background-image: -webkit-gradient(linear, left top, right top, from(#302144), color-stop(33%, #592651), color-stop(66%, #a53f5b), to(#ef5966));
+    background-image: -webkit-linear-gradient(left, #302144, #592651 33%, #a53f5b 66%, #ef5966);
+    background-image: -o-linear-gradient(left, #302144, #592651 33%, #a53f5b 66%, #ef5966);
+    background-image: linear-gradient(to right, #302144, #592651 33%, #a53f5b 66%, #ef5966);
+    background-repeat: repeat-x
 }
 
+.logo :hover {
+    -webkit-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1)
+}
 nav{
     grid-column:span;
     text-align: center;
@@ -31,3 +40,58 @@ nav ul li{
 }
 
 
+footer {
+    padding: 40px 0;
+    text-align: center;
+    color: #fff;
+    background-image: -webkit-linear-gradient(left, #302144, #592651 33%, #a53f5b 66%, #ef5966);
+    background-image: -o-linear-gradient(left, #302144, #592651 33%, #a53f5b 66%, #ef5966);
+    background-image: linear-gradient(to right, #302144, #592651 33%, #a53f5b 66%, #ef5966);
+    background-repeat: repeat-x
+}
+
+footer h3 {
+    font-weight: normal;
+    color: #fff
+}
+
+footer {
+    font-size: 11px
+}
+
+@media(min-width: 768px) {
+    footer h3 {
+        margin:0 30px 0 0
+    }
+}
+
+.social {
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none
+}
+
+.social li {
+    display: inline-block
+}
+
+.social a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: -webkit-transform .35s cubic-bezier(0.29, 0.97, 0, 1.85);
+    transition: -webkit-transform .35s cubic-bezier(0.29, 0.97, 0, 1.85);
+    -o-transition: -o-transform .35s cubic-bezier(0.29, 0.97, 0, 1.85);
+    transition: transform .35s cubic-bezier(0.29, 0.97, 0, 1.85);
+    transition: transform .35s cubic-bezier(0.29, 0.97, 0, 1.85), -webkit-transform .35s cubic-bezier(0.29, 0.97, 0, 1.85), -o-transform .35s cubic-bezier(0.29, 0.97, 0, 1.85)
+}
+
+.social a:hover {
+    -webkit-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1)
+}
