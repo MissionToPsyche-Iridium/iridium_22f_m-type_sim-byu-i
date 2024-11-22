@@ -2,36 +2,39 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const SimulationTemp = () => {
+const SimulationScreen = () => {
     const mountRef = useRef(null);
 
     useEffect(() => {
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, 300 / 200, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
+        const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
+        
+        //Two renderers, one with anti aliasing
+        //const renderer = new THREE.WebGLRenderer({ antialias: true });
+        const renderer = new THREE.WebGLRenderer({ antialias: false });
 
-        renderer.setSize(600, 400);
+        
+        renderer.setSize(500, 300);
+        renderer.setPixelRatio(window.devicePixelRatio); // High resolution rendering ***
+        renderer.physicallyCorrectLights = true; // Physically correct lighting ***
         mountRef.current.appendChild(renderer.domElement);
 
-        // Debug helpers
-        const axesHelper = new THREE.AxesHelper(50);
-        const gridHelper = new THREE.GridHelper(100, 10);
-        scene.add(axesHelper);
-        scene.add(gridHelper);
-
-        // Log scene initialization
-        console.log("Scene and helpers initialized");
-
-        // Add light
+        // Add lighting
         const light = new THREE.DirectionalLight(0xffffff, 1);
         light.position.set(0, 10, 10);
         scene.add(light);
-        console.log("Directional light added");
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1);
+        scene.add(hemisphereLight);
+
+        let asteroid;
 
         // Load GLTF model
         const loader = new GLTFLoader();
         const assetPath = '/assets/Asteroid.gltf';
-        let asteroid;
 
         loader.load(
             assetPath,
@@ -44,6 +47,7 @@ const SimulationTemp = () => {
                 const size = box.getSize(new THREE.Vector3());
 
                 asteroid.position.sub(center); // Center the model
+                asteroid.position.y -= size.y * .8; //Move the asteroid down from the center
                 scene.add(asteroid);
 
                 // Adjust camera to fit the model
@@ -54,7 +58,21 @@ const SimulationTemp = () => {
                 camera.position.z = cameraZ;
                 camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-                // Debug logs
+                //Extensinve lighting
+                asteroid.traverse((child) => {
+                    if (child.isMesh) {
+                        child.material.roughness = 0.4;
+                        child.material.metalness = 0.5;
+                    }
+                });
+
+                //BASIC, UGLY render
+                // asteroid.traverse((child) => {
+                //     if (child.isMesh) {
+                //         child.material = new THREE.MeshBasicMaterial({ color: 0x888888 });
+                //     }
+                // });
+
                 console.log("Model loaded:", gltf);
                 console.log("Model centered with bounding box:", box);
                 console.log("Camera adjusted to position:", camera.position);
@@ -70,7 +88,6 @@ const SimulationTemp = () => {
         // Animate the scene
         const animate = () => {
             requestAnimationFrame(animate);
-
             renderer.render(scene, camera);
         };
         animate();
@@ -84,4 +101,4 @@ const SimulationTemp = () => {
     return <div ref={mountRef} />;
 };
 
-export default SimulationTemp;
+export default SimulationScreen;
