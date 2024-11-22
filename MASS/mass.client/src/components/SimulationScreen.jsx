@@ -4,10 +4,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const SimulationScreen = () => {
     const mountRef = useRef(null);
-
+    const height = 
     useEffect(() => {
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
+        //const camera = new THREE.OrthographicCamera(75, 600 / 400, 0.1, 1000); 
+        const camera = new THREE.PerspectiveCamera(75, 1000 / 600, 0.1, 1000);
         
         //Two renderers, one with anti aliasing
         //const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -34,48 +35,49 @@ const SimulationScreen = () => {
 
         // Load GLTF model
         const loader = new GLTFLoader();
-        const assetPath = '/assets/Asteroid.gltf';
+        const assetPath = '/assets/AsteroidSlicedv2.gltf';
 
         loader.load(
             assetPath,
             (gltf) => {
                 asteroid = gltf.scene;
-
-                // Center the model
+        
                 const box = new THREE.Box3().setFromObject(asteroid);
                 const center = box.getCenter(new THREE.Vector3());
                 const size = box.getSize(new THREE.Vector3());
-
-                asteroid.position.sub(center); // Center the model
-                asteroid.position.y -= size.y * .8; //Move the asteroid down from the center
+        
+                // Center the asteroid model
+                asteroid.position.sub(center);
+        
+                // Move the asteroid relative to the camera
+                const offsetX = -50; // Relative offset along the X-axis
+                const offsetY = -size.y * 1.5; // Lower it slightly relative to its size
+                const offsetZ = -100; // Move asteroid closer or farther from the camera
+        
+                asteroid.position.set(
+                    camera.position.x + offsetX,
+                    camera.position.y + offsetY,
+                    camera.position.z + offsetZ
+                );
+        
+                // Rotate and scale the asteroid
+                asteroid.rotation.x = Math.PI;
+                const scaleFactor = 1000;
+                asteroid.scale.set(scaleFactor, scaleFactor, scaleFactor);
+                asteroid.translateX(-1500);
+                asteroid.translateY(220);
+        
                 scene.add(asteroid);
-
-                // Adjust camera to fit the model
-                const maxDim = Math.max(size.x, size.y, size.z);
-                const fov = camera.fov * (Math.PI / 180);
-                const cameraZ = Math.abs(maxDim / Math.sin(fov / 2));
-
-                camera.position.z = cameraZ;
-                camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-                //Extensinve lighting
+                camera.position.z -= 500;
                 asteroid.traverse((child) => {
                     if (child.isMesh) {
                         child.material.roughness = 0.4;
                         child.material.metalness = 0.5;
                     }
                 });
-
-                //BASIC, UGLY render
-                // asteroid.traverse((child) => {
-                //     if (child.isMesh) {
-                //         child.material = new THREE.MeshBasicMaterial({ color: 0x888888 });
-                //     }
-                // });
-
+        
                 console.log("Model loaded:", gltf);
-                console.log("Model centered with bounding box:", box);
-                console.log("Camera adjusted to position:", camera.position);
+                console.log("Asteroid position relative to camera:", asteroid.position);
             },
             (xhr) => {
                 console.log(`Model loading progress: ${(xhr.loaded / xhr.total) * 100}%`);
@@ -84,6 +86,8 @@ const SimulationScreen = () => {
                 console.error("An error occurred while loading the model:", error);
             }
         );
+        
+
 
         // Animate the scene
         const animate = () => {

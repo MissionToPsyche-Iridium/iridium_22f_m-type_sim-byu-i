@@ -42,15 +42,15 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":15234,
+			"count":9502,
 			"max":[
 				2.9957499504089355,
 				2.1216931343078613,
 				-0.008416157215833664
 			],
 			"min":[
-				0.00017177699191961437,
-				0.003488692454993725,
+				0.014705796726047993,
+				0.9985344409942627,
 				-2.5743696689605713
 			],
 			"type":"VEC3"
@@ -58,40 +58,40 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":15234,
+			"count":9502,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5123,
-			"count":15234,
+			"count":10086,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":182808,
+			"byteLength":114024,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":182808,
-			"byteOffset":182808,
+			"byteLength":114024,
+			"byteOffset":114024,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":30468,
-			"byteOffset":365616,
+			"byteLength":20172,
+			"byteOffset":228048,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":396084,
-			"uri":"Asteroid.bin"
+			"byteLength":248220,
+			"uri":"AsteroidScliced.bin"
 		}
 	]
 }

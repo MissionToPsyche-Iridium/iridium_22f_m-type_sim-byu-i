@@ -17,10 +17,10 @@
 			"mesh":0,
 			"name":"PSYCHE_20170116_DEC",
 			"rotation":[
-				0.7071068286895752,
+				0.70710688829422,
 				0,
 				0,
-				0.7071068286895752
+				0.7071066498756409
 			]
 		}
 	],
@@ -42,56 +42,56 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":15234,
+			"count":1842,
 			"max":[
 				2.9957499504089355,
-				2.1216931343078613,
-				-0.008416157215833664
+				1.1294792890548706,
+				-0.020862290635704994
 			],
 			"min":[
-				0.00017177699191961437,
-				0.003488692454993725,
-				-2.5743696689605713
+				0.014705796726047993,
+				0.9985344409942627,
+				-2.571645975112915
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":15234,
+			"count":1842,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5123,
-			"count":15234,
+			"count":2529,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":182808,
+			"byteLength":22104,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":182808,
-			"byteOffset":182808,
+			"byteLength":22104,
+			"byteOffset":22104,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":30468,
-			"byteOffset":365616,
+			"byteLength":5058,
+			"byteOffset":44208,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":396084,
-			"uri":"Asteroid.bin"
+			"byteLength":49268,
+			"uri":"AsteroidSlicedv2.bin"
 		}
 	]
 }
