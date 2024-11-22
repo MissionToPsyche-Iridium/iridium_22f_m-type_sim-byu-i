@@ -7,7 +7,6 @@ import Activate from './components/Activate';
 function App() {
 
     return (
-
         <>
             <Welcome />
             <Logo />
