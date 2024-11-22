@@ -9,16 +9,16 @@
 .parameter-container {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    margin-bottom: 10px;
 }
 
 /* The parameter panel will be placed on the left side, taking full height */
 .parameter-panel {
-    background-color: lightblue;
+    background-color: tan;
     width: 450px; /* Set the width of the parameter panel */
-    height: 98vh; /* Set it to take full height */
-    padding: 20px;
-    margin-top: 10px;
+    height: 100vh; /* Set it to take full height */
+    padding: 20px; 
+    margin-top: 10px; 
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -35,7 +35,7 @@
 
 /* The simulator view canvas*/
 .simulator-view {
-    background-color: lightgreen;
+    background-color: gray;
     padding: 10px;
     margin-bottom: 20px; /* Space between simulator view and simulator controls components */
     box-sizing: border-box;
@@ -56,22 +56,21 @@
 
 /* The simulator controls panel */
 .simulator-controls {
-    background-color: lightcoral;
+    background-color: lightgray;
     padding: 20px;
     margin-top: 10px;
-    height: 120px;
     box-sizing: border-box;
-    /* flex: 1;  Allow it to take the remaining space */ 
+    flex: 1;  Allow it to take the remaining space  
 }
-/* 
+
 #root {
-    max-width: 1280px;
+    /* max-width: 1280px; */
     margin: 0 auto;
     padding: 2rem;
-    /* text-align: center; */
+    text-align: center; 
 }
-/*
+
 th, td {
     padding-left: 1rem;
     padding-right: 1rem;
-}*/
+}
