@@ -12,7 +12,7 @@ function About() {
 
         <>
         
-            <div >
+            <div>
 
                 <h1>
                     About 

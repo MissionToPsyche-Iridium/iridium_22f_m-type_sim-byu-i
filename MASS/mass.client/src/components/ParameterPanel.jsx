@@ -1,15 +1,20 @@
 
 import React from "react";
+import VariableParameters from "./VariableParameters";
+import ConstantParameter from "./ConstantParameter";
 
 function ParameterPanel() {
     return (
         <div className="parameter-container">
-            <div className="parameter-panel">
-                <h2>Parameter Panel</h2>
-                <br />
-                <br />
-                <p>This component holds both the changing and constant variables.</p>
+
+            <div className="variable-parameter">
+                <VariableParameters />
             </div>
+
+            <div className="constant-parameter">
+                <ConstantParameter />
+            </div>
+
         </div>
     );
 }
