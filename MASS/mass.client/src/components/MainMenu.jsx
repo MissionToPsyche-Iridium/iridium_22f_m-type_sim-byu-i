@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const styles = {
@@ -87,4 +88,3 @@ const MainMenu = () => {
 };
 
 export default MainMenu;
-

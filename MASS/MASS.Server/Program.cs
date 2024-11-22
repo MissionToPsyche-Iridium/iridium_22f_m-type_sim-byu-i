@@ -7,6 +7,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Register the CalculationService with the DI container
+builder.Services.AddSingleton<MASS.Server.Services.CalculationService>();
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
