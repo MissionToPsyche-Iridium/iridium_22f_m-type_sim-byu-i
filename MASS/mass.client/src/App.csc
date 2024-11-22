@@ -1,4 +1,4 @@
-﻿/* This is the container which holds all components of the Simulator Screen*/
+/* This is the container which holds all components of the Simulator Screen*/
 .simulation {
     display: flex; /* Creates a flexbox container */
     margin-left: 10px;
@@ -61,17 +61,6 @@
     margin-top: 10px;
     height: 120px;
     box-sizing: border-box;
-    /* flex: 1;  Allow it to take the remaining space */ 
+    /* flex: 1;  Allow it to take the remaining space */
 }
-/* 
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    /* text-align: center; */
-}
-/*
-th, td {
-    padding-left: 1rem;
-    padding-right: 1rem;
-}*/
+S

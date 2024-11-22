@@ -10,6 +10,8 @@ function About() {
 
     return (
 
+        <>
+        
         <div>
 
             <h1>
@@ -41,7 +43,8 @@ function About() {
                 Return to Home page
             </button>
 
-        </div>
+            </div>
+        </>
 
     );
 }
