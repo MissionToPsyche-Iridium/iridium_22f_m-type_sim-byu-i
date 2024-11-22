@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 const styles = {
   nav: {
     display: 'flex',
@@ -89,13 +88,3 @@ const MainMenu = () => {
 
 export default MainMenu;
 
-// NEED TO HAVE BELOW IN THE MAIN/APP/INDEX PAGE
-// import MainMenu from './MainMenu';
-// in a function put 
-// function mainMenu(){
-// return()
-// <div>
-// <MainMenu />
-//<div>
-// );
-//}

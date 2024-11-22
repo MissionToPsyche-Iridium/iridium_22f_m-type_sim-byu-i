@@ -12,11 +12,10 @@ function App() {
             <Welcome />
             <Logo />
             <Activate />
+            <MainMenu />
         </>
     );
  
-
-
 }
 
 export default App;
