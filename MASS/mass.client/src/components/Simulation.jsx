@@ -5,6 +5,7 @@ import SimulationView from "./SimulationView";
 import SimulationControls from "./SimulationControls";
 
 function Simulation() {
+
     return (
         <div className="simulation">
             {/* Parameter panel will be on the left, and take full height */}
@@ -17,6 +18,7 @@ function Simulation() {
             </div>
         </div>
     );
+
 }
 
 export default Simulation;
