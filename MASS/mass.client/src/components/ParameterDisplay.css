@@ -1,0 +1,24 @@
+{/*}.parameter-display-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.heading {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.parameter-container {
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid #007BFF; 
+    border-radius: 5px;
+    font-size: 2rem; 
+    background-color: #f8f9fa;
+}
+
+.parameter-value {
+    font-weight: bold;
+    color: #007BFF; 
+} */

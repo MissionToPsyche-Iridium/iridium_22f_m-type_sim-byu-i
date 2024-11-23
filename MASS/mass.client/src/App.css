@@ -1,8 +1,87 @@
-﻿#root {
-    max-width: 1280px;
+﻿/* This is the container which holds all components of the Simulator Screen*/
+.simulation {
+    display: flex; 
+    margin-left: 10px;
+    height: 100vh; /* Full height of the screen */
+    width: 100%;
+}
+
+/* This container will hold both variable and constant parameter components*/
+.parameter-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+/* This displays the variable parameters component */
+.constant-parameter {
+    background-color: tan;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    flex: 0 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+/* This displays the constant parameters component */
+.variable-parameter {
+    background-color: lightyellow;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    flex: 0 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+/* This is the container which holds the simulator view and simulator controls components */
+.view-controls {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 10px;
+}
+
+/* The simulator view canvas*/
+.simulator-view {
+    background-color: gray;
+    padding: 10px;
+    margin-bottom: 20px; 
+    box-sizing: border-box;
+    flex: 0 1 auto;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 400px; 
+}
+
+    /* Ensuring the canvas fits well within the container */
+    .simulator-view canvas {
+        max-width: 100%; /* Make canvas responsive to container width */
+        height: auto; /* Maintain aspect ratio */
+        border: 1px solid #000; /* Optional: add border to canvas for visibility */
+    }
+
+/* The simulator controls panel */
+.simulator-controls {
+    background-color: beige;
+    padding: 20px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    flex: 1;  Allow it to take the remaining space  
+}
+
+#root {
+    /* max-width: 1280px; */
     margin: 0 auto;
     padding: 2rem;
-    text-align: center;
+    text-align: center; 
 }
 
 th, td {
