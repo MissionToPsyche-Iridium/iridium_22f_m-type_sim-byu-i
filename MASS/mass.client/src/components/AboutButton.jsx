@@ -17,7 +17,9 @@ function AboutButton() {
             justifyContent: "center",
             height: "100%"
         }} >
+
             <button size="large" type="button" onClick={handleButtonClickToMainMenu}>About this application</button>
+
         </div>
 
     );
