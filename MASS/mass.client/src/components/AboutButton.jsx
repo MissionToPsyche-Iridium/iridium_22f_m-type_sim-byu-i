@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Info() {
+function AboutButton() {
 
     const navigate = useNavigate();
 
-    const handleButtonClick = () => {
-        navigate('/more-info-page');
+    const handleButtonClickToMainMenu = () => {
+        navigate('/about-page');
     };
 
     return (
@@ -17,10 +17,10 @@ function Info() {
             justifyContent: "center",
             height: "100%"
         }} >
-            <button size="large" type="button" onClick={handleButtonClick}>Learn more about NASA's <br /> mission to Psyche!</button>
+            <button size="large" type="button" onClick={handleButtonClickToMainMenu}>About this application</button>
         </div>
 
     );
 }
 
-export default Info
+export default AboutButton
