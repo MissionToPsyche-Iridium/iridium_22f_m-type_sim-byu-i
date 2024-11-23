@@ -1,43 +1,64 @@
 ﻿/* This is the container which holds all components of the Simulator Screen*/
 .simulation {
-    display: flex; /* Creates a flexbox container */
+    display: flex; 
     margin-left: 10px;
     height: 100vh; /* Full height of the screen */
     width: 100%;
 }
 
-/* The parameter panel will be placed on the left side, taking full height */
-.parameter-panel {
-    background-color: lightblue;
-    width: 450px; /* Set the width of the parameter panel */
-    height: 98vh; /* Set it to take full height */
-    padding: 20px;
-    margin-top: 10px;
+/* This container will hold both variable and constant parameter components*/
+.parameter-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+/* This displays the variable parameters component */
+.constant-parameter {
+    background-color: tan;
+    padding: 10px;
+    margin-bottom: 10px;
     box-sizing: border-box;
+    flex: 0 1 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 50%;
+}
+
+/* This displays the constant parameters component */
+.variable-parameter {
+    background-color: lightyellow;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    flex: 0 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
 }
 
 /* This is the container which holds the simulator view and simulator controls components */
 .view-controls {
     display: flex;
-    flex-direction: column; /* Stack right and bottom components vertically */
-    flex: 1; /* This will take up the remaining width of the screen */
+    flex-direction: column;
+    flex: 1;
     padding: 10px;
 }
 
 /* The simulator view canvas*/
 .simulator-view {
-    background-color: lightgreen;
+    background-color: gray;
     padding: 10px;
-    margin-bottom: 20px; /* Space between simulator view and simulator controls components */
+    margin-bottom: 20px; 
     box-sizing: border-box;
     flex: 0 1 auto;
     display: flex;
-    justify-content: center; /* Center the canvas horizontally */
-    align-items: center; /* Center the canvas vertically */
-    height: 400px; /* Make the simulator component take full height of its parent */
+    justify-content: center; 
+    align-items: center; 
+    height: 400px; 
 }
 
     /* Ensuring the canvas fits well within the container */
@@ -47,25 +68,23 @@
         border: 1px solid #000; /* Optional: add border to canvas for visibility */
     }
 
-
 /* The simulator controls panel */
 .simulator-controls {
-    background-color: lightcoral;
+    background-color: beige;
     padding: 20px;
     margin-top: 10px;
-    height: 120px;
     box-sizing: border-box;
-    /* flex: 1;  Allow it to take the remaining space */ 
+    flex: 1;  Allow it to take the remaining space  
 }
 
 #root {
-    max-width: 1280px;
+    /* max-width: 1280px; */
     margin: 0 auto;
     padding: 2rem;
-    /* text-align: center; */
+    text-align: center; 
 }
-/*
+
 th, td {
     padding-left: 1rem;
     padding-right: 1rem;
-}*/
+}

@@ -4,6 +4,7 @@ import Home from './components/Home';
 import About from './components/About';
 import MoreInfo from './components/MoreInfo';
 import MainMenu from './components/MainMenu';
+import Simulation from './components/Simulation';
 import './App.css';
 
 function App() {
@@ -12,10 +13,11 @@ function App() {
 
         <Router>
             <Routes>
+                {/*<Route path="/" element={<Simulation />} />*/}
                 <Route path="/" element={<Home />} />
                 <Route path="/about-page" element={<About />} />
                 <Route path="/more-info-page" element={<MoreInfo />} />
-                <Route path="/main-menu-page" element={<MainMenu />} />
+                <Route path="/main-menu-page" element={<Simulation />} />
             </Routes>
         </Router>
         

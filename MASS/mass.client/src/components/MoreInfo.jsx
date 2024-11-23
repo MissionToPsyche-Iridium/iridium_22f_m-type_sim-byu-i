@@ -7,7 +7,7 @@ function MoreInfo() {
     const handleButtonClick = () => {
         navigate('/');
     };
-
+    
     return (
         <div>
             <>

@@ -20,22 +20,29 @@ namespace MASS.Server.Controllers
         [HttpPost]
         public IActionResult PostParameters([FromBody] Parameters parameters)
         {
+            // Check if the parameters are valid
             if (parameters == null)
             {
                 return BadRequest("Invalid parameters");
             }
 
             // Perform the calculations using the CalculationService
-         // parameters.CalculatedValue = _calculationService.CalculateSomething(parameters.Value1, parameters.Value2);
+            DateTime calculationTime = DateTime.Now;
+            double newTimeElapsed = _calculationService.CalculateElapsedTime(parameters.TimeStart, DateTime.Now);
+            parameters.FuelRemaining = _calculationService.CalculateFuel(parameters.FuelRemaining, parameters.TimeElapsed - newTimeElapsed, parameters.ThrustOn);
+            parameters.ShipDmg = _calculationService.CalculateDamage(parameters.ShipVelocity);
+            parameters.ShipAltitude = _calculationService.CalculateAltitude(parameters.ShipAltitude, parameters.ShipVelocity, parameters.TimeElapsed - newTimeElapsed);
+            parameters.ShipVelocity = _calculationService.CalculateVelocity(parameters.ShipAltitude);
+            parameters.TimeElapsed = newTimeElapsed;
 
             // Map the Parameters model to the ParameterViewModel
             var parametersViewModel = new ParametersViewModel
             {
                 Id = parameters.Id,
-                Calculation = Convert.ToSingle(1.5), // time calculations performed(?)
+                Calculation = _calculationService.CalculateElapsedTime(calculationTime, DateTime.Now), // time calculations performed
                 Velocity = parameters.ShipVelocity, // falling velocity
                 Fuel = parameters.FuelRemaining, // fuel remaining
-                Height = parameters.ShipDistance, // new altitude
+                Height = parameters.ShipAltitude, // new altitude
                 Elapsed = parameters.TimeElapsed // time since simulation began
             };
 
