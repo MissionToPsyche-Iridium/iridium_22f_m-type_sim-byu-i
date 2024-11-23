@@ -10,6 +10,7 @@ function About() {
 
     return (
 
+
         <div>
 
             <h1>
@@ -42,7 +43,6 @@ function About() {
             </button>
 
         </div>
-
     );
 }
 
