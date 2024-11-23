@@ -20,7 +20,6 @@ function MoreInfo() {
                     <a target="_blank" href="https://psyche.asu.edu/">
                         <img src="https://psyche.asu.edu/wp-content/themes/psyche/static/img/psyche.svg" alt="Psyche Logo" />
                     </a>
-
                 </div>
             </header>*/}
 
@@ -54,7 +53,7 @@ function MoreInfo() {
 
 
                     <h3>Podcasts and Audio Resources</h3>
-                    <li><a href="https://www.nasa.gov/nasapodcasts" target="_blank">NASA’s On a Mission Podcast</a></li>
+                    <li><a href="https://www.nasa.gov/nasapodcasts" target="_blank">NASAï¿½s On a Mission Podcast</a></li>
                     <li><a href="https://www.planetary.org/planetary-radio" target="_blank">Planetary Radio by The Planetary Society</a></li>
 
                     <h3>Books And Papers</h3>
@@ -102,7 +101,7 @@ function MoreInfo() {
                         <li><a href="https://eyes.nasa.gov/apps/asteroids/" target="_blank">NASA Eyes on Asteroids</a></li>
 
                         {/*<!-- Podcasts and Audio Resources -->*/}
-                        <li><a href="https://www.nasa.gov/nasapodcasts" target="_blank">NASA’s On a Mission Podcast</a></li>
+                        <li><a href="https://www.nasa.gov/nasapodcasts" target="_blank">NASAï¿½s On a Mission Podcast</a></li>
                         <li><a href="https://www.planetary.org/planetary-radio" target="_blank">Planetary Radio by The Planetary Society</a></li>
 
                         {/*<!-- Books and Papers -->*/}
