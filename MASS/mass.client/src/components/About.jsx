@@ -40,6 +40,7 @@ function About() {
             <button size="large" type="button" onClick={handleButtonClick}>
                 Return to Home page
             </button>
+
         </div>
     );
 }
