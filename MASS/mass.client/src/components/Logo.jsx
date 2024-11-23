@@ -1,8 +1,10 @@
+import React from 'react';
 import Psyche_Mission_Logo from '../assets/Psyche_Mission_Logo.png'
 
 const styles = theme => ({
     img: {}
 })
+
 function Logo() {
 
     return (
