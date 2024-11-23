@@ -9,6 +9,7 @@ function MoreInfo() {
     };
 
     return (
+
         <div>
             <>
                 {/*<header>
@@ -190,6 +191,7 @@ function MoreInfo() {
                 {/*</footer>*/}
             </>
         </div>
+
     );
 }
 
