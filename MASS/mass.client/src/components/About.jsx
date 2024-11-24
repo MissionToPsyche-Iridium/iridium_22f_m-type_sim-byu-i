@@ -10,8 +10,8 @@ function About() {
 
     return (
 
-        <div>
 
+        <div>
             <h1>
                 About 
             </h1>
@@ -37,12 +37,11 @@ function About() {
                 Brycen Williams
             </p>
 
-            <button size="large" type="button" onClick={handleButtonClick} >
+            <button size="large" type="button" onClick={handleButtonClick}>
                 Return to Home page
             </button>
 
         </div>
-
     );
 }
 
