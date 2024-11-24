@@ -17,7 +17,9 @@ function Activate() {
             justifyContent: "center",
             height: "100%"
         }} >
+
             <button size="large" type="button" onClick={handleButtonClickToMainMenu}>Activate Simulator</button>
+
         </div>
 
     );
