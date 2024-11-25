@@ -5,6 +5,7 @@ const ControlButtons = () => {
     const [isPaused, setIsPaused] = useState(false);
     const [hoveredButton, setHoveredButton] = useState(null); // For hover effects
 
+    //This allows sme to make CSSest styles
     const styles = {
         button: {
             background: '#007bff',
