@@ -30,4 +30,6 @@ app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 
+app.UseMiddleware<MASS.Server.Middleware.GlobalErrorHandlerMiddleware>();
+
 app.Run();
