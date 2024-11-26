@@ -74,7 +74,7 @@
     padding: 20px;
     margin-top: 10px;
     box-sizing: border-box;
-    flex: 1;  Allow it to take the remaining space  
+    flex: 1;  /*Allow it to take the remaining space  */
 }
 
 #root {
