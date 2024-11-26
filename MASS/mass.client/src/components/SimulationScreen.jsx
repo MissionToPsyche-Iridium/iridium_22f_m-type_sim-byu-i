@@ -4,18 +4,17 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const SimulationScreen = () => {
     const mountRef = useRef(null);
-    const height = 
     useEffect(() => {
         const scene = new THREE.Scene();
         //const camera = new THREE.OrthographicCamera(75, 600 / 400, 0.1, 1000); 
-        const camera = new THREE.PerspectiveCamera(75, 1000 / 600, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         
         //Two renderers, one with anti aliasing
         //const renderer = new THREE.WebGLRenderer({ antialias: true });
         const renderer = new THREE.WebGLRenderer({ antialias: false });
 
         
-        renderer.setSize(500, 300);
+        renderer.setSize( window.innerWidth * .7, window.innerHeight * .9);
         renderer.setPixelRatio(window.devicePixelRatio); // High resolution rendering ***
         renderer.physicallyCorrectLights = true; // Physically correct lighting ***
         mountRef.current.appendChild(renderer.domElement);
