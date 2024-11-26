@@ -3,7 +3,6 @@
 import ParameterPanel from "./ParameterPanel";
 import SimulationView from "./SimulationView";
 import SimulationControls from "./SimulationControls";
-import SimulationScreen from "./SimulationScreen";
 
 function Simulation() {
 
