@@ -1,30 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import ParameterGrid from './ParameterGrid';
 
 function ConstantParameter() {
 
+    const [data, setData] = useState([
+        { title: "Surface Gravity", subtitle: "Newtons", value: 309 },
+        { title: "Average Diameter", subtitle: "Kilometers", value: 113.4 },
+        { title: "Rotation Speed", subtitle: "Hours", value: 4.2 },
+        { title: "Lander Mass", subtitle: "Kilotons", value: 1500 },
+        { title: "Max Fuel", subtitle: "Kilotons", value: 500 },
+        { title: "Max Impact", subtitle: "m/s", value: 1 },
+        { title: "Landing Feet Size", subtitle: "Centimeters", value: 22.86 },
+        { title: "Starting Altitude", subtitle: "Kilometers", value: 400 },
+        { title: "Max Thrust", subtitle: "Newtons", value: 500 },
+        { title: "Lander Angle", subtitle: "Degrees", value: 90 },
+        { title: "Lwr Thrust Angle", subtitle: "Degrees", value: 180 },
+        { title: "Upr Thrust Angle", subtitle: "Degrees", value: 0 },
+    ]);
+
     return (
         <div>
-            <h2>
-                Constant Parameters
-            </h2>
-            <p>Psyche Gravity </p>
-
-            {/* Here are the parameters which will go into this component:
-
-                •	Acceleration due to gravity of Psyche (float)
-                •	Average diameter of Psyche (float)
-                •	Rotation speed of Psyche (float)
-                •	Mass of the spacecraft lander (float)
-                •	Amount of fuel for thrusters designated for landing (int)
-                •	Minimum force from landing impact that the lander can sustain (int)
-                •	Diameter of landing feet (float)
-                •	Minimum/maximum radial distances the lander can start at (float)
-                •	Maximum level of thrust that can be exerted (int)
-                •	Maximum distance of the lander from Psyche that's considered too far (out of bounds threshold) (float)
-            */}
-
+            <h3 style={{ padding: "0px", marginBottom: "20px", marginTop: "0px" }}>Constant Parameters </h3>
+            <ParameterGrid items={data} />
         </div>
     );
 }
 
-export default ConstantParameter
+    export default ConstantParameter

@@ -1,10 +1,11 @@
 
-import React from "react";
+//import React from "react";
 import ParameterPanel from "./ParameterPanel";
 import SimulationView from "./SimulationView";
 import SimulationControls from "./SimulationControls";
 
 function Simulation() {
+
     return (
 
         <div className="simulation">
@@ -19,6 +20,8 @@ function Simulation() {
         </div>
 
     );
+
 }
 
 export default Simulation;
+
