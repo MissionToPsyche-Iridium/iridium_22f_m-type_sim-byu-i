@@ -6,7 +6,8 @@ namespace MASS.Server.Models
 {
     public class Parameters
     {
-        public int Id = new Random().Next(1000, 10000);
+        [Range(1000,10000)]
+        public int Id { get; set; }
         [Range(0,2)]
         public int Difficulty { get; set; } // 0 = novice, 1 = intermediate, 2 = expert
 
@@ -42,6 +43,7 @@ namespace MASS.Server.Models
         [Range(0,8.5)] // grams per second
         public double FuelConsumeRate { get; set; }
         public double ShipAltitude { get; set; }
+        public double PriorAltitude { get; set; }
         public double ShipVelocity { get; set; }
         public double ShipTotalAccel { get; set; } // Gravity +/- Thrust
         public double ShipAngle { get; set; }
@@ -50,7 +52,9 @@ namespace MASS.Server.Models
         public double ThrustAccel { get; set; }
         [Range(0,100)]
         public double ShipDmg { get; set; } // ShipVelocity * 100 when ship collides with asteroid or impact from feet exceeds DmgThreshold
-        public DateTime TimeStart { get; set; }
+        public required string StartTime { get; set; } // Time when simulation begins
+        public required string CurrentTime { get; set; } // Time when frontend requests new parameters
+        public required string LastTime { get; set; } // Time when frontend last requested new parameters
         public double TimeElapsed { get; set; } // Current DateTime - TimeStart
     }
 }

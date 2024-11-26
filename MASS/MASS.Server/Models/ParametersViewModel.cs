@@ -7,7 +7,7 @@ namespace MASS.Server.Models
     public class ParametersViewModel
     {
         public int Id { get; set; }
-        public double Calculation { get; set; } // time calculations performed
+        public required string Calculation { get; set; } // time calculations performed
         public double Velocity { get; set; } // falling velocity
         public double Fuel { get; set; } // fuel remaining
         public double Height { get; set; } // new altitude
