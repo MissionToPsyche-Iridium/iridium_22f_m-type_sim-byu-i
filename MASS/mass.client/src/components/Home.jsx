@@ -8,8 +8,9 @@ import AboutButton from './AboutButton';
 function Home() {
 
     return (
-
+        
         <>
+            {/* Assemble components into Home page component */}
             <Welcome />
             <br />
             <Logo />

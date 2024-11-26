@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 function Activate() {
 
     const navigate = useNavigate();
@@ -16,7 +17,9 @@ function Activate() {
             justifyContent: "center",
             height: "100%"
         }} >
+
             <button size="large" type="button" onClick={handleButtonClickToMainMenu}>Activate Simulator</button>
+
         </div>
 
     );

@@ -1,11 +1,13 @@
 
-import React from "react";
+//import React from "react";
 import ParameterPanel from "./ParameterPanel";
 import SimulationView from "./SimulationView";
 import SimulationControls from "./SimulationControls";
 
-function App() {
+function Simulation() {
+
     return (
+
         <div className="simulation">
             {/* Parameter panel will be on the left, and take full height */}
             <ParameterPanel />
@@ -16,7 +18,10 @@ function App() {
                 <SimulationControls />
             </div>
         </div>
+
     );
+
 }
 
-export default App;
+export default Simulation;
+

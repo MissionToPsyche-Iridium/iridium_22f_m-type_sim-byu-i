@@ -10,8 +10,8 @@ function About() {
 
     return (
 
-        <div>
 
+        <div>
             <h1>
                 About 
             </h1>
@@ -40,9 +40,7 @@ function About() {
             <button size="large" type="button" onClick={handleButtonClick}>
                 Return to Home page
             </button>
-
         </div>
-
     );
 }
 
