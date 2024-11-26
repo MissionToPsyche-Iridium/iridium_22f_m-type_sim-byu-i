@@ -1,29 +1,20 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
+import SimulationScreen from "./SimulationScreen"; // Adjust the path as needed
 
 function SimulationView() {
-    const canvasRef = useRef(null);
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext("2d");
-
-        // Set font properties
-        context.font = "40px Times"; // Font size and family
-        context.fillStyle = "black"; // Text color
-        context.textAlign = "center"; // Center text horizontally
-        context.textBaseline = "middle"; // Center text vertically
-
-        // Draw the text on the canvas
-        context.fillText("Canvas - Simulation View", canvas.width / 2, canvas.height / 2);
-    }, []);
+    const containerRef = useRef(null);
 
     return (
-        <canvas
-            ref={canvasRef}
-            width={500} // Canvas width
-            height={300} // Canvas height
-            style={{ border: "1px solid #000" }} // Optional: border to see canvas area
-        ></canvas>
+        <div
+            ref={containerRef}
+            style={{
+                width: "500px", // Container width
+                height: "300px", // Container height
+                border: "1px solid #000", // Optional: border to see container area
+            }}
+        >
+            <SimulationScreen />
+        </div>
     );
 }
 
