@@ -20,7 +20,7 @@ function ConstantParameter() {
 
     return (
         <div>
-            <h4> Constant Parameters </h4>
+            <h2 style={{ padding: "0px", marginBottom: "20px", marginTop: "0px" }}> Constant Parameters </h2>
             <ParameterGrid items={data} />
         </div>
     );
