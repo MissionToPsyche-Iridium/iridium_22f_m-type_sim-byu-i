@@ -6,11 +6,10 @@ const SimulationScreen = () => {
     const mountRef = useRef(null);
     useEffect(() => {
         const scene = new THREE.Scene();
-        //const camera = new THREE.OrthographicCamera(75, 600 / 400, 0.1, 1000); 
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        
-        //Two renderers, one with anti aliasing
-        //const renderer = new THREE.WebGLRenderer({ antialias: true });
+        //const camera = new THREE.OrthographicCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000); 
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+
+
         const renderer = new THREE.WebGLRenderer({ antialias: false });
 
         
@@ -32,42 +31,39 @@ const SimulationScreen = () => {
 
         let asteroid;
 
+        //Lander
+        const geometry = new THREE.BoxGeometry( .1, .1, .1 ); 
+        const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+        const lander = new THREE.Mesh( geometry, material );
+
         // Load GLTF model
         const loader = new GLTFLoader();
-        const assetPath = '/assets/AsteroidSlicedv2.gltf';
+        const assetPath = '/assets/Asteroid.gltf';
 
+        //Set initial camera position
+        camera.position.set(1.5, 3.9, 10); // Set starting camera position
+
+
+        //Animation / logic
         loader.load(
             assetPath,
             (gltf) => {
                 asteroid = gltf.scene;
+                
+                //Get size of asteroid to convert to km
+                const boundingBox = new THREE.Box3().setFromObject(asteroid);
+
+                // Get the size of the bounding box
+                const size = new THREE.Vector3();
+                boundingBox.getSize(size); // Populates size with width, height, and depth
         
-                const box = new THREE.Box3().setFromObject(asteroid);
-                const center = box.getCenter(new THREE.Vector3());
-                const size = box.getSize(new THREE.Vector3());
-        
-                // Center the asteroid model
-                asteroid.position.sub(center);
-        
-                // Move the asteroid relative to the camera
-                const offsetX = -50; // Relative offset along the X-axis
-                const offsetY = -size.y * 1.5; // Lower it slightly relative to its size
-                const offsetZ = -100; // Move asteroid closer or farther from the camera
-        
-                asteroid.position.set(
-                    camera.position.x + offsetX,
-                    camera.position.y + offsetY,
-                    camera.position.z + offsetZ
-                );
-        
-                // Rotate and scale the asteroid
-                asteroid.rotation.x = Math.PI;
-                const scaleFactor = 1000;
-                asteroid.scale.set(scaleFactor, scaleFactor, scaleFactor);
-                asteroid.translateX(-1500);
-                asteroid.translateY(220);
-        
+                console.log("Asteroid size:", size); // Logs the dimensions of the asteroid
+                console.log("Width:", size.x, "Height:", size.y, "Depth:", size.z);
+                
+                lander.position.set(size.x / 2, size.y * 2.5, 0)
+                
+                scene.add( lander );
                 scene.add(asteroid);
-                camera.position.z -= 500;
                 asteroid.traverse((child) => {
                     if (child.isMesh) {
                         child.material.roughness = 0.4;
@@ -76,7 +72,8 @@ const SimulationScreen = () => {
                 });
         
                 console.log("Model loaded:", gltf);
-                console.log("Asteroid position relative to camera:", asteroid.position);
+                console.log("Asteroid position:", asteroid.position);
+                console.log("Camera position: ", camera.position)
             },
             (xhr) => {
                 console.log(`Model loading progress: ${(xhr.loaded / xhr.total) * 100}%`);
