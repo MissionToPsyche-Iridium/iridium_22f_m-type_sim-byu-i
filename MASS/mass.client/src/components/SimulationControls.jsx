@@ -5,6 +5,7 @@ const ControlButtons = () => {
     const [isRunning, setIsRunning] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [hoveredButton, setHoveredButton] = useState(null); // For hover effects
+    const navigate = useNavigate();
 
     //This allows me to make CSSest styles
     const styles = {
@@ -46,8 +47,7 @@ const ControlButtons = () => {
     };
 
     const exit = () => {
-        setIsRunning(false);
-        setIsPaused(false);
+        navigate('/main-menu-page');
     };
 
     return (
