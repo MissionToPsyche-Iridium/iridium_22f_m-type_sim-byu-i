@@ -5,9 +5,10 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 const SimulationScreen = () => {
     const mountRef = useRef(null);
     useEffect(() => {
+
         const scene = new THREE.Scene();
         //const camera = new THREE.OrthographicCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000); 
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
 
         const renderer = new THREE.WebGLRenderer({ antialias: false });
@@ -41,7 +42,9 @@ const SimulationScreen = () => {
         const assetPath = '/assets/Asteroid.gltf';
 
         //Set initial camera position
-        camera.position.set(1.5, 3.9, 10); // Set starting camera position
+        camera.position.set(1.5, 4.5, 10); // Set starting camera position
+
+        let landerSpeed = .015;
 
 
         //Animation / logic
@@ -60,8 +63,16 @@ const SimulationScreen = () => {
                 console.log("Asteroid size:", size); // Logs the dimensions of the asteroid
                 console.log("Width:", size.x, "Height:", size.y, "Depth:", size.z);
                 
-                lander.position.set(size.x / 2, size.y * 2.5, 0)
+                lander.position.set(size.x / 2, size.y + (size.y * 1.57142857143), size.z / 2) //Set the lander to render 400km above the surface of the asteroid
                 
+                //Test
+                const asteroidCenter = new THREE.Vector3();
+                boundingBox.getCenter(asteroidCenter);
+
+                // Update camera focus in the animation loop
+                camera.lookAt(asteroidCenter);
+                camera.position.y += size.y * .75;
+
                 scene.add( lander );
                 scene.add(asteroid);
                 asteroid.traverse((child) => {
@@ -87,6 +98,10 @@ const SimulationScreen = () => {
 
         // Animate the scene
         const animate = () => {
+            //Animate the lander movement. Placeholder
+            lander.position.y -= landerSpeed;
+            camera.fov -= landerSpeed * 15;
+            camera.updateProjectionMatrix();
             requestAnimationFrame(animate);
             renderer.render(scene, camera);
         };
