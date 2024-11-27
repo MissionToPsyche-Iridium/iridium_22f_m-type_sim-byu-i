@@ -1,19 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const ControlButtons = () => {
     const [isRunning, setIsRunning] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [hoveredButton, setHoveredButton] = useState(null); // For hover effects
 
-    //This allows sme to make CSSest styles
+    //This allows me to make CSSest styles
     const styles = {
         button: {
             background: '#007bff',
             color: '#fff',
             fontSize: '16px',
             textAlign: 'center',
-            margin: '0 5px',
+            margin: '5px 5px',
             padding: '10px 20px',
+            width: "40%",
             border: 'none',
             borderRadius: '4px',
             cursor: 'pointer',
@@ -30,6 +32,7 @@ const ControlButtons = () => {
             : styles.button;
 
     const start = () => {
+        setIsRunning(false);
         setIsRunning(true);
         setIsPaused(false);
     };
@@ -48,41 +51,45 @@ const ControlButtons = () => {
     };
 
     return (
-        <div>
-            <button
-                style={getButtonStyle("start")}
-                onMouseEnter={() => setHoveredButton("start")}
-                onMouseLeave={() => setHoveredButton(null)}
-                onClick={start}
-                disabled={isRunning}>
-                Start
-            </button>
-            <button
-                style={getButtonStyle("pause")}
-                onMouseEnter={() => setHoveredButton("pause")}
-                onMouseLeave={() => setHoveredButton(null)}
-                onClick={pause}
-                disabled={!isRunning || isPaused}>
-                Pause
-            </button>
+        <div className="simulator-controls">
+            <div>
+                <button
+                    style={getButtonStyle("start")}
+                    onMouseEnter={() => setHoveredButton("start")}
+                    onMouseLeave={() => setHoveredButton(null)}
+                    onClick={start}
+                    disabled={isRunning}>
+                    Start
+                </button>
+                <button
+                    style={getButtonStyle("exit")}
+                    onMouseEnter={() => setHoveredButton("exit")}
+                    onMouseLeave={() => setHoveredButton(null)}
+                    onClick={exit}
+                    disabled={!isRunning}>
+                    Exit
+                </button>
+            </div>
 
-            <button
-                style={getButtonStyle("resume")}
-                onMouseEnter={() => setHoveredButton("resume")}
-                onMouseLeave={() => setHoveredButton(null)}
-                onClick={resume}
-                disabled={!isRunning || !isPaused}>
-                Resume
-            </button>
+            <div>
+                <button
+                    style={getButtonStyle("pause")}
+                    onMouseEnter={() => setHoveredButton("pause")}
+                    onMouseLeave={() => setHoveredButton(null)}
+                    onClick={pause}
+                    disabled={!isRunning || isPaused}>
+                    Pause
+                </button>
+                <button
+                    style={getButtonStyle("resume")}
+                    onMouseEnter={() => setHoveredButton("resume")}
+                    onMouseLeave={() => setHoveredButton(null)}
+                    onClick={resume}
+                    disabled={!isRunning || !isPaused}>
+                    Resume
+                </button>
 
-            <button
-                style={getButtonStyle("exit")}
-                onMouseEnter={() => setHoveredButton("exit")}
-                onMouseLeave={() => setHoveredButton(null)}
-                onClick={exit}
-                disabled={!isRunning}>
-                Exit
-            </button>
+            </div>
         </div>
     );
 };
