@@ -14,27 +14,27 @@ function Simulation() {
         updateParameters({ /* JSON data to send to the server */ });
     }, []);
 
-    const contents = parameters === undefined
-        ? <p><em>Loading...</em></p>
-        : <div>
-            <h1>Simulation</h1>
-            <p>Parameters:</p>
-            <ul>
-                <li>Id: {parameters.Id}</li>
-                <li>Calculation: {parameters.Calculation}</li>
-                <li>Velocity: {parameters.Velocity}</li>
-                <li>Fuel: {parameters.Fuel}</li>
-                <li>Height: {parameters.Height}</li>
-                <li>Elapsed: {parameters.Elapsed}</li>
-            </ul>
-        </div>;
+    //const contents = parameters === undefined
+    //    ? <div>
+    //        <h1>Simulation</h1>
+    //        <p>Parameters:</p>
+    //        <ul>
+    //            <li>Id: {parameters.Id}</li>
+    //            <li>Calculation: {parameters.Calculation}</li>
+    //            <li>Velocity: {parameters.Velocity}</li>
+    //            <li>Fuel: {parameters.Fuel}</li>
+    //            <li>Height: {parameters.Height}</li>
+    //            <li>Elapsed: {parameters.Elapsed}</li>
+    //        </ul>
+    //    </div>
+    //    : <p><em>Loading...</em></p>;
 
     return (
 
         <div className="simulation">
             {/* Parameter panel will be on the left, and take full height */}
             <ParameterPanel />
-            {contents}
+            {/*{contents}*/}
 
             {/* Simulator view and simulation controls components will be in a column to the right */}
             <div className="view-controls">
