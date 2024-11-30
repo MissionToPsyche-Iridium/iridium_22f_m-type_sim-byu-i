@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const styles = {
@@ -43,6 +42,7 @@ const styles = {
     borderBottom: '1px solid #eee', //double check color
   },
 };
+
 
 // Makes a hover effect for dropdown
 styles.dropdownItem[':hover'] = {
