@@ -16,7 +16,7 @@ function MoreInfo() {
             <p>
                 <b>
                     Check out these links to learn more about NASA's Psyche Mission! Psyche is an asteroid believed to be <br />
-                    made of metal, possibly the remnant of a planetary core. We invite you to examine the mission with an <br />
+                    made of metal, possibly the remanant of a planetary core. We invite you to examine the mission with an <br />
                     explorer's sense of adventure. Who knows what we'll find when we reach the Psyche asteroid.</b>
             </p><br />
 

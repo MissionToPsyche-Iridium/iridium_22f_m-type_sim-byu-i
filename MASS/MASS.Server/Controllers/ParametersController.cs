@@ -27,9 +27,8 @@ namespace MASS.Server.Controllers
             }
 
             // Perform the calculations using the CalculationService
-            DateTime calculationTime = DateTime.Now;
-            double newTimeElapsed = _calculationService.CalculateElapsedTime(parameters.TimeStart, DateTime.Now);
-            parameters.FuelRemaining = _calculationService.CalculateFuel(parameters.FuelRemaining, parameters.TimeElapsed - newTimeElapsed, parameters.ThrustOn);
+            double newTimeElapsed = _calculationService.CalculateElapsedTime(DateTime.Parse(parameters.StartTime), DateTime.Now);
+            parameters.FuelRemaining = _calculationService.CalculateFuel(parameters.FuelRemaining, newTimeElapsed - parameters.TimeElapsed, parameters.ThrustOn);
             parameters.ShipDmg = _calculationService.CalculateDamage(parameters.ShipVelocity);
             parameters.ShipAltitude = _calculationService.CalculateAltitude(parameters.ShipAltitude, parameters.ShipVelocity, parameters.TimeElapsed - newTimeElapsed);
             parameters.ShipVelocity = _calculationService.CalculateVelocity(parameters.ShipAltitude);
@@ -39,7 +38,7 @@ namespace MASS.Server.Controllers
             var parametersViewModel = new ParametersViewModel
             {
                 Id = parameters.Id,
-                Calculation = _calculationService.CalculateElapsedTime(calculationTime, DateTime.Now), // time calculations performed
+                Calculation = DateTime.Now.ToString("o"), // time calculations performed
                 Velocity = parameters.ShipVelocity, // falling velocity
                 Fuel = parameters.FuelRemaining, // fuel remaining
                 Height = parameters.ShipAltitude, // new altitude
