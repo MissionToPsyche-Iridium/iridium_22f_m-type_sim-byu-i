@@ -6,8 +6,8 @@ import MoreInfo from './components/MoreInfo';
 import MainMenu from './components/MainMenu';
 import Simulation from './components/Simulation';
 import { SharedProvider } from './components/SharedContext';
-import ConstantParameter from './components/ConstantParameter';
-import VariableParameter from './components/VariableParameter';
+import ConstantParameter from './components/ConstantParameters';
+import VariableParameter from './components/VariableParameters';
 import './App.css';
 
 function App() {
