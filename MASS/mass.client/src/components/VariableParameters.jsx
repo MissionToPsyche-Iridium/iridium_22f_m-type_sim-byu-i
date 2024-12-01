@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 //Components
 import ParameterGrid from './ParameterGrid';
+import { SharedContext } from './SharedContext';
 //Services
 import useKeyTracker from '../services/KeyboardHandler.js';
 
 function VariableParameters() {
+
+    {/* }
     // Track if user is pressing up/down arrow keys
     const { ArrowUp, ArrowDown } = useKeyTracker();
 
@@ -19,37 +22,43 @@ function VariableParameters() {
             { title: "Downward Thrusters", subtitle: "Newtons", value: ArrowDown ? 250 : 0 },
         ]);
     }, [ArrowUp, ArrowDown]);
+    */}
+
+    // Import parameters for use
+    const {
+        param13, setParam13,
+        param14, setParam14,
+        param15, setParam15,
+        param16, setParam16,
+        param17, setParam17,
+        param18, setParam18,
+        param19, setParam19,
+        param20, setParam20,
+    } = useContext(SharedContext);
 
 
     const [data, setData] = useState([
-        { title: "Acceleration", subtitle: "Kilometers", value: 1 },
-        { title: "Velocity", subtitle: "Kilometers", value: 1 },
-        { title: "Thrust", subtitle: "Hours", value: 1},
-        { title: "Fuel", subtitle: "Kilotons", value:  1},
-        { title: "Damage", subtitle: "Kilotons", value:  1},
-        { title: "Distance", subtitle: "m/s", value:  1},
-        { title: "Time Elapsed", subtitle: "Centimeters", value: 1 },
+        param13,
+        param14,
+        param15,
+        param16,
+        param17,
+        param18,
+        param19,
+        param20,
     ]);
+
 
     return (
         <div>
-            <h2>
+            <h3>
                 Variable Parameters
-            </h2>
+            </h3>
 
-            {/* Here are the parameters which will go here:
-            
-                •	Current acceleration of the lander (float)
-                •	Current velocity of the lander (float)
-                •	Current level of thrust (float)
-                •	Amount of fuel remaining (int)
-                •	Amount of damage the lander has sustained (int)
-                •	Distance between the lander and Psyche (float)
-                •	Time elapsed (float)
-            */}
-            <ParameterGrid items={data1} />
+            <ParameterGrid items={data} />
+
         </div>
     );
-};
+}
 
 export default VariableParameters;
