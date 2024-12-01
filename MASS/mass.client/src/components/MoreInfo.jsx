@@ -4,7 +4,7 @@ function MoreInfo() {
 
     const navigate = useNavigate();
 
-    const handleButtonClick = () => {
+    const home = () => {
         navigate('/');
     };
 
@@ -119,7 +119,23 @@ function MoreInfo() {
             <a href="https://twitter.com/NASASolarSystem" target="_blank">NASA Solar System on Twitter/X</a><br />
             <a href="https://twitter.com/PsycheMission" target="_blank">Psyche Mission on Twitter/X</a><br /><br />
 
-            <button size="large" type="button" onClick={handleButtonClick}>
+            <button
+                style={{
+                    background: '#007bff', // udoublecheck color
+                    color: '#fff',
+                    fontSize: '16px',
+                    textAlign: 'center',
+                    margin: '0 5px',
+                    padding: '10px 20px',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    width: '250px',
+                }}
+                size="large"
+                type="button"
+                onClick={home}
+            >
                 Return to Home page
             </button>
         </>

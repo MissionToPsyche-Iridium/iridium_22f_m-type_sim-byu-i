@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
-//Components
+import React, { useState, useContext } from "react";
 import ParameterGrid from './ParameterGrid';
-import { SharedContext } from './SharedContext';
+import { SharedContext } from "./SharedContext";
 //Services
 import useKeyTracker from '../services/KeyboardHandler.js';
 

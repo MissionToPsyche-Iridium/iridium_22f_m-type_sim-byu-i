@@ -5,7 +5,7 @@ function AboutButton() {
 
     const navigate = useNavigate();
 
-    const handleButtonClickToMainMenu = () => {
+    const about = () => {
         navigate('/about-page');
     };
 
@@ -17,9 +17,25 @@ function AboutButton() {
             justifyContent: "center",
             height: "100%"
         }} >
-
-            <button size="large" type="button" onClick={handleButtonClickToMainMenu}>About this application</button>
-
+            <button
+                style={{
+                    background: '#007bff', // udoublecheck color
+                    color: '#fff',
+                    fontSize: '16px',
+                    textAlign: 'center',
+                    margin: '0 5px',
+                    padding: '10px 20px',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    width: '250px',
+                }}
+                size="large"
+                type="button"
+                onClick={about}
+            >
+                About this application
+            </button>
         </div>
 
     );

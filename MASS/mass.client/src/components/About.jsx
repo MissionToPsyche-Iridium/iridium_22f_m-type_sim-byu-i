@@ -4,18 +4,16 @@ function About() {
 
     const navigate = useNavigate();
 
-    const handleButtonClick = () => {
+    const home = () => {
         navigate('/');
     };
 
     return (
 
-
         <div>
             <h1>
                 About 
             </h1>
-
             <p>
                 This work was created in partial fulfillment of Brigham Young University - Idaho's Professional Project Course - CSE 397. The <br />
                 work is a result of the Psyche Student Collaborations component of NASA's Psyche Mission (https://psyche.asu.edu).<br />
@@ -36,8 +34,23 @@ function About() {
                 Gerin Wilde<br />
                 Brycen Williams
             </p>
-
-            <button size="large" type="button" onClick={handleButtonClick}>
+            <button
+                style={{
+                    background: '#007bff', // udoublecheck color
+                    color: '#fff',
+                    fontSize: '16px',
+                    textAlign: 'center',
+                    margin: '0 5px',
+                    padding: '10px 20px',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    width: '250px',
+                }}
+                size="large"
+                type="button"
+                onClick={home}
+            >
                 Return to Home page
             </button>
         </div>

@@ -25,12 +25,12 @@ function App() {
                     <Route path="/simulation" element={<Simulation />} />
                     <Route path="/constant-parameter" element={<ConstantParameter />} />
                     <Route path="/configuration-menu" element={<ConfigurationMenu />} />
-                    {/*<Route path="/variable-parameter" element={<VariableParameter />} />*/}
+                    <Route path="/variable-parameter" element={<VariableParameter />} />
                 </Routes>
             </Router>
         </SharedProvider >
         
     );
-}
+};
 
 export default App;

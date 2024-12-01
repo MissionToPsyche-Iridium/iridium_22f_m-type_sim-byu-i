@@ -5,7 +5,7 @@ function Activate() {
 
     const navigate = useNavigate();
 
-    const handleButtonClickToMainMenu = () => {
+    const mainMenu = () => {
         navigate('/main-menu-page');
     };
 
@@ -17,9 +17,25 @@ function Activate() {
             justifyContent: "center",
             height: "100%"
         }} >
-
-            <button size="large" type="button" onClick={handleButtonClickToMainMenu}>Activate Simulator</button>
-
+            <button
+                style={{
+                    background: '#007bff', // udoublecheck color
+                    color: '#fff',
+                    fontSize: '16px',
+                    textAlign: 'center',
+                    margin: '0 5px',
+                    padding: '10px 20px',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    width: '250px',
+                }}
+                size="large"
+                type="button"
+                onClick={mainMenu}
+            >
+                Activate Simulator
+            </button>
         </div>
 
     );

@@ -2,20 +2,6 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SharedContext } from "./SharedContext";
 
-const styles = {
-    button: {
-        background: '#007bff', // udoublecheck color
-        color: '#fff',
-        fontSize: '16px',
-        textAlign: 'center',
-        margin: '0 5px',
-        padding: '10px 20px',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-    },
-};
-
 function ConfigurationMenu() {
 
     // Use navigate to move between components
@@ -54,10 +40,25 @@ function ConfigurationMenu() {
                             <p>{item.subtitle}</p>
                             <p>Value: {item.value}</p>
                         </li>
-                    ))}
-                
+                    ))}                
             </div>
-            <button style={styles.button} onClick={mainMenu}>Finished</button>
+            <button
+                style={{
+                    background: '#007bff', // udoublecheck color
+                    color: '#fff',
+                    fontSize: '16px',
+                    textAlign: 'center',
+                    margin: '0 5px',
+                    padding: '10px 20px',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    width: '250px',
+                }}
+                onClick={mainMenu}
+            >
+                Finished
+            </button>
         </>
     );
 };

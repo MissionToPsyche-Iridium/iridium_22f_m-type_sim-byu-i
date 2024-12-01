@@ -8,6 +8,25 @@ import SimulationControls from "./SimulationControls";
 import { useEffect, useState } from "react";
 
 function Simulation() {
+
+    {/*
+
+    //Code to build the JSON
+    const missionJSON = {{
+        "user_id": [{
+            "time": {param18},
+            "current": {currentTime},         // This should hold the current system time 
+            "last": {lastBackendTime},        // This should hold the value of a time object from when the back-end last sent data, or current time if first call
+            "upperThruster": {param19},
+            "lowerThruster": {param20},
+            "altitude": {param17},
+            "prior": {backendLanderAltitude}, // This holds the altitude of the last backend response or current altitude if first call
+            "fuel": {param15},
+        }]
+    }
+
+    */}
+
     const [parameters, setParameters] = useState();
 
     useEffect(() => {
