@@ -7,13 +7,13 @@ const SimulationScreen = () => {
     useEffect(() => {
 
         const scene = new THREE.Scene();
-        //const camera = new THREE.OrthographicCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000); 
+        //const camera = new THREE.OrthographicCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
 
         const renderer = new THREE.WebGLRenderer({ antialias: false });
 
-        
+
         renderer.setSize( window.innerWidth * .7, window.innerHeight * .9);
         renderer.setPixelRatio(window.devicePixelRatio); // High resolution rendering ***
         renderer.physicallyCorrectLights = true; // Physically correct lighting ***
@@ -33,7 +33,7 @@ const SimulationScreen = () => {
         let asteroid;
 
         //Lander
-        const geometry = new THREE.BoxGeometry( .1, .1, .1 ); 
+        const geometry = new THREE.BoxGeometry( .1, .1, .1 );
         const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
         const lander = new THREE.Mesh( geometry, material );
 
@@ -52,19 +52,19 @@ const SimulationScreen = () => {
             assetPath,
             (gltf) => {
                 asteroid = gltf.scene;
-                
+
                 //Get size of asteroid to convert to km
                 const boundingBox = new THREE.Box3().setFromObject(asteroid);
 
                 // Get the size of the bounding box
                 const size = new THREE.Vector3();
                 boundingBox.getSize(size); // Populates size with width, height, and depth
-        
+
                 console.log("Asteroid size:", size); // Logs the dimensions of the asteroid
                 console.log("Width:", size.x, "Height:", size.y, "Depth:", size.z);
-                
+
                 lander.position.set(size.x / 2, size.y + (size.y * 1.57142857143), size.z / 2) //Set the lander to render 400km above the surface of the asteroid
-                
+
                 //Test
                 const asteroidCenter = new THREE.Vector3();
                 boundingBox.getCenter(asteroidCenter);
@@ -81,7 +81,7 @@ const SimulationScreen = () => {
                         child.material.metalness = 0.5;
                     }
                 });
-        
+
                 console.log("Model loaded:", gltf);
                 console.log("Asteroid position:", asteroid.position);
                 console.log("Camera position: ", camera.position)
@@ -93,12 +93,13 @@ const SimulationScreen = () => {
                 console.error("An error occurred while loading the model:", error);
             }
         );
-        
 
+        let isMounted = true;
 
         // Animate the scene
         const animate = () => {
             //Animate the lander movement. Placeholder
+            if (!isMounted) return;
             lander.position.y -= landerSpeed;
             camera.fov -= landerSpeed * 15;
             camera.updateProjectionMatrix();
@@ -109,7 +110,21 @@ const SimulationScreen = () => {
 
         // Clean up on component unmount
         return () => {
-            mountRef.current.removeChild(renderer.domElement);
+            isMounted = false;
+            if (renderer.domElement && mountRef.current) {
+                mountRef.current.removeChild(renderer.domElement);
+            }
+            scene.traverse((object) => {
+                if (object.geometry) object.geometry.dispose();
+                if (object.material) {
+                    if (Array.isArray(object.material)) {
+                        object.material.forEach((mat) => mat.dispose());
+                    } else {
+                        object.material.dispose();
+                    }
+                }
+            });
+            renderer.dispose();
         };
     }, []);
 
@@ -117,3 +132,4 @@ const SimulationScreen = () => {
 };
 
 export default SimulationScreen;
+
