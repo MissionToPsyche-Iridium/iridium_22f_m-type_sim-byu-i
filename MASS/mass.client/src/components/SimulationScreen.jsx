@@ -99,8 +99,11 @@ const SimulationScreen = () => {
         // Animate the scene
         const animate = () => {
             //Animate the lander movement. Placeholder
+            if (lander.position.y > 2.61){
             lander.position.y -= landerSpeed;
+            console.log(lander.position.y)
             camera.fov -= landerSpeed * 15;
+            }
             camera.updateProjectionMatrix();
             requestAnimationFrame(animate);
             renderer.render(scene, camera);

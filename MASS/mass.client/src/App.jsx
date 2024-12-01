@@ -4,6 +4,7 @@ import Home from './components/Home';
 import About from './components/About';
 import MoreInfo from './components/MoreInfo';
 import MainMenu from './components/MainMenu';
+import ArrowKeyProvider from './components/ArrowKeyTracker';
 import Simulation from './components/Simulation';
 import ConstantParameter from './components/ConstantParameter';
 import VariableParameter from './components/VariableParameters';
@@ -13,6 +14,8 @@ import './App.css';
 function App() {
 
     return (
+<ArrowKeyProvider>
+
         <SharedProvider>
             <Router>
                 <Routes>
@@ -26,6 +29,7 @@ function App() {
                 </Routes>
             </Router>
         </SharedProvider >
+</ArrowKeyProvider>
     );
 }
 
