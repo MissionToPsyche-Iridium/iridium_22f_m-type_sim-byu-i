@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { SharedContext } from "./SharedContext";
 
 const styles = {
@@ -56,6 +56,13 @@ styles.button[':hover'] = {
 
 const MainMenu = () => {
 
+    const location = useLocation();
+
+    useEffect(() => {
+        // Perform logic when the location changes
+        console.log('Location changed:', location);
+    }, [location]);
+
     // Dropdown menu getter and setter
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -106,29 +113,31 @@ const MainMenu = () => {
         param20, setParam20,
     } = useContext(SharedContext);
 
-  return (
-    <nav style={styles.nav}>
-      <button style={styles.button}>Load Mission</button>
-      <button style={styles.button}>Write Mission</button>
-      <button style={styles.button} onClick={handleButtonClickToSimulation}>Start Simulation</button>
-      <button style={styles.button} onClick={handleButtonClickToConfiguration}>Configuration Menu</button>
-      <button style={styles.button} onClick={handleButtonClickToHome}>Exit Simulator</button>
+    return (
+        <div key={location.key}>
+            <nav style={styles.nav}>
+                <button style={styles.button}>Load Mission</button>
+                <button style={styles.button}>Write Mission</button>
+                <button style={styles.button} onClick={handleButtonClickToSimulation}>Start Simulation</button>
+                <button style={styles.button} onClick={handleButtonClickToConfiguration}>Configuration Menu</button>
+                <button style={styles.button} onClick={handleButtonClickToHome}>Exit Simulator</button>
 
-      {/* The button that allows USER to pick which level they want to use */}
-      <div style={styles.dropdownContainer}>
-        <button style={styles.button} onClick={toggleDropdown}>
-          Difficulty Level
-        </button>
-        {dropdownOpen && (
-          <ul style={styles.dropdownMenu}>
-            <li style={styles.dropdownItem}>Novice</li>
-            <li style={styles.dropdownItem}>Intermediate</li>
-            <li style={styles.dropdownItem}>Expert</li>
-          </ul>
-        )}
-      </div>
-    </nav>
-  );
+                {/* The button that allows USER to pick which level they want to use */}
+                <div style={styles.dropdownContainer}>
+                    <button style={styles.button} onClick={toggleDropdown}>
+                        Difficulty Level
+                    </button>
+                    {dropdownOpen && (
+                        <ul style={styles.dropdownMenu}>
+                        <li style={styles.dropdownItem}>Novice</li>
+                        <li style={styles.dropdownItem}>Intermediate</li>
+                        <li style={styles.dropdownItem}>Expert</li>
+                        </ul>
+                    )}
+                </div>
+            </nav>
+        </div>
+    );
 };
 
 export default MainMenu;

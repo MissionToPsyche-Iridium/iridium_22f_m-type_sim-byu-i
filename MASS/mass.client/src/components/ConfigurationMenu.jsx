@@ -31,22 +31,14 @@ function ConfigurationMenu() {
         param13, setParam13,
         param14, setParam14,
         param15, setParam15,
-        param16, setParam16,
         param17, setParam17,
-        param18, setParam18,
-        param19, setParam19,
-        param20, setParam20,
     } = useContext(SharedContext);
 
     const [items, setItems] = useState([
         param13,
         param14,
         param15,
-        param16,
         param17,
-        param18,
-        param19,
-        param20,
     ]);
 
     return (

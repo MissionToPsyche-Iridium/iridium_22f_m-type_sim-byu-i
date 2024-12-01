@@ -60,10 +60,7 @@ export const SharedProvider = ({ children }) => {
 };
 
 {/*
-import React, { createContext, useState } from "react";
 
-// Create Context
-export const SharedParameters = createContext();
 
 // Provider Component
 export const SharedProvider = ({ children }) => {
