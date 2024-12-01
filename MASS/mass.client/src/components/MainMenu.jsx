@@ -45,6 +45,7 @@ const styles = {
   },
 };
 
+
 // Makes a hover effect for dropdown
 styles.dropdownItem[':hover'] = {
   background: '#f0f0f0', //check color
