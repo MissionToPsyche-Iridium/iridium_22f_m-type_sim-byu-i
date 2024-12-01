@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from "react";
-import ParameterGrid from './ParameterGrid';
-=======
 import React, { useState, useEffect } from "react";
 //Components
 import ParameterGrid from './ParameterGrid';
 //Services
 import useKeyTracker from '../services/KeyboardHandler.js';
->>>>>>> 1a326962d464b6482ca00e4d5ab4b1586582242e
 
 function VariableParameters() {
     // Track if user is pressing up/down arrow keys
@@ -38,10 +33,6 @@ function VariableParameters() {
 
     return (
         <div>
-<<<<<<< HEAD
-            <h2 style={{ padding: "0px", marginBottom: "20px", marginTop: "0px" }}> Constant Parameters </h2>
-            <ParameterGrid items={data} />
-=======
             <h2>
                 Variable Parameters
             </h2>
@@ -57,8 +48,6 @@ function VariableParameters() {
                 •	Time elapsed (float)
             */}
             <ParameterGrid items={data} />
-
->>>>>>> 1a326962d464b6482ca00e4d5ab4b1586582242e
         </div>
     );
 }

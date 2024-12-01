@@ -1,5 +1,6 @@
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { SharedContext } from "./SharedContext";
 
 const styles = {
   nav: {
@@ -53,20 +54,54 @@ styles.button[':hover'] = {
   background: '#f0f0f0', //check color
 };
 
-
 const MainMenu = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // For dropdown that states novice, intermediate, or expert
-  const toggleDropdown = () => {
+    const {
+        param1, setParam1,
+        param2, setParam2,
+        param3, setParam3,
+        param4, setParam4,
+        param5, setParam5,
+        param6, setParam6,
+        param7, setParam7,
+        param8, setParam8,
+        param9, setParam9,
+        param10, setParam10,
+        param11, setParam11,
+        param12, setParam12,
+        param13, setParam13,
+        param14, setParam14,
+        param15, setParam15,
+        param16, setParam16,
+        param17, setParam17,
+        param18, setParam18,
+        param19, setParam19,
+        param20, setParam20,
+    } = useContext(SharedContext);
+
+    // Dropdown menu getter and setter
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    // For dropdown that states novice, intermediate, or expert
+    const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
-  };
+    };
+
+    // Use navigate to move between pages on button click
+    const navigate = useNavigate();
+
+    const handleButtonClickToSimulation = () => {
+        navigate('/simulation');
+    };
+
+    // Import parameters for use
+
 
   return (
     <nav style={styles.nav}>
       <button style={styles.button}>Load Mission</button>
       <button style={styles.button}>Write Mission</button>
-      <button style={styles.button}>Start Simulation</button>
+      <button style={styles.button} onClick={handleButtonClickToSimulation}>Start Simulation</button>
       <button style={styles.button}>Configuration Menu</button>
       <button style={styles.button}>Exit Simulator</button>
 
