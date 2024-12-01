@@ -5,12 +5,12 @@ export const SharedContext = createContext();
 
 // Provider Component
 export const SharedProvider = ({ children }) => {
-    // Define 20 variables as objects with title, sub-title, and value
+    // Define 20 parameters as objects with title, sub-title, and value
     const [param1, setParam1] = useState({ title: "Surface Gravity", subtitle: "Newtons", value: 309 });
     const [param2, setParam2] = useState({ title: "Average Diameter", subtitle: "Kilometers", value: 113.4 });
     const [param3, setParam3] = useState({ title: "Rotation Speed", subtitle: "Hours", value: 4.2 });
-    const [param4, setParam4] = useState({ title: "Lander Mass", subtitle: "Kilotons", value: 1500 });
-    const [param5, setParam5] = useState({ title: "Max Fuel", subtitle: "Kilotons", value: 500 });
+    const [param4, setParam4] = useState({ title: "Lander Mass", subtitle: "Kilograms", value: 1500 });
+    const [param5, setParam5] = useState({ title: "Max Fuel", subtitle: "Kilograms", value: 500 });
     const [param6, setParam6] = useState({ title: "Max Impact", subtitle: "m/s", value: 1 });
     const [param7, setParam7] = useState({ title: "Landing Feet Size", subtitle: "Centimeters", value: 22.86 });
     const [param8, setParam8] = useState({ title: "Starting Altitude", subtitle: "Kilometers", value: 400 });
@@ -20,14 +20,12 @@ export const SharedProvider = ({ children }) => {
     const [param12, setParam12] = useState({ title: "Upr Thrust Angle", subtitle: "Degrees", value: 0 });
     const [param13, setParam13] = useState({ title: "Lander Speed", subtitle: "m/s^2", value: 56.1 });
     const [param14, setParam14] = useState({ title: "Fall Velocity", subtitle: "m/s^2", value: 0 });
-    const [param15, setParam15] = useState({ title: "Lwr Thruster", subtitle: "On/Off", value: "Off" });
-    const [param16, setParam16] = useState({ title: "Upr Thruster", subtitle: "On/Off", value: "Off" });
-    const [param17, setParam17] = useState({ title: "Fuel Remaining", subtitle: "Kilotons", value: 500 });
+    const [param16, setParam15] = useState({ title: "Upr Thruster", subtitle: "On/Off", value: "Off" });
+    const [param15, setParam16] = useState({ title: "Lwr Thruster", subtitle: "On/Off", value: "Off" });
+    const [param17, setParam17] = useState({ title: "Fuel Remaining", subtitle: "Kilograms", value: 500 });
     const [param18, setParam18] = useState({ title: "Lander Damage", subtitle: "Percentage", value: 0 });
     const [param19, setParam19] = useState({ title: "Lander Altitude", subtitle: "Kilometers", value: 400 });
     const [param20, setParam20] = useState({ title: "Simulation Time", subtitle: "h:m:s:fraction", value: 0 });
-
-
 
     return (
 

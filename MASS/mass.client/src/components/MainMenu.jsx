@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SharedContext } from "./SharedContext";
 
@@ -45,7 +45,6 @@ const styles = {
   },
 };
 
-
 // Makes a hover effect for dropdown
 styles.dropdownItem[':hover'] = {
   background: '#f0f0f0', //check color
@@ -57,6 +56,33 @@ styles.button[':hover'] = {
 
 const MainMenu = () => {
 
+    // Dropdown menu getter and setter
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    // For dropdown that states novice, intermediate, or expert
+    const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+    };
+
+    // Use navigate to move between components
+    const navigate = useNavigate();
+
+    // Move to simulation page on button click
+    const handleButtonClickToSimulation = () => {
+        navigate('/simulation');
+    };
+
+    // Move to home page on button click
+    const handleButtonClickToHome = () => {
+        navigate('/');
+    };
+
+    // Move to configuration menu on button click
+    const handleButtonClickToConfiguration = () => {
+        navigate('/configuration-menu');
+    };
+    
+    // Import parameters for use
     const {
         param1, setParam1,
         param2, setParam2,
@@ -80,31 +106,13 @@ const MainMenu = () => {
         param20, setParam20,
     } = useContext(SharedContext);
 
-    // Dropdown menu getter and setter
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-
-    // For dropdown that states novice, intermediate, or expert
-    const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-    };
-
-    // Use navigate to move between pages on button click
-    const navigate = useNavigate();
-
-    const handleButtonClickToSimulation = () => {
-        navigate('/simulation');
-    };
-
-    // Import parameters for use
-
-
   return (
     <nav style={styles.nav}>
       <button style={styles.button}>Load Mission</button>
       <button style={styles.button}>Write Mission</button>
       <button style={styles.button} onClick={handleButtonClickToSimulation}>Start Simulation</button>
-      <button style={styles.button}>Configuration Menu</button>
-      <button style={styles.button}>Exit Simulator</button>
+      <button style={styles.button} onClick={handleButtonClickToConfiguration}>Configuration Menu</button>
+      <button style={styles.button} onClick={handleButtonClickToHome}>Exit Simulator</button>
 
       {/* The button that allows USER to pick which level they want to use */}
       <div style={styles.dropdownContainer}>

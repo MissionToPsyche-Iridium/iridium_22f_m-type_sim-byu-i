@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 //Components
 import ParameterGrid from './ParameterGrid';
 //Services
@@ -8,13 +8,13 @@ function VariableParameters() {
     // Track if user is pressing up/down arrow keys
     const { ArrowUp, ArrowDown } = useKeyTracker();
 
-    const [data, setData] = useState([
+    const [data1, setData1] = useState([
         { title: "Upward Thrusters", subtitle: "Newtons", value: 0 },
         { title: "Downward Thrusters", subtitle: "Newtons", value: 0 },
     ]);
 
     useEffect(() => {
-        setData([
+        setData1([
             { title: "Upward Thrusters", subtitle: "Newtons", value: ArrowUp ? 250 : 0 },
             { title: "Downward Thrusters", subtitle: "Newtons", value: ArrowDown ? 250 : 0 },
         ]);
@@ -47,9 +47,9 @@ function VariableParameters() {
                 •	Distance between the lander and Psyche (float)
                 •	Time elapsed (float)
             */}
-            <ParameterGrid items={data} />
+            <ParameterGrid items={data1} />
         </div>
     );
-}
+};
 
-export default VariableParameters
+export default VariableParameters;

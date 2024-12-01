@@ -8,6 +8,7 @@ import Simulation from './components/Simulation';
 import { SharedProvider } from './components/SharedContext';
 import ConstantParameter from './components/ConstantParameters';
 import VariableParameter from './components/VariableParameters';
+import ConfigurationMenu from './components/ConfigurationMenu';
 import './App.css';
 
 function App() {
@@ -23,12 +24,12 @@ function App() {
                     <Route path="/main-menu-page" element={<MainMenu />} />
                     <Route path="/simulation" element={<Simulation />} />
                     <Route path="/constant-parameter" element={<ConstantParameter />} />
-                    <Route path="/variable-parameter" element={<VariableParameter />} />
-                    <Route path="/configuration-menu" element={<Configure />} />
+                    <Route path="/configuration-menu" element={<ConfigurationMenu />} />
+                    {/*<Route path="/variable-parameter" element={<VariableParameter />} />*/}
                 </Routes>
             </Router>
         </SharedProvider >
-
+        
     );
 }
 

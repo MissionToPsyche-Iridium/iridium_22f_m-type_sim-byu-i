@@ -1,22 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ParameterGrid from './ParameterGrid';
+import { SharedContext } from "./SharedContext";
 
 function ConstantParameter() {
 
+    // Import parameters for use
+    const {
+        param1, setParam1,
+        param2, setParam2,
+        param3, setParam3,
+        param4, setParam4,
+        param5, setParam5,
+        param6, setParam6,
+        param7, setParam7,
+        param8, setParam8,
+        param9, setParam9,
+        param10, setParam10,
+        param11, setParam11,
+        param12, setParam12,
+    } = useContext(SharedContext);
+
     const [data, setData] = useState([
-        { title: "Surface Gravity", subtitle: "Newtons", value: 309 },
-        { title: "Average Diameter", subtitle: "Kilometers", value: 113.4 },
-        { title: "Rotation Speed", subtitle: "Hours", value: 4.2 },
-        { title: "Lander Mass", subtitle: "Kilotons", value: 1500 },
-        { title: "Max Fuel", subtitle: "Kilotons", value: 500 },
-        { title: "Max Impact", subtitle: "m/s", value: 1 },
-        { title: "Landing Feet Size", subtitle: "Centimeters", value: 22.86 },
-        { title: "Starting Altitude", subtitle: "Kilometers", value: 400 },
-        { title: "Max Thrust", subtitle: "Newtons", value: 500 },
-        { title: "Lander Angle", subtitle: "Degrees", value: 90 },
-        { title: "Lwr Thrust Angle", subtitle: "Degrees", value: 180 },
-        { title: "Upr Thrust Angle", subtitle: "Degrees", value: 0 },
+        param1,
+        param2,
+        param3,
+        param4,
+        param5,
+        param6,
+        param7,
+        param8,
+        param9,
+        param10,
+        param11,
+        param12,
     ]);
+    
 
     return (
         <div>
@@ -24,6 +42,6 @@ function ConstantParameter() {
             <ParameterGrid items={data} />
         </div>
     );
-}
+};
 
-    export default ConstantParameter
+export default ConstantParameter;

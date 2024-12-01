@@ -1,7 +1,7 @@
 
 import React from "react";
 import VariableParameters from "./VariableParameters";
-import ConstantParameter from "./ConstantParameter";
+import ConstantParameters from "./ConstantParameters";
 
 function ParameterPanel() {
     return (
@@ -12,7 +12,7 @@ function ParameterPanel() {
             </div>
 
             <div className="constant-parameter">
-                <ConstantParameter />
+                <ConstantParameters />
             </div>
 
         </div>
