@@ -34,7 +34,13 @@ function Simulation() {
 
     {/*
 
-    //Code to build the JSON
+    // JSON structure
+
+       Before this will work the following must be determined for inclusion in the json:
+            current time
+            lastBackendTime (or time simulation began if this is the first api call)
+            backendLanderAltitude (or 400 km if this is the first api call)
+
     const missionJSON = {{
         "user_id": [{
             "time": {param18},
@@ -53,7 +59,7 @@ function Simulation() {
     const [parameters, setParameters] = useState();
 
     useEffect(() => {
-        updateParameters({ /* JSON data to send to the server */ });
+        updateParameters({ /* JSON data to send to the server (missionJSON) */ });
     }, []);
 
     //const contents = parameters === undefined
