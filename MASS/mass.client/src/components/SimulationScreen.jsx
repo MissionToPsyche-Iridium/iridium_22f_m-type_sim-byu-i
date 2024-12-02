@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useContext } from "react";
-import { ControlContext } from "./ControlContext";
+import { SharedContext } from "./SharedContext";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const SimulationScreen = () => {
     const mountRef = useRef(null); // Reference for the container DOM element
-    const { isRunning } = useContext(ControlContext); // Access `isRunning` from context
-    const isRunningRef = useRef(isRunning); // Track `isRunning` state with a ref
+    const { param19 } = useContext(SharedContext); // Access param19 from SharedContext
+    const param19Ref = useRef(param19); // Use a ref to dynamically track param19
 
+    // Sync param19 value with param19Ref
     useEffect(() => {
-        isRunningRef.current = isRunning;
-        console.log("SimulationScreen knows isRunning:", isRunning);
-    }, [isRunning]);
+        param19Ref.current = param19;
+    }, [param19]);
 
     useEffect(() => {
         // Initialize Three.js scene
@@ -63,8 +63,9 @@ const SimulationScreen = () => {
                 lander.position.set(
                     size.x / 2,
                     size.y + size.y * 1.57142857143,
-                    size.z / 2
+                    size.z / 1.5
                 );
+
                 scene.add(asteroid);
 
                 // Update material properties
@@ -80,7 +81,7 @@ const SimulationScreen = () => {
         );
 
         // Set camera position
-        camera.position.set(1.5, 4.5, 10);
+        camera.position.set(1.5, 3, 10);
 
         let isMounted = true;
 
@@ -88,8 +89,11 @@ const SimulationScreen = () => {
         const animate = () => {
             if (!isMounted) return;
 
-            // Dynamically check the current state of isRunning
-            if (isRunningRef.current) {
+            // Dynamically check param19 value
+            if (
+                lander.position.y - landerSpeed >= 2.5 &&
+                param19Ref.current?.value === "On" // Check param19's current value
+            ) {
                 lander.position.y -= landerSpeed; // Move the lander
                 camera.fov -= landerSpeed * 15; // Adjust camera field of view
                 camera.updateProjectionMatrix(); // Update camera projection
