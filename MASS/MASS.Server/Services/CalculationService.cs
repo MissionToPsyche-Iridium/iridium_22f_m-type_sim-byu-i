@@ -12,10 +12,10 @@
             return 2669600 / (113400 + altitude);
         }
 
-        public double CalculateFuel(double lastFuelLevel, double timeElapsed, bool thrusterOn)
+        public double CalculateFuel(double lastFuelLevel, double timeElapsed, bool uprThrusterOn, bool lwrThrusterOn)
         {
             // Formula: current fuel level (kg) = fuel level at last calculation - (time elapsed * rate)
-            return thrusterOn ? lastFuelLevel - (timeElapsed * FUEL_CONSUMPTION_RATE) : lastFuelLevel;
+            return lastFuelLevel - ((timeElapsed * FUEL_CONSUMPTION_RATE) * Convert.ToInt32(uprThrusterOn)) - ((timeElapsed * FUEL_CONSUMPTION_RATE) * Convert.ToInt32(lwrThrusterOn));
         }
 
         public double CalculateDamage(double velocity)

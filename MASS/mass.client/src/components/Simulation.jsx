@@ -95,7 +95,8 @@ function Simulation() {
             TimeStart: isoStringDate,
             CurrentTime: isoStringDate,
             LastTime: isoStringDate,
-            ThrustOn: true,
+            UprThrustOn: true,
+            LwrThrustOn: false,
             ShipAltitude: 300,
             PriorAltitude: 400,
             FuelRemaining: 200
