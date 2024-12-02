@@ -3,6 +3,7 @@ import ParameterPanel from "./ParameterPanel";
 import SimulationView from "./SimulationView";
 import SimulationControls from "./SimulationControls";
 import { SharedContext } from "./SharedContext";
+import { ControlProvider } from "./ControlContext";
 
 function Simulation() {
 
@@ -44,9 +45,9 @@ function Simulation() {
 
     const [parameters, setParameters] = useState();
 
-    useEffect(() => {
-        updateParameters({ /* JSON data to send to the server */ });
-    }, []);
+    //useEffect(() => {
+    //    updateParameters({ /* JSON data to send to the server */ });
+    //}, []);
 
     //const contents = parameters === undefined
     //    ? <div>
@@ -72,50 +73,53 @@ function Simulation() {
 
             {/* Simulator view and simulation controls components will be in a column to the right */}
             <div className="view-controls">
-                <SimulationView />
-                <SimulationControls />
+                <ControlProvider>
+                    <SimulationView />
+                    <SimulationControls />
+                </ControlProvider>
+
             </div>
         </div>
 
     );
 
-    async function updateParameters(jsonData) {
-        // Test data to send to the server
-        const isoStringDate = new Date().toISOString();
-        jsonData = {
-            Id: 1234,
-            TimeStart: isoStringDate,
-            CurrentTime: isoStringDate,
-            LastTime: isoStringDate,
-            ThrustOn: true,
-            ShipAltitude: 300,
-            PriorAltitude: 400,
-            FuelRemaining: 200
-        }
+    //async function updateParameters(jsonData) {
+    //    // Test data to send to the server
+    //    const isoStringDate = new Date().toISOString();
+    //    jsonData = {
+    //        Id: 1234,
+    //        TimeStart: isoStringDate,
+    //        CurrentTime: isoStringDate,
+    //        LastTime: isoStringDate,
+    //        ThrustOn: true,
+    //        ShipAltitude: 300,
+    //        PriorAltitude: 400,
+    //        FuelRemaining: 200
+    //    }
 
-        try {
-            const response = await fetch("https://localhost:7248/api/parameters", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(jsonData)
-            });
+    //    try {
+    //        const response = await fetch("https://localhost:7248/api/parameters", {
+    //            method: "POST",
+    //            headers: {
+    //                "Content-Type": "application/json"
+    //            },
+    //            body: JSON.stringify(jsonData)
+    //        });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+    //        if (!response.ok) {
+    //            throw new Error(`HTTP error! status: ${response.status}`);
+    //        }
 
-            const result = await response.json();
-            console.log("Response from the server:", result);
+    //        const result = await response.json();
+    //        console.log("Response from the server:", result);
 
 
-            setParameters(result);
+    //        setParameters(result);
 
-        } catch (error) {
-            console.error("Error fetching data from the server:", error);
-        }
-    }
+    //    } catch (error) {
+    //        console.log("Error fetching data from the server:", error);
+    //    }
+    //}
 }
 
 export default Simulation;

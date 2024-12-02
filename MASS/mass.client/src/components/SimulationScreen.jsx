@@ -1,25 +1,35 @@
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import React, { useEffect, useRef, useContext } from "react";
+import { ControlContext } from "./ControlContext";
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const SimulationScreen = () => {
-    const mountRef = useRef(null);
+    const mountRef = useRef(null); // Reference for the container DOM element
+    const { isRunning } = useContext(ControlContext); // Access `isRunning` from context
+    const isRunningRef = useRef(isRunning); // Track `isRunning` state with a ref
+
     useEffect(() => {
+        isRunningRef.current = isRunning;
+        console.log("SimulationScreen knows isRunning:", isRunning);
+    }, [isRunning]);
 
+    useEffect(() => {
+        // Initialize Three.js scene
         const scene = new THREE.Scene();
-        //const camera = new THREE.OrthographicCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
 
-
-        const renderer = new THREE.WebGLRenderer({ antialias: false });
-
-
-        renderer.setSize( window.innerWidth * .7, window.innerHeight * .9);
-        renderer.setPixelRatio(window.devicePixelRatio); // High resolution rendering ***
-        renderer.physicallyCorrectLights = true; // Physically correct lighting ***
+        // Set up renderer and append to DOM
+        renderer.setSize(window.innerWidth * 0.7, window.innerHeight * 0.9);
+        renderer.setPixelRatio(window.devicePixelRatio);
         mountRef.current.appendChild(renderer.domElement);
 
-        // Add lighting
+        // Add lights
         const light = new THREE.DirectionalLight(0xffffff, 1);
         light.position.set(0, 10, 10);
         scene.add(light);
@@ -30,90 +40,70 @@ const SimulationScreen = () => {
         const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1);
         scene.add(hemisphereLight);
 
+        // Create lander object
+        const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const lander = new THREE.Mesh(geometry, material);
+        scene.add(lander);
+
+        let landerSpeed = 0.015;
         let asteroid;
 
-        //Lander
-        const geometry = new THREE.BoxGeometry( .1, .1, .1 );
-        const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-        const lander = new THREE.Mesh( geometry, material );
-
-        // Load GLTF model
+        // Load asteroid model
         const loader = new GLTFLoader();
-        const assetPath = '/assets/Asteroid.gltf';
-
-        //Set initial camera position
-        camera.position.set(1.5, 4.5, 10); // Set starting camera position
-
-        let landerSpeed = .015;
-
-
-        //Animation / logic
         loader.load(
-            assetPath,
+            "/assets/Asteroid.gltf",
             (gltf) => {
                 asteroid = gltf.scene;
-
-                //Get size of asteroid to convert to km
                 const boundingBox = new THREE.Box3().setFromObject(asteroid);
-
-                // Get the size of the bounding box
                 const size = new THREE.Vector3();
-                boundingBox.getSize(size); // Populates size with width, height, and depth
+                boundingBox.getSize(size);
 
-                console.log("Asteroid size:", size); // Logs the dimensions of the asteroid
-                console.log("Width:", size.x, "Height:", size.y, "Depth:", size.z);
-
-                lander.position.set(size.x / 2, size.y + (size.y * 1.57142857143), size.z / 2) //Set the lander to render 400km above the surface of the asteroid
-
-                //Test
-                const asteroidCenter = new THREE.Vector3();
-                boundingBox.getCenter(asteroidCenter);
-
-                // Update camera focus in the animation loop
-                camera.lookAt(asteroidCenter);
-                camera.position.y += size.y * .75;
-
-                scene.add( lander );
+                // Position the lander above the asteroid
+                lander.position.set(
+                    size.x / 2,
+                    size.y + size.y * 1.57142857143,
+                    size.z / 2
+                );
                 scene.add(asteroid);
+
+                // Update material properties
                 asteroid.traverse((child) => {
                     if (child.isMesh) {
                         child.material.roughness = 0.4;
                         child.material.metalness = 0.5;
                     }
                 });
-
-                console.log("Model loaded:", gltf);
-                console.log("Asteroid position:", asteroid.position);
-                console.log("Camera position: ", camera.position)
             },
-            (xhr) => {
-                console.log(`Model loading progress: ${(xhr.loaded / xhr.total) * 100}%`);
-            },
-            (error) => {
-                console.error("An error occurred while loading the model:", error);
-            }
+            undefined,
+            (error) => console.error("Error loading asteroid:", error)
         );
+
+        // Set camera position
+        camera.position.set(1.5, 4.5, 10);
 
         let isMounted = true;
 
-        // Animate the scene
+        // Animation function
         const animate = () => {
-            //Animate the lander movement. Placeholder
             if (!isMounted) return;
 
-            //Only simulate / move elements when isrunning
-            if (isRunning) {
-            lander.position.y -= landerSpeed;
-            camera.fov -= landerSpeed * 15;
+            // Dynamically check the current state of isRunning
+            if (isRunningRef.current) {
+                lander.position.y -= landerSpeed; // Move the lander
+                camera.fov -= landerSpeed * 15; // Adjust camera field of view
+                camera.updateProjectionMatrix(); // Update camera projection
             }
 
-            camera.updateProjectionMatrix();
-            requestAnimationFrame(animate);
+            // Render the scene and request the next frame
             renderer.render(scene, camera);
+            requestAnimationFrame(animate);
         };
+
+        // Start the animation loop
         animate();
 
-        // Clean up on component unmount
+        // Cleanup on unmount
         return () => {
             isMounted = false;
             if (renderer.domElement && mountRef.current) {
@@ -131,10 +121,9 @@ const SimulationScreen = () => {
             });
             renderer.dispose();
         };
-    }, []);
+    }, []); // Run only on mount
 
-    return <div ref={mountRef} />;
+    return <div ref={mountRef} style={{ width: "100%", height: "100%" }} />;
 };
 
 export default SimulationScreen;
-

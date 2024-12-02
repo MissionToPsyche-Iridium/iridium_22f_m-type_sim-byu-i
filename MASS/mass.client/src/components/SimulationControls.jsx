@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const ControlButtons = () => {
@@ -6,6 +6,15 @@ const ControlButtons = () => {
     const [isPaused, setIsPaused] = useState(false);
     const [hoveredButton, setHoveredButton] = useState(null); // For hover effects
     const navigate = useNavigate();
+    useEffect(() => {
+    console.log("isRunning:", isRunning);
+    console.log("isPaused:", isPaused);
+    }, [isRunning, isPaused]);
+
+    useEffect(() => {
+        console.log("isRunning:", isRunning);
+        console.log("isPaused:", isPaused);
+    }, [isRunning, isPaused]);
 
     //This allows me to make CSSest styles
     const styles = {
@@ -27,15 +36,16 @@ const ControlButtons = () => {
         },
     };
 
+
+
     const getButtonStyle = (buttonName) =>
         hoveredButton === buttonName
             ? { ...styles.button, ...styles.buttonHover }
             : styles.button;
 
     const start = () => {
-        setIsRunning(false);
         setIsRunning(true);
-        setIsPaused(false);
+        //setIsPaused(false);
     };
 
     const pause = () => {
