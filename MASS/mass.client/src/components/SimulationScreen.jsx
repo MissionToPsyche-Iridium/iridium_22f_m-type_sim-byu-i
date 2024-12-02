@@ -114,28 +114,27 @@ const SimulationScreen = () => {
         const animate = () => {
             var landerDirection = 0;
             if (!isMounted) return;
-            // Dynamically check param20 value from ref
+
             if (
                 lander.position.y - landerSpeed >= 2.5 &&
                 param20Ref.current?.value === "On" &&
                 param19Ref.current?.value === "Off"
             ) {
-                landerVelocity =  landerSpeed * -1; // Set velocity of lander
+                thrusterAcceleration =  landerSpeed * -1; // Set thruster accelleration
                 landerDirection = -1;
             }
 
-            // Dynamically check param20 value from ref to move up
             else if (
                 camera.fov + landerSpeed * 15 <= 75 &&
                 param19Ref.current?.value === "On" &&
                 param20Ref.current?.value === "Off"
             ) {
-                landerVelocity = landerSpeed; // Set velocity of lander
+                thrusterAcceleration = landerSpeed; // Set thruster accelleration
                 landerDirection = 1;
             }
 
             else {
-                var landerVelocity = 0;
+                var thrusterAcceleration = 0;
 
             }
 
@@ -144,7 +143,7 @@ const SimulationScreen = () => {
             if(param21Ref.current?.value === "True" && param22Ref.current?.value === "False") {
                 lander.position.y += landerSpeed * landerDirection;
 
-                camera.fov += landerVelocity * 15;
+                camera.fov += thrusterAcceleration * 15;
                 camera.updateProjectionMatrix(); // Update camera projection
             }
 
