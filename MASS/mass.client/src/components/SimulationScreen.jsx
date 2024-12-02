@@ -100,8 +100,13 @@ const SimulationScreen = () => {
         const animate = () => {
             //Animate the lander movement. Placeholder
             if (!isMounted) return;
+
+            //Only simulate / move elements when isrunning
+            if (isRunning) {
             lander.position.y -= landerSpeed;
             camera.fov -= landerSpeed * 15;
+            }
+
             camera.updateProjectionMatrix();
             requestAnimationFrame(animate);
             renderer.render(scene, camera);
