@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+import { SharedContext } from "./SharedContext";
 
 const ControlButtons = () => {
+    const {
+        param21, setParam21,
+        param22, setParam22
+    } = useContext(SharedContext);
+
     const [isRunning, setIsRunning] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [hoveredButton, setHoveredButton] = useState(null); // For hover effects
     const navigate = useNavigate();
+    
     useEffect(() => {
     console.log("isRunning:", isRunning);
     console.log("isPaused:", isPaused);
     }, [isRunning, isPaused]);
 
-    useEffect(() => {
-        console.log("isRunning:", isRunning);
-        console.log("isPaused:", isPaused);
-    }, [isRunning, isPaused]);
+
 
     //This allows me to make CSSest styles
     const styles = {
@@ -59,6 +63,31 @@ const ControlButtons = () => {
     const exit = () => {
         navigate('/main-menu-page');
     };
+
+    // Update param21 when isRunning is changed
+    useEffect(() => {
+        setParam21((prev) => {
+            const updated = {
+                ...prev,
+                value: isRunning ? "True" : "False",
+            };
+            console.log("Updated param21:", updated); // Log the updated param21
+            return updated;
+        });
+    }, [isRunning, setParam21]);
+
+    // Update param22 when isPaused is changed
+    useEffect(() => {
+        setParam22((prev) => {
+            const updated = {
+                ...prev,
+                value: isPaused ? "True" : "False",
+            };
+            console.log("Updated param22:", updated); // Log the updated param22
+            return updated;
+        });
+    }, [isPaused, setParam22]);
+
 
     return (
         <div className="simulator-controls">

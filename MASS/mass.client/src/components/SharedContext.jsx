@@ -5,7 +5,7 @@ export const SharedContext = createContext();
 
 // Provider Component
 export const SharedProvider = ({ children }) => {
-    // Define 20 parameters as objects with title, sub-title, and value
+    // Define 22 parameters as objects with title, sub-title, and value
     const [param1, setParam1] = useState({ title: "Surface Gravity", subtitle: "Newtons", value: 309 });
     const [param2, setParam2] = useState({ title: "Average Diameter", subtitle: "Kilometers", value: 113.4 });
     const [param3, setParam3] = useState({ title: "Rotation Speed", subtitle: "Hours", value: 4.2 });
@@ -26,6 +26,9 @@ export const SharedProvider = ({ children }) => {
     const [param18, setParam18] = useState({ title: "Simulation Time", subtitle: "h:m:s:fraction", value: 0 });
     const [param19, setParam19] = useState({ title: "Upr Thruster", subtitle: "On/Off", value: "Off" });
     const [param20, setParam20] = useState({ title: "Lwr Thruster", subtitle: "On/Off", value: "Off" });
+    const [param21, setParam21] = useState({ title: "Running ", subtitle: "True/False", value: "False" });
+    const [param22, setParam22] = useState({ title: "Paused", subtitle: "True/False", value: "True" });
+
 
 
     return (
@@ -52,6 +55,8 @@ export const SharedProvider = ({ children }) => {
                 param18, setParam18,
                 param19, setParam19,
                 param20, setParam20,
+                param21, setParam21,
+                param22, setParam22,
             }}
         >
             {children}
