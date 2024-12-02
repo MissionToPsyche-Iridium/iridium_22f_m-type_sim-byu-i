@@ -29,11 +29,14 @@ namespace MASS.Server.Models
         public double ThrustStartAltitude { get; set; } // unused for novice level
         public double ShipRotationSpeed { get; set; } // 0 for novice level
         [Range(0,250)]
-        public double ThrustLevel { get; set; } // 250 N for novice level
-        public double ThrustAngle { get; set; } // 180 degrees for novice level
+        public double UprThrustLevel { get; set; } // 250 N for novice level
+        public double LwrThrustLevel { get; set; } // 250 N for novice level
+        public double UprThrustAngle { get; set; } // 0 degrees for novice level
+        public double LwrThrustAngle { get; set; } // 180 degrees for novice level
 
         // Conrolled parameters (for novice level)
-        public bool ThrustOn { get; set; }
+        public bool UprThrustOn { get; set; }
+        public bool LwrThrustOn { get; set; }
 
         // Derived parameters
         [Range(0.0101,0.206)]

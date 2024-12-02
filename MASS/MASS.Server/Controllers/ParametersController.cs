@@ -28,7 +28,7 @@ namespace MASS.Server.Controllers
 
             // Perform the calculations using the CalculationService
             double newTimeElapsed = _calculationService.CalculateElapsedTime(DateTime.Parse(parameters.StartTime), DateTime.Now);
-            parameters.FuelRemaining = _calculationService.CalculateFuel(parameters.FuelRemaining, newTimeElapsed - parameters.TimeElapsed, parameters.ThrustOn);
+            parameters.FuelRemaining = _calculationService.CalculateFuel(parameters.FuelRemaining, newTimeElapsed - parameters.TimeElapsed, parameters.UprThrustOn, parameters.LwrThrustOn);
             parameters.ShipDmg = _calculationService.CalculateDamage(parameters.ShipVelocity);
             parameters.ShipAltitude = _calculationService.CalculateAltitude(parameters.ShipAltitude, parameters.ShipVelocity, parameters.TimeElapsed - newTimeElapsed);
             parameters.ShipVelocity = _calculationService.CalculateVelocity(parameters.ShipAltitude);
