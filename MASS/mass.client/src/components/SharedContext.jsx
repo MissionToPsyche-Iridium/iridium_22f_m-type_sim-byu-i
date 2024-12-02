@@ -27,6 +27,7 @@ export const SharedProvider = ({ children }) => {
     const [param19, setParam19] = useState({ title: "Upr Thruster", subtitle: "On/Off", value: "Off" });
     const [param20, setParam20] = useState({ title: "Lwr Thruster", subtitle: "On/Off", value: "Off" });
 
+
     return (
 
         <SharedContext.Provider
@@ -58,68 +59,3 @@ export const SharedProvider = ({ children }) => {
 
     );
 };
-
-{/*
-
-
-// Provider Component
-export const SharedProvider = ({ children }) => {
-    // Define 20 variables as objects with title, sub-title, and value
-    const [gravity, setGravity] = useState({ title: "Surface Gravity", subtitle: "Newtons", value: 309 });
-    const [diameter, setDiameter] = useState({ title: "Average Diameter", subtitle: "Kilometers", value: 113.4 });
-    const [rotation, setRotation] = useState({ title: "Rotation Speed", subtitle: "Hours", value: 4.2 });
-    const [landerMass, setLanderMass] = useState({ title: "Lander Mass", subtitle: "Kilotons", value: 1500 });
-    const [maxFuel, setMaxFuel] = useState({ title: "Max Fuel", subtitle: "Kilotons", value: 500 });
-    const [maxImpact, setMaxImpact] = useState({ title: "Max Impact", subtitle: "m/s", value: 1 });
-    const [landerFeet, setLanderFeet] = useState({ title: "Landing Feet Size", subtitle: "Centimeters", value: 22.86 });
-    const [var8, setVar8] = useState({ title: "Starting Altitude", subtitle: "Kilometers", value: 400 });
-    const [var9, setVar9] = useState({ title: "Max Thrust", subtitle: "Newtons", value: 500 });
-    const [var10, setVar10] = useState({ title: "Lander Angle", subtitle: "Degrees", value: 90 });
-    const [var11, setVar11] = useState({ title: "Lwr Thrust Angle", subtitle: "Degrees", value: 180 });
-    const [var12, setVar12] = useState({ title: "Upr Thrust Angle", subtitle: "Degrees", value: 0 });
-    const [var13, setVar13] = useState({ title: "Lander Speed", subtitle: "m/s^2", value: 56.1 });
-    const [var14, setVar14] = useState({ title: "Fall Velocity", subtitle: "m/s^2", value: 0 });
-    const [var15, setVar15] = useState({ title: "Lwr Thruster", subtitle: "On/Off", value: "Off" });
-    const [var16, setVar16] = useState({ title: "Upr Thruster", subtitle: "On/Off", value: "Off" });
-    const [var17, setVar17] = useState({ title: "Fuel Remaining", subtitle: "Kilotons", value: 500 });
-    const [var18, setVar18] = useState({ title: "Lander Damage", subtitle: "Percentage", value: 0 });
-    const [var19, setVar19] = useState({ title: "Lander Altitude", subtitle: "Kilometers", value: 400 });
-    const [var20, setVar20] = useState({ title: "Simulation Time", subtitle: "h:m:s:fraction", value: 0 });
-
-
-
-    return (
-
-        <>
-            <SharedParameters.Provider
-                value={{
-                    gravity, setGravity,
-                    diameter, setDiameter,
-                    rotation, setRotation,
-                    landerMass, setLanderMass,
-                    maxFuel, setMaxFuel,
-                    maxImpact, setMaxImpact,
-                    landerFeet, setLanderFeet,
-                    var8, setVar8,
-                    var9, setVar9,
-                    var10, setVar10,
-                    var11, setVar11,
-                    var12, setVar12,
-                    var13, setVar13,
-                    var14, setVar14,
-                    var15, setVar15,
-                    var16, setVar16,
-                    var17, setVar17,
-                    var18, setVar18,
-                    var19, setVar19,
-                    var20, setVar20,
-                }}
-            >
-                {children}
-            </SharedParameters.Provider>
-        </>
-    );
-};
-
-    
-*/}

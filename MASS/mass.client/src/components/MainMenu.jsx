@@ -114,7 +114,7 @@ const MainMenu = () => {
     } = useContext(SharedContext);
 
     return (
-        <div key={location.key}>
+        <div key={location.key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '70vh', }}>
             <nav style={styles.nav}>
                 <button style={styles.button}>Load Mission</button>
                 <button style={styles.button}>Write Mission</button>
