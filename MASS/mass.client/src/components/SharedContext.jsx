@@ -11,7 +11,7 @@ export const SharedProvider = ({ children }) => {
     const [param3, setParam3] = useState({ title: "Rotation Speed", subtitle: "Hours", value: 4.2 });
     const [param4, setParam4] = useState({ title: "Lander Mass", subtitle: "Kilograms", value: 1500 });
     const [param5, setParam5] = useState({ title: "Max Fuel", subtitle: "Kilograms", value: 500 });
-    const [param6, setParam6] = useState({ title: "Max Impact", subtitle: "m/s", value: 1 });
+    const [param6, setParam6] = useState({ title: "Max Impact", subtitle: "m/s^2", value: 1 });
     const [param7, setParam7] = useState({ title: "Landing Feet Size", subtitle: "Centimeters", value: 22.86 });
     const [param8, setParam8] = useState({ title: "Starting Altitude", subtitle: "Kilometers", value: 400 });
     const [param9, setParam9] = useState({ title: "Max Thrust", subtitle: "Newtons", value: 500 });
