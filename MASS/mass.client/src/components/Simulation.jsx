@@ -12,7 +12,8 @@ function Simulation() {
         param15, setParam15,
         param17, setParam17,
         param18, setParam18,
-        param19, setParam19
+        param19, setParam19,
+        param20, setParam20
     } = useContext(SharedContext);
 
     const [items, setItems] = useState([
@@ -31,6 +32,7 @@ function Simulation() {
     const handleKeyDown = (event) => {
         if (event.key === 'ArrowUp') {
             setIsUpPressed(true);
+            console.log("Up key pressed");
         }
         if (event.key === 'ArrowDown') {
             setIsDownPressed(true);
@@ -65,6 +67,15 @@ function Simulation() {
             value: isDownPressed ? "On" : "Off",
         }));
     }, [isDownPressed, setParam19]);
+
+    // Update param20 when the up arrow key is pressed
+    useEffect(() => {
+        setParam20((prev) => ({
+            ...prev,
+            value: isUpPressed ? "On" : "Off",
+        }));
+    }, [isUpPressed, setParam20]);
+
 
     return (
         <div className="simulation">

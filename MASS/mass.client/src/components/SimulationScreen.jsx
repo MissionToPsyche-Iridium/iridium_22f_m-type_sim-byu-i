@@ -6,12 +6,20 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 const SimulationScreen = () => {
     const mountRef = useRef(null); // Reference for the container DOM element
     const { param19 } = useContext(SharedContext); // Access param19 from SharedContext
-    const param19Ref = useRef(param19); // Use a ref to dynamically track param19
+    const param19Ref = useRef(param19); // Ref to track param19 dynamically
 
-    // Sync param19 value with param19Ref
+    const { param20 } = useContext(SharedContext); // Access param20 from SharedContext
+    const param20Ref = useRef(param19); // Ref to track param20 dynamically
+
+    // Update param19Ref whenever param19 changes
     useEffect(() => {
         param19Ref.current = param19;
     }, [param19]);
+
+        // Update param20Ref whenever param19 changes
+        useEffect(() => {
+            param20Ref.current = param20;
+        }, [param20]);
 
     useEffect(() => {
         // Initialize Three.js scene
@@ -89,13 +97,23 @@ const SimulationScreen = () => {
         const animate = () => {
             if (!isMounted) return;
 
-            // Dynamically check param19 value
+            // Dynamically check param19 value from ref
             if (
                 lander.position.y - landerSpeed >= 2.5 &&
-                param19Ref.current?.value === "On" // Check param19's current value
+                param19Ref.current?.value === "On"
             ) {
                 lander.position.y -= landerSpeed; // Move the lander
                 camera.fov -= landerSpeed * 15; // Adjust camera field of view
+                camera.updateProjectionMatrix(); // Update camera projection
+            }
+
+            // Dynamically check param20 value from ref to move up
+            if (
+                
+                param20Ref.current?.value === "On"
+            ) {
+                lander.position.y += landerSpeed; // Move the lander
+                camera.fov += landerSpeed * 15; // Adjust camera field of view
                 camera.updateProjectionMatrix(); // Update camera projection
             }
 
