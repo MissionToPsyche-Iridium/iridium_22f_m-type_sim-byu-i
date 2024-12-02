@@ -8,20 +8,28 @@ function Simulation() {
 
     // Import parameters for use
     const {
+        param1, setParam1,
+        param2, setParam2,
+        param3, setParam3,
+        param4, setParam4,
+        param5, setParam5,
+        param6, setParam6,
+        param7, setParam7,
+        param8, setParam8,
+        param9, setParam9,
+        param10, setParam10,
+        param11, setParam11,
+        param12, setParam12,
         param13, setParam13,
         param14, setParam14,
         param15, setParam15,
+        param16, setParam16,
         param17, setParam17,
         param18, setParam18,
+        param19, setParam19,
+        param20, setParam20,
     } = useContext(SharedContext);
 
-    const [items, setItems] = useState([
-        param13,
-        param14,
-        param15,
-        param17,
-        param18,
-    ]);
 
 
     {/*
