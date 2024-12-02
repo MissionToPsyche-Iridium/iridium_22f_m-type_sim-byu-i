@@ -16,9 +16,9 @@ function ConfigurationMenu() {
     const {
         param13, setParam13,
         param14, setParam14,
-        param15, setParam17,
-        param17, setParam19,
-        param18, setParam20,
+        param15, setParam15,
+        param17, setParam17,
+        param18, setParam18,
     } = useContext(SharedContext);
 
     const [items, setItems] = useState([
@@ -32,20 +32,16 @@ function ConfigurationMenu() {
 
     // Function to handle value change in input field
     const handleInputChange = (id, newValue) => {
-        setItems((prevItems) =>
-            prevItems.map((item) =>
-                item.id === id ? { ...item, value: newValue } : item
-            )
-        );
+        {/*
+            TODO - handle input change to the affected parameter display
+        */}
     };
 
     // Function to handle value change on input blur (focus lost)
     const handleValueChange = (id, newValue) => {
-        setItems((prevItems) =>
-            prevItems.map((item) =>
-                item.id === id ? { ...item, value: newValue } : item
-            )
-        );
+        {/*
+            TODO - handle value change to affected parameter
+        */}
     };
 
     return (
@@ -66,8 +62,8 @@ function ConfigurationMenu() {
                                 type="number"
                                 value={item.value}
                                 style={{width: '100px'} }
-                                onChange={(e) => handleInputChange(item.id, e.target.value)} // Update value as user types
-                                onBlur={(e) => handleValueChange(item.id, e.target.value)} // Update value on blur
+                                onChange={(e) => handleInputChange(item.id, e.target.value)} // Update displayed value as user types
+                                onBlur={(e) => handleValueChange(item.id, e.target.value)} // Update parameter value when input loses focus
                             />
                         </div>
                     ))}
@@ -91,6 +87,10 @@ function ConfigurationMenu() {
             >
                 Finished
             </button>
+            <h5>
+                {/* TODO - Message should disappear if skill level is other than Novice */}
+                Configure Menu disabled in Novice skill level.
+            </h5>
         </>
     );
 };

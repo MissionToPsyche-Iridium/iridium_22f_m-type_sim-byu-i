@@ -1,13 +1,28 @@
-
-//import React from "react";
+import React, { useContext, useState, useEffect } from 'react';
 import ParameterPanel from "./ParameterPanel";
 import SimulationView from "./SimulationView";
 import SimulationControls from "./SimulationControls";
-
-//import { useEffect, useState } from "react" to fetch data from the server;
-import { useEffect, useState } from "react";
+import { SharedContext } from "./SharedContext";
 
 function Simulation() {
+
+    // Import parameters for use
+    const {
+        param13, setParam13,
+        param14, setParam14,
+        param15, setParam15,
+        param17, setParam17,
+        param18, setParam18,
+    } = useContext(SharedContext);
+
+    const [items, setItems] = useState([
+        param13,
+        param14,
+        param15,
+        param17,
+        param18,
+    ]);
+
 
     {/*
 
