@@ -8,7 +8,7 @@ function SimulationView() {
                 overflow: "hidden", // Prevent overflow in case of misalignment
             }}
         >
-            <SimulationScreen />
+                <SimulationScreen />
         </div>
     );
 }
