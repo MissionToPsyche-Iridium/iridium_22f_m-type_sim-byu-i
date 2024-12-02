@@ -114,10 +114,10 @@ const SimulationScreen = () => {
         const animate = () => {
             var landerDirection = 0;
             if (!isMounted) return;
-            // Dynamically check param19 value from ref
+            // Dynamically check param20 value from ref
             if (
                 lander.position.y - landerSpeed >= 2.5 &&
-                param19Ref.current?.value === "On"
+                param20Ref.current?.value === "On"
             ) {
                 landerVelocity =  landerSpeed * -1; // Set velocity of lander
                 landerDirection = -1;
@@ -126,7 +126,7 @@ const SimulationScreen = () => {
             // Dynamically check param20 value from ref to move up
             else if (
                 camera.fov + landerSpeed * 15 <= 75 &&
-                param20Ref.current?.value === "On"
+                param19Ref.current?.value === "On"
             ) {
                 landerVelocity = landerSpeed; // Set velocity of lander
                 landerDirection = 1;

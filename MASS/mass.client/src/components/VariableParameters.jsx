@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ParameterGrid from './ParameterGrid';
 import { SharedContext } from "./SharedContext";
 //Services
@@ -35,7 +35,6 @@ function VariableParameters() {
         param20, setParam20,
     } = useContext(SharedContext);
 
-
     const [data, setData] = useState([
         param13,
         param14,
@@ -46,6 +45,20 @@ function VariableParameters() {
         param19,
         param20,
     ]);
+
+    // Update data when any parameter changes
+    useEffect(() => {
+        setData([
+            param13,
+            param14,
+            param15,
+            param16,
+            param17,
+            param18,
+            param19,
+            param20,
+        ]);
+    }, [param13, param14, param15, param16, param17, param18, param19, param20]);
 
 
     return (
