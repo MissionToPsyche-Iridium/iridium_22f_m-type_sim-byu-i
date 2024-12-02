@@ -109,7 +109,7 @@ const SimulationScreen = () => {
 
             // Dynamically check param20 value from ref to move up
             if (
-                
+                camera.fov + landerSpeed * 15 <= 75 &&
                 param20Ref.current?.value === "On"
             ) {
                 lander.position.y += landerSpeed; // Move the lander
