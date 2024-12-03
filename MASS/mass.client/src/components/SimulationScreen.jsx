@@ -188,7 +188,7 @@ const SimulationScreen = () => {
                 lander.position.y + (size.y * 4) <= camera.position.y + visibleHeight / 2;
 
                 // Update camera field of view (optional limit)
-                if (camera.fov > 19 && withinVerticalBounds) {
+                if ((camera.fov > 19 && withinVerticalBounds) || velocity > 0) {
                     camera.fov += velocity * .2;
                 }
                 camera.updateProjectionMatrix(); // Update camera projection matrix
