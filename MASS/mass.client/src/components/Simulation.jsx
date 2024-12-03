@@ -37,11 +37,16 @@ function Simulation() {
 
     // Arrow Key Handlers
     const handleKeyDown = (event) => {
-        if (event.key === 'ArrowUp') {
+        if (["ArrowUp", "ArrowDown"].includes(event.key)) {
+            event.preventDefault();
+        }
+    
+        if (event.key === "ArrowUp") {
             setIsUpPressed(true);
             console.log("Up key pressed");
         }
-        if (event.key === 'ArrowDown') {
+    
+        if (event.key === "ArrowDown") {
             setIsDownPressed(true);
             console.log("Down key pressed");
         }
