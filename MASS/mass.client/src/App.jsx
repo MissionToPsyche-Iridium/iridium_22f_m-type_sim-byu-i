@@ -4,6 +4,7 @@ import Home from './components/Home';
 import About from './components/About';
 import MoreInfo from './components/MoreInfo';
 import MainMenu from './components/MainMenu';
+import ArrowKeyProvider from './components/ArrowKeyTracker';
 import Simulation from './components/Simulation';
 import { SharedProvider } from './components/SharedContext';
 import ConstantParameter from './components/ConstantParameters';
