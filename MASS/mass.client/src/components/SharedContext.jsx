@@ -18,9 +18,9 @@ export const SharedProvider = ({ children }) => {
     const [param10, setParam10] = useState({ title: "Lander Angle", subtitle: "Degrees", value: 90 });
     const [param11, setParam11] = useState({ title: "Lwr Thrust Angle", subtitle: "Degrees", value: 180 });
     const [param12, setParam12] = useState({ title: "Upr Thrust Angle", subtitle: "Degrees", value: 0 });
-    const [param13, setParam13] = useState({ title: "Lander Speed", subtitle: "m/s^2", value: 56.1 });
-    const [param14, setParam14] = useState({ title: "Fall Velocity", subtitle: "m/s^2", value: 0 });
-    const [param15, setParam15] = useState({ title: "Fuel Remaining", subtitle: "Kilograms", value: 500 });
+    const [param13, setParam13] = useState({ title: "Orbital Speed", subtitle: "m/s", value: 0 });
+    const [param14, setParam14] = useState({ title: "Fall Velocity", subtitle: "m/s", value: 0 });
+    const [param15, setParam15] = useState({ title: "Fuel Remaining", subtitle: "Kilograms", value: "Infinite" }); // Normally 200 to start
     const [param16, setParam16] = useState({ title: "Lander Damage", subtitle: "Percentage", value: 0 });
     const [param17, setParam17] = useState({ title: "Lander Altitude", subtitle: "Kilometers", value: 400 });
     const [param18, setParam18] = useState({ title: "Simulation Time", subtitle: "h:m:s:fraction", value: "" });
