@@ -170,7 +170,9 @@ const SimulationScreen = () => {
             }        
 
                 lander.position.y += velocity * deltaTime; // Update position
+                if (camera.fov < 19){
                 camera.fov += velocity * .2; // Adjust camera field of view
+                }
                 camera.updateProjectionMatrix(); // Update camera projection
 
                 simulationTime += deltaTime;
