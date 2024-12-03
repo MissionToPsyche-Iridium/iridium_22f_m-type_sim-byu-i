@@ -2,9 +2,20 @@ import React, { useEffect, useRef, useContext } from "react";
 import { SharedContext } from "./SharedContext";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { sharedUniformGroup } from "three/webgpu";
+
 
 const SimulationScreen = () => {
     const mountRef = useRef(null); // Reference for the container DOM element
+
+    const surfacePosition = 2.5; //Position of surface of asteroid
+
+
+
+    //Conversion from units to m: 2.5659541411028437 / (220 * 1000), or a conversion unit of 85764.2681
+    //Conversion from units to km: 2.5659541411028437 / 220, or a conversion unit of 85.7642681
+    const conversionKm = 85.7642681 //Conversion constant to convert any simulation position to kilometers
+    const gravityKms = 0.00006 //Gravity in km/s
 
     //Arrow key parameters
     const { param19 } = useContext(SharedContext); // Access param19 from SharedContext
@@ -18,6 +29,17 @@ const SimulationScreen = () => {
     const { param22 } = useContext(SharedContext); // Access param2 from SharedContext
     const param22Ref = useRef(param22); // Ref to track param22 dynamically
 
+    //Altitude param
+    const { param17, setParam17 } = useContext(SharedContext);
+
+    //Velocity param
+    const {param14, setParam14} = useContext(SharedContext);
+
+    //Time param
+    const {param18, setParam18} = useContext(SharedContext);
+
+
+    
     // Update param19Ref whenever param19 changes
     useEffect(() => {
         param19Ref.current = param19;
@@ -66,12 +88,12 @@ const SimulationScreen = () => {
         scene.add(hemisphereLight);
 
         // Create lander object
-        const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const lander = new THREE.Mesh(geometry, material);
+        const landerGeometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+        const landerMaterial = new THREE.MeshBasicMaterial({ color: 0x007bff });
+        const lander = new THREE.Mesh(landerGeometry, landerMaterial);
         scene.add(lander);
 
-        let landerSpeed = 0.015;
+
         let asteroid;
 
         // Load asteroid model
@@ -85,11 +107,14 @@ const SimulationScreen = () => {
                 boundingBox.getSize(size);
 
                 // Position the lander above the asteroid
+                console.log(size.y)
                 lander.position.set(
                     size.x / 2,
-                    size.y + size.y * 1.57142857143,
+                    surfacePosition + (400 / conversionKm), //Set lander to 400km over landing position
                     size.z / 1.5
                 );
+
+
 
                 scene.add(asteroid);
 
@@ -106,53 +131,71 @@ const SimulationScreen = () => {
         );
 
         // Set camera position
-        camera.position.set(1.5, 3, 10);
+        camera.position.set(1.5, surfacePosition, 10);
 
         let isMounted = true;
-
+        
+        //Check fps of simulation for simulating acceleration / s
+        let lastTime = performance.now();
+        let velocity = 0 //starting velocity of 0 before gravity
+        let height = 400; //current height of the lander
+        let velocityms = 0;
+        let simulationTime = 0;
+        
+        //let velocity = 0.015; //current speed of lander (velocity actually)
         // Animation function
         const animate = () => {
-            var landerDirection = 0;
+
             if (!isMounted) return;
-
-            if (
-                lander.position.y - landerSpeed >= 2.5 &&
-                param20Ref.current?.value === "On" &&
-                param19Ref.current?.value === "Off"
-            ) {
-                thrusterAcceleration =  landerSpeed * -1; // Set thruster accelleration
-                landerDirection = -1;
-            }
-
-            else if (
-                camera.fov + landerSpeed * 15 <= 75 &&
-                param19Ref.current?.value === "On" &&
-                param20Ref.current?.value === "Off"
-            ) {
-                thrusterAcceleration = landerSpeed; // Set thruster accelleration
-                landerDirection = 1;
-            }
-
-            else {
-                var thrusterAcceleration = 0;
-
-            }
+            
+            const currentTime = performance.now();
+            const deltaTime = (currentTime - lastTime) / 1000; // Delta time in seconds
+            lastTime = currentTime; // Update lastTime immediately
 
 
-            //When running, update location of lander according to current velocity
-            if(param21Ref.current?.value === "True" && param22Ref.current?.value === "False") {
-                lander.position.y += landerSpeed * landerDirection;
+            const mass = 1500; // mass of our lander
+            const thrust = 2000; // thrust in newtons
+            const thrusterAcceleration = (((thrust / mass) / 1000) / conversionKm); // Acceleration in simulation units
+        
+            // When running, update location of lander according to current velocity, and update velocity.
+            if (param21Ref.current?.value === "True" && param22Ref.current?.value === "False") {
 
-                camera.fov += thrusterAcceleration * 15;
+            // Update velocity with acceleration due to gravity
+            velocity -= gravityKms * deltaTime * 3;
+            // Apply thruster acceleration
+            if (param20Ref.current?.value === "On" && param19Ref.current?.value === "Off") {
+                velocity -= thrusterAcceleration * 6; // Downward thrust
+            } else if (param19Ref.current?.value === "On" && param20Ref.current?.value === "Off") {
+                velocity += thrusterAcceleration * 6; // Upward thrust
+            }        
+
+                lander.position.y += velocity * deltaTime; // Update position
+                camera.fov += velocity * .15; // Adjust camera field of view
                 camera.updateProjectionMatrix(); // Update camera projection
+
+                simulationTime += deltaTime;
             }
 
+            if (lander.position.y < surfacePosition) {
+                lander.position.y = surfacePosition;
+                velocity = 0;
+            }
+            
 
+            updateTime(formatTime(simulationTime));
+            //calculate lander velocity in m/s
+            velocityms = velocity * conversionKm;
+            updateVelocity(velocityms.toFixed(2));
+
+            // Get the km height of the lander
+            height = (lander.position.y - surfacePosition) * conversionKm;
+            updateAltitude(height.toFixed(2)); //update height, rounded to 2 dec for now
+        
             // Render the scene and request the next frame
             renderer.render(scene, camera);
             requestAnimationFrame(animate);
         };
-
+        
         // Start the animation loop
         animate();
 
@@ -176,7 +219,41 @@ const SimulationScreen = () => {
         };
     }, []); // Run only on mount
 
+    const updateAltitude = (height) => {
+        setParam17((prev) => ({
+            ...prev,
+            value: height, // Update the value with the new height
+        }));
+    };
+
+    const updateVelocity = (velocity) => {
+        setParam14((prev) => ({
+            ...prev,
+            value: velocity, // Update the value with the new velocity
+        }));
+    };
+
+    const updateTime = (time) => {
+        setParam18((prev) => ({
+            ...prev,
+            value: time, // Update the value with the new velocity
+        }));
+    };
+
     return <div ref={mountRef} style={{ width: "100%", height: "100%" }} />;
 };
+
+const formatTime = (timeInSeconds) => {
+    // Extract hours, minutes, and seconds
+    const hours = Math.floor(timeInSeconds / 3600); // 3600 seconds in an hour
+    const minutes = Math.floor((timeInSeconds % 3600) / 60); // Remaining minutes
+    const seconds = Math.floor(timeInSeconds % 60); // Remaining seconds
+    const milliseconds = Math.floor((timeInSeconds % 1) * 1000); // Fractional part as milliseconds
+
+    // Format with leading zeros if necessary
+    const pad = (num, size = 2) => String(num).padStart(size, '0');
+    return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(milliseconds, 3)}`;
+};
+
 
 export default SimulationScreen;
