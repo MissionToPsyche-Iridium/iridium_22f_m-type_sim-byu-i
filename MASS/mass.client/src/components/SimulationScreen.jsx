@@ -153,7 +153,7 @@ const SimulationScreen = () => {
             lastTime = currentTime; // Update lastTime immediately
 
 
-            const mass = 1500; // mass of our lander
+            const mass = 1300; // mass of our lander
             const thrust = 2000; // thrust in newtons
             const thrusterAcceleration = (((thrust / mass) / 1000) / conversionKm); // Acceleration in simulation units
         
@@ -170,7 +170,7 @@ const SimulationScreen = () => {
             }        
 
                 lander.position.y += velocity * deltaTime; // Update position
-                camera.fov += velocity * .15; // Adjust camera field of view
+                camera.fov += velocity * .2; // Adjust camera field of view
                 camera.updateProjectionMatrix(); // Update camera projection
 
                 simulationTime += deltaTime;
