@@ -49,9 +49,11 @@ function Simulation() {
 
     const handleKeyUp = (event) => {
         if (event.key === 'ArrowUp') {
+            event.preventDefault();
             setIsUpPressed(false);
         }
         if (event.key === 'ArrowDown') {
+            event.preventDefault();
             setIsDownPressed(false);
         }
     };
