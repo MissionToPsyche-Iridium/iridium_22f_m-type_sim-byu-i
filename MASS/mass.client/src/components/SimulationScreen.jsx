@@ -145,53 +145,77 @@ const SimulationScreen = () => {
         //let velocity = 0.015; //current speed of lander (velocity actually)
         // Animation function
         const animate = () => {
-
             if (!isMounted) return;
-            
+        
             const currentTime = performance.now();
             const deltaTime = (currentTime - lastTime) / 1000; // Delta time in seconds
             lastTime = currentTime; // Update lastTime immediately
-
-
-            const mass = 1500; // mass of our lander
-            const thrust = 2000; // thrust in newtons
-            const thrusterAcceleration = (((thrust / mass) / 1000) / conversionKm); // Acceleration in simulation units
         
-            // When running, update location of lander according to current velocity, and update velocity.
+            const mass = 1500; // Mass of the lander in kg
+            const thrust = 2000; // Thrust in newtons
+            const thrusterAcceleration = (thrust / mass) / 1000; // Thrust in km/s²
+        
+            // Update simulation only if running
             if (param21Ref.current?.value === "True" && param22Ref.current?.value === "False") {
+                // Update velocity due to gravity
+                velocity -= gravityKms * deltaTime * 3; // Gravity scaled by deltaTime
+        
+                // Apply thruster acceleration
+                if (param20Ref.current?.value === "On" && param19Ref.current?.value === "Off") {
+                    velocity -= thrusterAcceleration * deltaTime * 6; // Downward thrust
+                } else if (param19Ref.current?.value === "On" && param20Ref.current?.value === "Off") {
+                    velocity += thrusterAcceleration * deltaTime * 6; // Upward thrust
+                }
+        
+                // Update lander position
+                lander.position.y += velocity * deltaTime; // Position based on velocity
+        
 
-            // Update velocity with acceleration due to gravity
-            velocity -= gravityKms * deltaTime * 3;
-            // Apply thruster acceleration
-            if (param20Ref.current?.value === "On" && param19Ref.current?.value === "Off") {
-                velocity -= thrusterAcceleration * 6; // Downward thrust
-            } else if (param19Ref.current?.value === "On" && param20Ref.current?.value === "Off") {
-                velocity += thrusterAcceleration * 6; // Upward thrust
-            }        
+                //check if lander is in view -------------------------------
+                const distance = camera.position.z - lander.position.z;
 
-                lander.position.y += velocity * deltaTime; // Update position
-                camera.fov += velocity * .15; // Adjust camera field of view
-                camera.updateProjectionMatrix(); // Update camera projection
+                // Calculate the vertical visible height at this distance
+                const visibleHeight = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * distance;
 
+                //Get lander size
+                const boundingBox = new THREE.Box3().setFromObject(lander); // Create a bounding box
+                const size = new THREE.Vector3();
+                boundingBox.getSize(size); // Get the size of the bounding box
+                
+                 // Check if the lander's position is within the visible frustum
+                const withinVerticalBounds =
+                lander.position.y >= camera.position.y - visibleHeight / 2 &&
+                lander.position.y + (size.y * 4) <= camera.position.y + visibleHeight / 2;
+
+                // Update camera field of view (optional limit)
+                if ((camera.fov > 19 && withinVerticalBounds) || velocity > 0) {
+                    camera.fov += velocity * .2;
+                }
+                camera.updateProjectionMatrix(); // Update camera projection matrix
+        
+                // Increment simulation time
                 simulationTime += deltaTime;
-            }
-
-            if (lander.position.y < surfacePosition) {
-                lander.position.y = surfacePosition;
-                velocity = 0;
             }
             
 
-            updateTime(formatTime(simulationTime));
-            //calculate lander velocity in m/s
-            velocityms = velocity * conversionKm;
-            updateVelocity(velocityms.toFixed(2));
-
-            // Get the km height of the lander
-            height = (lander.position.y - surfacePosition) * conversionKm;
-            updateAltitude(height.toFixed(2)); //update height, rounded to 2 dec for now
+            // Prevent lander from going below the surface
+            if (lander.position.y < surfacePosition) {
+                lander.position.y = surfacePosition;
+                velocity = 0; // Reset velocity on surface contact
+            }
         
-            // Render the scene and request the next frame
+            // Update formatted simulation time
+            updateTime(formatTime(simulationTime));
+        
+            // Update velocity in m/s
+            velocityms = velocity * conversionKm; // Convert velocity to m/s
+            updateVelocity(velocityms.toFixed(2));
+        
+            // Update altitude in km
+            height = (lander.position.y - surfacePosition) * conversionKm; // Calculate height in km
+            updateAltitude(height.toFixed(2));
+        
+            // Render the scene and request the next animation frame
             renderer.render(scene, camera);
             requestAnimationFrame(animate);
         };
@@ -199,6 +223,7 @@ const SimulationScreen = () => {
         // Start the animation loop
         animate();
 
+    
         // Cleanup on unmount
         return () => {
             isMounted = false;
@@ -239,6 +264,9 @@ const SimulationScreen = () => {
             value: time, // Update the value with the new velocity
         }));
     };
+
+
+
 
     return <div ref={mountRef} style={{ width: "100%", height: "100%" }} />;
 };
