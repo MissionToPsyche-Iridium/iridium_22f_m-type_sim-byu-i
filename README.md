@@ -58,7 +58,7 @@ Error: Could not create certificate.
 Couldn't start the SPA devekionebt server with command 'npm run dev'.
 ```
 
-- ...most likely, you need to ensure that `%appdata%\Romaing\asp.net\https` is a directory that exists on your machine. To do this:
+- ...most likely, you need to ensure that `%appdata%\Roaming\asp.net\https` is a directory that exists on your machine. To do this:
     - Enable "show hidden files" in Windows settings.
     - Navigate to `C:\Users\(USER)\AppData\Roaming\`.
     - If `ASP.NET\https` isn't present, create a new folder called "ASP.NET", then another folder called "https" inside it.
