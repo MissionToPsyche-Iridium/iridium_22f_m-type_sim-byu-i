@@ -28,9 +28,7 @@ function About() {
                 Ryan Funk<br />
                 Levi Johnson<br />
                 Jerry Lane<br />
-                Colton Pritchett<br />
                 Cayleigh Leishman<br />
-                Kristin Thumstedter<br />
                 Gerin Wilde<br />
                 Brycen Williams
             </p>
