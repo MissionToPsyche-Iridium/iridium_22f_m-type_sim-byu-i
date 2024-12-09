@@ -58,10 +58,10 @@ Error: Could not create certificate.
 Couldn't start the SPA devekionebt server with command 'npm run dev'.
 ```
 
-- ...most likely, you need to ensure that "%appdata%\Romaing\asp.net\https" is a directory that exists on your machine. To do this:
+- ...most likely, you need to ensure that `%appdata%\Romaing\asp.net\https` is a directory that exists on your machine. To do this:
     - Enable "show hidden files" in Windows settings.
-    - Navigate to "C:\Users\(USER)\AppData\Roaming\"
-    - If "ASP.NET\https" isn't present, create a new folder called "ASP.NET", then another folder called "https" inside it.
+    - Navigate to `C:\Users\(USER)\AppData\Roaming\`.
+    - If `ASP.NET\https` isn't present, create a new folder called "ASP.NET", then another folder called "https" inside it.
     - Now start the web application again. If done correctly, Visual Studio should now be able to create and store key and pem files to run the client locally on https.
 
 3. Proxy error: If you receive an error on the frontend terminal similar to this...
@@ -75,11 +75,11 @@ Couldn't start the SPA devekionebt server with command 'npm run dev'.
     - Select Apply to save your changes.
 
 4. Port error: If data from the backend doesn't load correctly, you may need to verify existing or reconfigure new server ports. To do this:
-    - On the Solution Explorer in Visual Studio, navigate to MASS.Server/launchsettings.json and find the port number from the applicationUrl property that has an https endpoint.
-    - Navigate to mass.client/vite.config.js and find the port number from the target property.
+    - On the Solution Explorer in Visual Studio, navigate to `MASS.Server/launchsettings.json` and find the port number from the `applicationUrl` property that has an https endpoint.
+    - Navigate to `mass.client/vite.config.js` and find the port number from the `target` property.
     - Across both files, ensure that both properties have the same value, and change the port number if necessary, again making sure that both properies are matched.
     - Hit Ctrl+S in each file to save your changes before running the web application again.
 
 ### Other resources
 - For more information regarding how to create an ASP.NET Core app with React in Visual Studio, see Microsoft's documentation on the subject here: [Tutorial: Create an ASP.NET Core app with React in Visual Studio](https://learn.microsoft.com/en-us/visualstudio/javascript/tutorial-asp-net-core-with-react?view=vs-2022#prerequisites)
-- For a more in depth guide for regarding those onboarding the project, check the onboarding manual (submission currently pending).
+- For a more in depth guide for those onboarding the project, check the onboarding manual (submission currently pending).
