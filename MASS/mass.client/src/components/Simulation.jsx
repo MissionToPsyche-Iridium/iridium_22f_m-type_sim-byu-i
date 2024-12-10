@@ -3,14 +3,9 @@ import ParameterPanel from "./ParameterPanel";
 import SimulationView from "./SimulationView";
 import SimulationControls from "./SimulationControls";
 import { SharedContext } from "./SharedContext";
+import updateParameters from "../services/APIHandler";
 
 function Simulation() {
-
-    const [parameters, setParameters] = useState();
-    
-    useEffect(() => {
-        updateParameters({ /* JSON data to send to the server */ });
-    }, []);
 
     // Import parameters from SharedContext
     const {
@@ -30,6 +25,29 @@ function Simulation() {
         param17,
         param18,
     ]);
+
+    {/*
+    const [parameters, setParameters] = useState();
+    
+    useEffect(() => {
+        updateParameters({ /* JSON data to send to the server * });
+    }, []);
+
+    
+    // Construct json data to send to the server
+    const isoStringDate = new Date().toISOString();
+    jsonData = {
+        Id: 1234,
+        TimeStart: isoStringDate,
+        CurrentTime: isoStringDate,
+        LastTime: isoStringDate,
+        UprThrustOn: true,
+        LwrThrustOn: true,
+        ShipAltitude: 300,
+        PriorAltitude: 400,
+        FuelRemaining: 200
+    }
+    */}
 
     // Arrow Key States
     const [isUpPressed, setIsUpPressed] = useState(false);
