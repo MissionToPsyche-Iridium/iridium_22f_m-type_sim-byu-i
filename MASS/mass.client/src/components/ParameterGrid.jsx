@@ -3,7 +3,7 @@ import ParameterComponent from "./ParameterComponent";
 
 const ParameterGrid = ({ items }) => {
     return (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", padding: "2px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", padding: "1px" }}>
             {items.map((item, index) => (
                 <ParameterComponent
                     key={index}
