@@ -17,8 +17,8 @@ function VariableParameters() {
 
     useEffect(() => {
         setData1([
-            { title: "Upward Thrusters", subtitle: "Newtons", value: ArrowUp ? 250 : 0 },
-            { title: "Downward Thrusters", subtitle: "Newtons", value: ArrowDown ? 250 : 0 },
+            { title: "Upward Thrusters", subtitle: "Newtons", value: ArrowUp ? 500 : 0 },
+            { title: "Downward Thrusters", subtitle: "Newtons", value: ArrowDown ? 500 : 0 },
         ]);
     }, [ArrowUp, ArrowDown]);
     */}
@@ -33,6 +33,7 @@ function VariableParameters() {
         param18, setParam18,
         param19, setParam19,
         param20, setParam20,
+        param25, setParam25,
     } = useContext(SharedContext);
 
     const [data, setData] = useState([
@@ -44,6 +45,7 @@ function VariableParameters() {
         param18,
         param19,
         param20,
+        param25,
     ]);
 
     // Update data when any parameter changes
@@ -57,8 +59,9 @@ function VariableParameters() {
             param18,
             param19,
             param20,
+            param25,
         ]);
-    }, [param13, param14, param15, param16, param17, param18, param19, param20]);
+    }, [param13, param14, param15, param16, param17, param18, param19, param20, param25,]);
 
 
     return (

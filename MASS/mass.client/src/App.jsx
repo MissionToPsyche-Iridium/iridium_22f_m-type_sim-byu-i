@@ -4,12 +4,13 @@ import Home from './components/Home';
 import About from './components/About';
 import MoreInfo from './components/MoreInfo';
 import MainMenu from './components/MainMenu';
-import ArrowKeyProvider from './components/ArrowKeyTracker';
 import Simulation from './components/Simulation';
 import { SharedProvider } from './components/SharedContext';
 import ConstantParameter from './components/ConstantParameters';
 import VariableParameter from './components/VariableParameters';
 import ConfigurationMenu from './components/ConfigurationMenu';
+import SimulationControls from './components/SimulationControls';
+import SimulationView from './components/SimulationView';
 import './App.css';
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
                     <Route path="/constant-parameter" element={<ConstantParameter />} />
                     <Route path="/configuration-menu" element={<ConfigurationMenu />} />
                     <Route path="/variable-parameter" element={<VariableParameter />} />
+                    <Route path="/simulation-view" element={<SimulationView />} />
+                    <Route path="/simulation-controls" element={<SimulationControls />} />
                 </Routes>
             </Router>
         </SharedProvider >
