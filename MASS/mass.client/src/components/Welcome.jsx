@@ -12,7 +12,7 @@ function Welcome() {
             }} >
                 <h1 >
                     Welcome to the Psyche <br />
-                    Mission Home Page
+                    Sampling Lander Home Page
                 </h1>
             </div>
         </>
