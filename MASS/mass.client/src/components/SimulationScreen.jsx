@@ -14,8 +14,9 @@ const SimulationScreen = () => {
 
     //Conversion from units to m: 2.5659541411028437 / (220 * 1000), or a conversion unit of 85764.2681
     //Conversion from units to km: 2.5659541411028437 / 220, or a conversion unit of 85.7642681
-    const conversionKm = 85.7642681 //Conversion constant to convert any simulation position to kilometers
-    const gravityKms = 0.00006 //Gravity in km/s
+    const conversionKm = 85.7642681; //Conversion constant to convert any simulation position to kilometers
+    const gravityKms = 0.00006; //Gravity in km/s
+    const psycheGravitationalConstant = 0.00000000006674 * 24100000000000000000;
 
     //Arrow key parameters
     const { param19 } = useContext(SharedContext); // Access param19 from SharedContext
@@ -33,6 +34,9 @@ const SimulationScreen = () => {
     const { param17, setParam17 } = useContext(SharedContext);
     const param17Ref = useRef(param17.value); // Ref to track param17 dynamically
     const landerDistance = Number(param17Ref.value);
+
+    //Orbital speed
+    const { param13, setParam13 } = useContext(SharedContext);
 
     //Velocity param
     const {param14, setParam14} = useContext(SharedContext);
@@ -221,6 +225,9 @@ const SimulationScreen = () => {
             // Update formatted simulation time
             if (height !== 0) {   
                 updateTime(formatTime(simulationTime));
+
+                // Update orbital speed
+                param13.value = Math.sqrt( psycheGravitationalConstant / (( height * 1000 ) + 113000 ) ).toFixed(2);
             }
 
             // Update velocity in m/s

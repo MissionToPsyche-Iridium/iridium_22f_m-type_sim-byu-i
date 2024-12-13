@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { SharedContext } from "./SharedContext";
 
 const ControlButtons = () => {
+
+    // Import the parameters for use
     const {
         param13, setParam13,
         param14, setParam14,
@@ -17,17 +19,19 @@ const ControlButtons = () => {
         param25, setParam25,
     } = useContext(SharedContext);
 
+    // Set variables for simulation state, button highlighting
     const [isRunning, setIsRunning] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [hoveredButton, setHoveredButton] = useState(null); // For hover effects
+
+    // Set object for useNavigate function, to move between components
     const navigate = useNavigate();
-    
+
+
     useEffect(() => {
     console.log("isRunning:", isRunning);
     console.log("isPaused:", isPaused);
     }, [isRunning, isPaused]);
-
-
 
     //This allows me to make CSSest styles
     const styles = {
@@ -54,6 +58,7 @@ const ControlButtons = () => {
             ? { ...styles.button, ...styles.buttonHover }
             : styles.button;
 
+    // function for start button
     const start = () => {
         setIsRunning(true);
         if (param25.value === "Press Start") {
@@ -62,21 +67,18 @@ const ControlButtons = () => {
         //setIsPaused(false);
     };
 
+    // function for pause button
     const pause = () => {
         setIsPaused(true);
     };
 
+    // function for resume button
     const resume = () => {
         setIsPaused(false);
     };
 
+    // function for exit button
     const exit = () => {
-        const fallingVelocity = param14.value;
-        const landerAltitude = param17.value;
-        param14.value = fallingVelocity;
-        param17.value = landerAltitude;
-        //setParam14(...prev, value = param14);
-        //setParam17(...prev, value = param17);
         navigate('/main-menu-page');
     };
 
@@ -105,6 +107,7 @@ const ControlButtons = () => {
     }, [isPaused, setParam22]);
 
 
+    // Display simulator controls in simulation component
     return (
         <div className="simulator-controls">
             <div>
@@ -125,7 +128,6 @@ const ControlButtons = () => {
                     Exit
                 </button>
             </div>
-
             <div>
                 <button
                     style={getButtonStyle("pause")}
@@ -143,7 +145,6 @@ const ControlButtons = () => {
                     disabled={!isRunning || !isPaused}>
                     Resume
                 </button>
-
             </div>
         </div>
     );
