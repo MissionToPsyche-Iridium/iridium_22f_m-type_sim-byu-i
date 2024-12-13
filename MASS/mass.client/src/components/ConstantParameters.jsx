@@ -35,7 +35,7 @@ function ConstantParameter() {
         param12,
     ]);
     
-
+    // Display the Constant Parameters panel
     return (
         <div>
             <h4 style={{ padding: "0px", marginBottom: "20px", marginTop: "0px" }}>Constant Parameters </h4>

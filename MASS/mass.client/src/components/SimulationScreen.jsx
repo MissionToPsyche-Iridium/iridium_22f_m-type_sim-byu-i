@@ -14,8 +14,9 @@ const SimulationScreen = () => {
 
     //Conversion from units to m: 2.5659541411028437 / (220 * 1000), or a conversion unit of 85764.2681
     //Conversion from units to km: 2.5659541411028437 / 220, or a conversion unit of 85.7642681
-    const conversionKm = 85.7642681 //Conversion constant to convert any simulation position to kilometers
-    const gravityKms = 0.00006 //Gravity in km/s
+    const conversionKm = 85.7642681; //Conversion constant to convert any simulation position to kilometers
+    const gravityKms = 0.00006; //Gravity in km/s
+    const psycheGravitationalConstant = 0.00000000006674 * 24100000000000000000;
 
     //Arrow key parameters
     const { param19 } = useContext(SharedContext); // Access param19 from SharedContext
@@ -26,29 +27,36 @@ const SimulationScreen = () => {
     //Simulation controls parameters
     const { param21 } = useContext(SharedContext); // Access param21 from SharedContext
     const param21Ref = useRef(param21); // Ref to track param21 dynamically
-    const { param22 } = useContext(SharedContext); // Access param2 from SharedContext
+    const { param22 } = useContext(SharedContext); // Access param22 from SharedContext
     const param22Ref = useRef(param22); // Ref to track param22 dynamically
 
     //Altitude param
     const { param17, setParam17 } = useContext(SharedContext);
+    const param17Ref = useRef(param17.value); // Ref to track param17 dynamically
+    const landerDistance = Number(param17Ref.value);
+
+    //Orbital speed
+    const { param13, setParam13 } = useContext(SharedContext);
 
     //Velocity param
     const {param14, setParam14} = useContext(SharedContext);
 
     //Time param
-    const {param18, setParam18} = useContext(SharedContext);
+    const { param18, setParam18 } = useContext(SharedContext);
 
+    //Thruster state params for back-end
+    const { param23, setParam23 } = useContext(SharedContext); // Upper thruster on true/false
+    const { param24, setParam24 } = useContext(SharedContext); // Lower thruster on true/false
 
-    
     // Update param19Ref whenever param19 changes
     useEffect(() => {
         param19Ref.current = param19;
     }, [param19]);
 
-        // Update param20Ref whenever param19 changes
-        useEffect(() => {
-            param20Ref.current = param20;
-        }, [param20]);
+    // Update param20Ref whenever param19 changes
+    useEffect(() => {
+        param20Ref.current = param20;
+    }, [param20]);
 
     // Update param21Ref whenever param21 changes
     useEffect(() => {
@@ -93,7 +101,7 @@ const SimulationScreen = () => {
         const lander = new THREE.Mesh(landerGeometry, landerMaterial);
         scene.add(lander);
 
-
+        // Create asteroid object
         let asteroid;
 
         // Load asteroid model
@@ -114,8 +122,7 @@ const SimulationScreen = () => {
                     size.z / 1.5
                 );
 
-
-
+                // Add the asteroid to the scene
                 scene.add(asteroid);
 
                 // Update material properties
@@ -152,21 +159,33 @@ const SimulationScreen = () => {
             lastTime = currentTime; // Update lastTime immediately
         
             const mass = 1500; // Mass of the lander in kg
-            const thrust = 2000; // Thrust in newtons
+            const thrust = 1000; // Thrust in newtons
             const thrusterAcceleration = (thrust / mass) / 1000; // Thrust in km/s²
         
             // Update simulation only if running
             if (param21Ref.current?.value === "True" && param22Ref.current?.value === "False") {
+
                 // Update velocity due to gravity
                 velocity -= gravityKms * deltaTime * 3; // Gravity scaled by deltaTime
-        
-                // Apply thruster acceleration
+
+                // If both thrusters or neither thruster is on, set upper and lower thruster on states to false
+                if ((param20Ref.current?.value === "On" && param19Ref.current?.value === "On") ||
+                    (param20Ref.current?.value === "Off" && param19Ref.current?.value === "Off")) {
+                    setParam23((prev) => ({ ...prev, value: false, }));
+                    setParam24((prev) => ({ ...prev, value: false, })); 
+                } 
+
+                // Apply thruster acceleration and set upper and lower thruster states
                 if (param20Ref.current?.value === "On" && param19Ref.current?.value === "Off") {
                     velocity -= thrusterAcceleration * deltaTime * 6; // Downward thrust
+                    setParam23((prev) => ({ ...prev, value: false, })); // Update upper thruster state to show upper thruster on is false
+                    setParam24((prev) => ({ ...prev, value: true, })); // Update lower thruster state to show lower thruster on is true
                 } else if (param19Ref.current?.value === "On" && param20Ref.current?.value === "Off") {
                     velocity += thrusterAcceleration * deltaTime * 6; // Upward thrust
+                    setParam23((prev) => ({ ...prev, value: true, })); // Update the upper thruster state to show upper thruster on is true
+                    setParam24((prev) => ({ ...prev, value: false, })); // Update the lower thruster state to show lower thruster on is false
                 }
-        
+
                 // Update lander position
                 lander.position.y += velocity * deltaTime; // Position based on velocity
         
@@ -196,7 +215,6 @@ const SimulationScreen = () => {
                 // Increment simulation time
                 simulationTime += deltaTime;
             }
-            
 
             // Prevent lander from going below the surface
             if (lander.position.y < surfacePosition) {
@@ -205,8 +223,13 @@ const SimulationScreen = () => {
             }
         
             // Update formatted simulation time
-            updateTime(formatTime(simulationTime));
-        
+            if (height !== 0) {   
+                updateTime(formatTime(simulationTime));
+
+                // Update orbital speed
+                param13.value = Math.sqrt( psycheGravitationalConstant / (( height * 1000 ) + 113000 ) ).toFixed(2);
+            }
+
             // Update velocity in m/s
             velocityms = velocity * conversionKm; // Convert velocity to m/s
             updateVelocity(velocityms.toFixed(2));
@@ -261,15 +284,13 @@ const SimulationScreen = () => {
     const updateTime = (time) => {
         setParam18((prev) => ({
             ...prev,
-            value: time, // Update the value with the new velocity
+            value: time, // Update the value with the new time
         }));
     };
 
-
-
-
     return <div ref={mountRef} style={{ width: "100%", height: "100%" }} />;
 };
+
 
 const formatTime = (timeInSeconds) => {
     // Extract hours, minutes, and seconds

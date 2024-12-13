@@ -12,9 +12,9 @@ namespace MASS.Server.Models
         public int Difficulty { get; set; } // 0 = novice, 1 = intermediate, 2 = expert
 
         // Constant parameters
-        public const double AsteroidRadius = 14.125; // 14.125 km
+        public const double AsteroidRadius = 113.4; // 113.4 km
         public const double ShipRadius = 1.1; // 1.1 m
-        public const double ShipMass = 1300; // 1300 kg
+        public const double ShipMass = 1500; // 1500 kg
         public const double ShipStartVelocity = 0; // 0 m/s
         public const double FuelStartCapacity = 200; // 200 kg
         public const double OOBThreshold = 400; // >400 km
@@ -29,8 +29,8 @@ namespace MASS.Server.Models
         public double ThrustStartAltitude { get; set; } // unused for novice level
         public double ShipRotationSpeed { get; set; } // 0 for novice level
         [Range(0,250)]
-        public double UprThrustLevel { get; set; } // 250 N for novice level
-        public double LwrThrustLevel { get; set; } // 250 N for novice level
+        public double UprThrustLevel { get; set; } // 500 N for novice level
+        public double LwrThrustLevel { get; set; } // 500 N for novice level
         public double UprThrustAngle { get; set; } // 0 degrees for novice level
         public double LwrThrustAngle { get; set; } // 180 degrees for novice level
 

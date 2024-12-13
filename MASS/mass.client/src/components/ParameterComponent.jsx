@@ -1,5 +1,7 @@
 import React from "react";
 
+
+// Display each parameter within a square containing the name of the parameter, the units, and the parameter value
 const ParameterComponent = ({ title, subtitle, value }) => {
 
     return (
@@ -12,7 +14,7 @@ const ParameterComponent = ({ title, subtitle, value }) => {
                     border: "2px solid #000",
                     borderRadius: "2px",
                     padding: "2px",
-                    fontSize: ".6 rem",
+                    fontSize: ".7 rem",
                     fontWeight: "bold",
                 }}
             >
