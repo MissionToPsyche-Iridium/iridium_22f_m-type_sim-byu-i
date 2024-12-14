@@ -225,7 +225,7 @@ const SimulationScreen = () => {
             if (height !== 0) {   
                 updateTime(formatTime(simulationTime));
 
-                // Update orbital speed
+                // Tie parameter to orbital speed display
                 param13.value = Math.sqrt( psycheGravitationalConstant / (( height * 1000 ) + 113000 ) ).toFixed(2);
             }
 
