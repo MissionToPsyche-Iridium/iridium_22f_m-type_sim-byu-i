@@ -1,7 +1,7 @@
 // API Handler function
 async function updateParameters(jsonData) {
 
-    // Use error handling to call the api with the jsonData as argument
+    // Use error handling to call the api with the jsonData as argument 
     try {
         const response = await fetch("api", {
             method: "POST",
