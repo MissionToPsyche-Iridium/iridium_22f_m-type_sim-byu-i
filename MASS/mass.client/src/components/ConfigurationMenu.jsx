@@ -9,7 +9,7 @@ function ConfigurationMenu() {
     // Use navigate to move between components
     const navigate = useNavigate();
 
-    // Move to configuration menu on button click
+    // Move to configuration menu on button click 
     const mainMenu = () => {
         navigate('/main-menu-page');
     };
