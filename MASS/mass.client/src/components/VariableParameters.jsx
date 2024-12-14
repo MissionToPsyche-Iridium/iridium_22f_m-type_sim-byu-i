@@ -45,7 +45,7 @@ function VariableParameters() {
         ]);
     }, [param13, param14, param15, param16, param17, param18, param19, param20, param25,]);
 
-    // Display the Variable Parameter panel
+    // Display the Variable Parameter panel 
     return (
         <div>
             <h4>
