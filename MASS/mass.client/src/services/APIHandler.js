@@ -20,7 +20,7 @@ async function updateParameters(jsonData) {
         const result = await response.json();
         console.log("Response from the server:", result);
 
-        // Return the json result
+        // Return the json result 
         return result;
 
     } catch (error) {
