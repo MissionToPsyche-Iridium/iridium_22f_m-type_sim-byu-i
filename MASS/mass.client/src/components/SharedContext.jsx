@@ -9,7 +9,7 @@ export const SharedProvider = ({ children }) => {
     // Create a random ID variable to store the user id
     const randomID = useState(Math.floor(Math.random() * 50000));
 
-    // Define 22 parameters as objects with title, sub-title, and value
+    // Define 28 parameters as objects with title, sub-title, and value
     const [param1, setParam1] = useState({ title: "Surface Gravity", subtitle: "Newtons", value: 309 });
     const [param2, setParam2] = useState({ title: "Average Diameter", subtitle: "Kilometers", value: 113.4 });
     const [param3, setParam3] = useState({ title: "Rotation Speed", subtitle: "Hours", value: 4.2 });
@@ -24,7 +24,7 @@ export const SharedProvider = ({ children }) => {
     const [param12, setParam12] = useState({ title: "Upr Thrust Angle", subtitle: "Degrees", value: 0 });
     const [param13, setParam13] = useState({ title: "Orbital Speed", subtitle: "m/s", value: 72.1 });
     const [param14, setParam14] = useState({ title: "Fall Velocity", subtitle: "m/s²", value: 0.0 });
-    const [param15, setParam15] = useState({ title: "Fuel Remaining", subtitle: "Kilograms", value: "Infinite" }); // Normally 200 to start
+    const [param15, setParam15] = useState({ title: "Fuel Remaining", subtitle: "Kilograms", value: "200" });                     // Normally 200 to start
     const [param16, setParam16] = useState({ title: "Lander Damage", subtitle: "Percentage", value: 0.0 });
     const [param17, setParam17] = useState({ title: "Lander Altitude", subtitle: "Kilometers", value: 400.0 });
     const [param18, setParam18] = useState({ title: "Simulation Time", subtitle: "h:m:s:fraction", value: "00:00:00:000" });
