@@ -9,7 +9,7 @@ export const SharedProvider = ({ children }) => {
     // Create a random ID variable to store the user id
     const randomID = useState(Math.floor(Math.random() * 50000));
 
-    // Define 28 parameters as objects with title, sub-title, and value
+    // Define 29 parameters as objects with title, sub-title, and value
     const [param1, setParam1] = useState({ title: "Surface Gravity", subtitle: "Newtons", value: 309 });
     const [param2, setParam2] = useState({ title: "Average Diameter", subtitle: "Kilometers", value: 113.4 });
     const [param3, setParam3] = useState({ title: "Rotation Speed", subtitle: "Hours", value: 4.2 });
