@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { SharedContext } from "./SharedContext";
+import { SharedContext } from "./SharedContext"; 
 
 // Set css styles
 const styles = {
