@@ -10,13 +10,11 @@ const SimulationScreen = () => {
 
     const surfacePosition = 2.5; //Position of surface of asteroid
 
-
-
     //Conversion from units to m: 2.5659541411028437 / (220 * 1000), or a conversion unit of 85764.2681
     //Conversion from units to km: 2.5659541411028437 / 220, or a conversion unit of 85.7642681
     const conversionKm = 85.7642681; //Conversion constant to convert any simulation position to kilometers
     const gravityKms = 0.00006; //Gravity in km/s
-    const psycheGravitationalConstant = 0.00000000006674 * 24100000000000000000;
+    const psycheGravitationalConstant = 0.00000000006674 * 24100000000000000000; // Gravitational Constant and Psyche Mass 
 
     //Arrow key parameters
     const { param19 } = useContext(SharedContext); // Access param19 from SharedContext
@@ -43,6 +41,9 @@ const SimulationScreen = () => {
 
     //Time param
     const { param18, setParam18 } = useContext(SharedContext);
+
+    //Sampling message
+    const { param29, setParam29 } = useContext(SharedContext);
 
     //Thruster state params for back-end
     const { param23, setParam23 } = useContext(SharedContext); // Upper thruster on true/false
@@ -221,12 +222,24 @@ const SimulationScreen = () => {
                 velocity = 0; // Reset velocity on surface contact
             }
         
-            // Update formatted simulation time
-            if (height !== 0) {   
+            // Update formatted simulation time if still above surface
+            if (height !== 0) {
                 updateTime(formatTime(simulationTime));
 
                 // Tie parameter to orbital speed display
-                param13.value = Math.sqrt( psycheGravitationalConstant / (( height * 1000 ) + 113000 ) ).toFixed(2);
+                param13.value = Math.sqrt(psycheGravitationalConstant / ((height * 1000) + 113000)).toFixed(2);
+
+                // Let user know that the lander will auto-sample after landing
+                param29.value = "Auto-sampling will begin upon landing.";
+            } 
+
+            else {
+
+                // If lander is on the surface, there is no orbital speed to show, so zero it out
+                param13.value = 0;
+
+                // As this is a sampling lander, a message of auto-sampling results should be shown to the user at this point 
+                param29.value = "Auto-sampling shows 97% iron oxide, 2% silicon, 1% sodium.";
             }
 
             // Update velocity in m/s

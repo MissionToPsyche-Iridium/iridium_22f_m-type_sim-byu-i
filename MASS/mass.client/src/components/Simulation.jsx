@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import ParameterPanel from "./ParameterPanel";
 import SimulationView from "./SimulationView";
+import SamplingResults from './SamplingResults';
 import SimulationControls from "./SimulationControls";
 import { SharedContext } from "./SharedContext";
 import updateParameters from "../services/APIHandler";
@@ -16,7 +17,7 @@ function Simulation() {
         param17, setParam17,
         param18, setParam18,
         param19, setParam19,
-        param20, setParam20
+        param20, setParam20,
     } = useContext(SharedContext);
 
     const [items, setItems] = useState([
@@ -140,6 +141,7 @@ function Simulation() {
             {/* Simulator view and simulation controls on the right */}
             <div className="view-controls">
                 <SimulationView />
+                <SamplingResults />
                 <SimulationControls />
             </div>
         </div>

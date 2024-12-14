@@ -45,7 +45,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 10px;
+    padding: 5px;
 }
 
 /* The simulator view canvas*/
@@ -71,8 +71,8 @@
 /* The simulator controls panel */
 .simulator-controls {
     background-color: beige;
-    padding: 20px;
-    margin-top: 10px;
+    padding: 0px;
+    margin-top: 0px;
     box-sizing: border-box;
     flex: 1;  /*Allow it to take the remaining space */  
 }

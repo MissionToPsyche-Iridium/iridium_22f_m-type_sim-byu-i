@@ -11,6 +11,7 @@ import VariableParameter from './components/VariableParameters';
 import ConfigurationMenu from './components/ConfigurationMenu';
 import SimulationControls from './components/SimulationControls';
 import SimulationView from './components/SimulationView';
+import SamplingResults from './components/SamplingResults';
 import './App.css';
 
 function App() {

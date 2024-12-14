@@ -38,6 +38,7 @@ export const SharedProvider = ({ children }) => {
     const [param26, setParam26] = useState({ title: "LastTime", subtitle: "Last Backend Response Time", value: "" });
     const [param27, setParam27] = useState({ title: "Prior Altitude", subtitle: "Last Backend Response Altitude", value: 400.0 });
     const [param28, setParam28] = useState({ title: "User ID", subtitle: "User ID number", value: randomID });
+    const [param29, setParam29] = useState({ title: "Sampling Results", subtitle: "Message", value: "" });
 
     // Share the context with children
     return (
@@ -72,6 +73,7 @@ export const SharedProvider = ({ children }) => {
                 param26, setParam26,
                 param27, setParam27,
                 param28, setParam28,
+                param29, setParam29,
             }}
         >
             {children}
