@@ -62,6 +62,8 @@ const ControlButtons = () => {
     // function for start button
     const start = () => {
         setIsRunning(true);
+
+        // set start time parameter
         if (param25.value === "Press Start") {
             param25.value = new Date().toLocaleTimeString();
         }
