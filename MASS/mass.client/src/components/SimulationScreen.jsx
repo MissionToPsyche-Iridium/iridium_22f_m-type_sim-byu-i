@@ -188,7 +188,6 @@ const SimulationScreen = () => {
 
                 // Update lander position
                 lander.position.y += velocity * deltaTime; // Position based on velocity
-        
 
                 //check if lander is in view -------------------------------
                 const distance = camera.position.z - lander.position.z;

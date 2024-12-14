@@ -1,9 +1,9 @@
 import React from "react";
 
-
 // Display each parameter within a square containing the name of the parameter, the units, and the parameter value
 const ParameterComponent = ({ title, subtitle, value }) => {
 
+    // Display the parameter blocks individually with its Name, Units, and Value
     return (
 
         <div style={{ border: "1px solid #555", borderRadius: "2px", padding: "1px" }}>

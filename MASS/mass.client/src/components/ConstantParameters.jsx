@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import ParameterGrid from './ParameterGrid';
 import { SharedContext } from "./SharedContext";
 
+// This component displays the Constant Parameter panel in the Simulator's Parameter Panel
 function ConstantParameter() {
 
     // Import parameters for use

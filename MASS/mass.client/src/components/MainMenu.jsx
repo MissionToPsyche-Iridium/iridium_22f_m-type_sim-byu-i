@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { SharedContext } from "./SharedContext";
 
+// Set css styles
 const styles = {
   nav: {
     display: 'flex',
@@ -54,8 +55,10 @@ styles.button[':hover'] = {
   background: '#f0f0f0', //check color
 };
 
+// 
 const MainMenu = () => {
 
+    // Set so component rerenders on every call
     const location = useLocation();
 
     useEffect(() => {
@@ -113,11 +116,12 @@ const MainMenu = () => {
         param20, setParam20,
     } = useContext(SharedContext);
 
+    // Display buttons of Main Menu
     return (
         <div key={location.key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '70vh', }}>
             <nav style={styles.nav}>
-                <button style={styles.button}>Load Mission</button>
-                <button style={styles.button}>Write Mission</button>
+                <button style={styles.button}>Load Mission</button>  {/* Button ready for next version implementation */}
+                <button style={styles.button}>Write Mission</button> {/* Button ready for next version implementation */}
                 <button style={styles.button} onClick={handleButtonClickToSimulation}>Start Simulation</button>
                 <button style={styles.button} onClick={handleButtonClickToConfiguration}>Configuration Menu</button>
                 <button style={styles.button} onClick={handleButtonClickToHome}>Exit Simulator</button>

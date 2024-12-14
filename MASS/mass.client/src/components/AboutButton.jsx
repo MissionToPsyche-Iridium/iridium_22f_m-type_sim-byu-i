@@ -1,14 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// This will show a button and link to another component; subcomponent of Home
 function AboutButton() {
 
+    // Set navigate object
     const navigate = useNavigate();
 
+    // Navigate to the About component when called
     const about = () => {
         navigate('/about-page');
     };
 
+    // Show button and call about when clicked
     return (
 
         <div style={{

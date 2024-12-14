@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import ReactDOMServer from 'react-dom/server';
 import { SharedContext } from "./SharedContext";
 
+// This component displays the user setable parameters and should permit user input on other than Novice skill
 function ConfigurationMenu() {
+
     // Use navigate to move between components
     const navigate = useNavigate();
 
@@ -44,6 +46,7 @@ function ConfigurationMenu() {
         */}
     };
 
+    // Display parameter grid and button calls the Main Menu component when clicked
     return (
 
         <>

@@ -1,13 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// Component to display NASA mandated information, show credits, navigate to Home when button is clicked
 function About() {
 
+    // Set navigate object variable
     const navigate = useNavigate();
 
+    // Navigate to the Home page when called
     const home = () => {
         navigate('/');
     };
 
+    // Display NASA mandated information, show button, and call home if clicked
     return (
 
         <div>

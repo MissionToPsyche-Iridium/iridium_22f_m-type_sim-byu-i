@@ -5,6 +5,7 @@ import SimulationControls from "./SimulationControls";
 import { SharedContext } from "./SharedContext";
 import updateParameters from "../services/APIHandler";
 
+// This component displays the Parameter Panel, Simulator View, and Simulator controls components
 function Simulation() {
 
     // Import parameters from SharedContext
@@ -26,35 +27,48 @@ function Simulation() {
         param18,
     ]);
 
-    {/*
-    const [parameters, setParameters] = useState();
-    
-    useEffect(() => {
-        updateParameters({ /* JSON data to send to the server * });
-    }, []);
+    {/* JSON and API instructions
 
-    
-    // Construct json data to send to the server
+    // Psyche Sampling Lander Simulator V2.4 Team solved the api 
+    //  but was unable implement the solution prior to semester end
+
+    // Create jsonData object:    
     const isoStringDate = new Date().toISOString();
-    jsonData = {
-        Id: {param28}
-        TimeStart: {param25},
+    const jsonData = {
+        Id: { param28 },
+        TimeStart: { param25 },
         CurrentTime: isoStringDate,
-        LastTime: {param26},
-        UprThrustOn: {param23},
-        LwrThrustOn: {param24},
-        ShipAltitude: {param17},
-        PriorAltitude: {param27}, 
-        FuelRemaining: {param15}
+        LastTime: { param26 },
+        UprThrustOn: { param23 },
+        LwrThrustOn: { param24 },
+        ShipAltitude: { param17 },
+        PriorAltitude: { param27 },
+        FuelRemaining: { param15 }
     }
+    
+    // Create jsonReturn object:
+    const jsonReturn = {
+        Id: { param28 },
+        Calculation: { param26 },
+        Velocity: { param14 },
+        Fuel: { param15 },
+        Height: { param17 },
+        Elapsed: { param18 }
+    }
+    
+    // Call APIHandler to process data in back-end
+    jsonReturn = updateParameters(jsonData);
 
-    // Return json data includes:
-        Id: int
-        Calculation: string // time calculations performed
-        Velocity: double // falling velocity
-        Fuel: double // fuel remaining
-        Height: double // new altitude
-        Elapsed: string // time since simulation began
+    // Explanation of the jsonReturn object:
+    Id: int (should equal {param28} or something went wrong on the back-end)
+    Calculation: string // time calculations performed -> {param26}
+    Velocity: double // falling velocity               -> {param14}
+    Fuel: double // fuel remaining                     -> {param15}
+    Height: double // new altitude                     -> {param17}
+    Elapsed: string // time since simulation began     -> {param18}
+
+    // This data should be assigned as noted when the data is returned from the back-end.
+
     */}
 
     // Arrow Key States
@@ -116,14 +130,14 @@ function Simulation() {
         }));
     }, [isUpPressed, setParam19]);
 
-
-
+    // Display the simulation screen with the parameter panels on the left, 
+    //  the simulation view over the simulation controls
     return (
         <div className="simulation">
             {/* Parameter panel will be on the left */}
             <ParameterPanel />
 
-            {/* Simulator view and simulation controls */}
+            {/* Simulator view and simulation controls on the right */}
             <div className="view-controls">
                 <SimulationView />
                 <SimulationControls />

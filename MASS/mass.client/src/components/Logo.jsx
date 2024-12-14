@@ -2,12 +2,10 @@ import React from 'react';
 import Psyche_Mission_Logo from '../assets/Psyche_Mission_Logo.png';
 import NASA_Logo from '../assets/NASA_Logo.png';
 
-const styles = theme => ({
-    img: {}
-})
-
+// This component displays the NASA meatball and Psyche mission logos
 function Logo() {
 
+    // Display the NASA and Psyche logos
     return (
 
         <div style={{

@@ -1,7 +1,6 @@
 import React from "react";
 import ParameterComponent from "./ParameterComponent";
 
-
 // Display parameters in a 3 column grid by accepting parameters in items array
 //  and calling the parameter component and passing the array elements to it for display
 const ParameterGrid = ({ items }) => {

@@ -1,14 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// This component links to the MoreInfo component to display more Psyche-relevant websites
 function Info() {
 
+    // Set navigate object
     const navigate = useNavigate();
 
+    // Navigate to the MoreInfo component when called
     const moreInfo = () => {
         navigate('/more-info-page');
     };
 
+    // Display button and call moreInfo when clicked
     return (
 
         <div style={{

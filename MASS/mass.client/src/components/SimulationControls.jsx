@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { SharedContext } from "./SharedContext";
 
+// This component provides the buttons necessary for simulator control
 const ControlButtons = () => {
 
     // Import the parameters for use
@@ -105,7 +106,6 @@ const ControlButtons = () => {
             return updated;
         });
     }, [isPaused, setParam22]);
-
 
     // Display simulator controls in simulation component
     return (

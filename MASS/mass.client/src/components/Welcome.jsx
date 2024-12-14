@@ -1,6 +1,7 @@
-
+// Component to give a welcome message to user; subcomponent of Home component
 function Welcome() {
 
+    // Display welcome message
     return (
 
         <>

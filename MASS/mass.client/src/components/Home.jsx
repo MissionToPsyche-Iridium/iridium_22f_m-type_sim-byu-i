@@ -5,6 +5,7 @@ import Activate from './Activate';
 import Info from './Info';
 import AboutButton from './AboutButton';
 
+// This component displays the Welcome, Logo, Activate, Info, and AboutButton subcomponents
 function Home() {
 
     return (

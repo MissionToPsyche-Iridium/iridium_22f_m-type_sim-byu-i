@@ -1,17 +1,21 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// This component will display additional Psyche-relevant website links
 function MoreInfo() {
 
+    // Set navigate object
     const navigate = useNavigate();
 
+    // Navigate home when called
     const home = () => {
         navigate('/');
     };
 
+    // Display other Psyche web links, call home when button clicked
     return (
 
         <>
-
             <h1>More Information Page</h1>
             <p>
                 <b>
@@ -57,7 +61,6 @@ function MoreInfo() {
             <a href="https://www.zooniverse.org/" target="_blank">Zooniverse - Asteroid Data Hunter</a><br />
             <a href="https://data.nasa.gov/" target="_blank">NASA Open Data Portal</a><br />
             <a href="https://www.jpl.nasa.gov/" target="_blank">JPL Archives</a>
-
 
             <h3>Virtual And Augmented Reality</h3>
             <a href="https://psyche.asu.edu/get-involved/tools/" target="_blank">Psyche Virtual Mission Toolkit</a><br />

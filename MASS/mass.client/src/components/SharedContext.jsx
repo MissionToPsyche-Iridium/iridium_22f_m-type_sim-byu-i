@@ -6,11 +6,10 @@ export const SharedContext = createContext();
 // Provider Component
 export const SharedProvider = ({ children }) => {
 
+    // Create a random ID variable to store the user id
     const randomID = useState(Math.floor(Math.random() * 50000));
-    const metersPerSecondSquared = "m/s" + <sup>2</sup>;
 
     // Define 22 parameters as objects with title, sub-title, and value
-
     const [param1, setParam1] = useState({ title: "Surface Gravity", subtitle: "Newtons", value: 309 });
     const [param2, setParam2] = useState({ title: "Average Diameter", subtitle: "Kilometers", value: 113.4 });
     const [param3, setParam3] = useState({ title: "Rotation Speed", subtitle: "Hours", value: 4.2 });
@@ -40,8 +39,7 @@ export const SharedProvider = ({ children }) => {
     const [param27, setParam27] = useState({ title: "Prior Altitude", subtitle: "Last Backend Response Altitude", value: 400.0 });
     const [param28, setParam28] = useState({ title: "User ID", subtitle: "User ID number", value: randomID });
 
-    
-
+    // Share the context with children
     return (
 
         <SharedContext.Provider

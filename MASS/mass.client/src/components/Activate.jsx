@@ -1,14 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// This component will show a button and link to another component; subcomponent of Home
 function Activate() {
 
+    // Set navigate object
     const navigate = useNavigate();
 
+    // Navigate to the Main Menu component when called
     const mainMenu = () => {
         navigate('/main-menu-page');
     };
 
+    // Display a button and call mainMenu when it is clicked
     return (
 
         <div style={{

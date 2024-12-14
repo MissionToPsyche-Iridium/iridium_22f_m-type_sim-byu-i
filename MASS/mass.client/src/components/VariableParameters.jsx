@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import ParameterGrid from './ParameterGrid';
 import { SharedContext } from "./SharedContext";
 
+// Component to display the Variable Parameter panel in the Simulator's Parameter Panel
 function VariableParameters() {
 
     // Import parameters for use
