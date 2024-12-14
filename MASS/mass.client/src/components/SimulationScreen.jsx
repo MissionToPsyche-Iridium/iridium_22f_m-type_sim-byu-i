@@ -239,7 +239,7 @@ const SimulationScreen = () => {
                 param13.value = 0;
 
                 // As this is a sampling lander, a message of auto-sampling results should be shown to the user at this point 
-                param29.value = "Auto-sampling shows 97% iron oxide, 2% silicon, 1% sodium.";
+                param29.value = "Auto-sampling shows 97% iron oxide, 2% magnesium, 1% copper.";
             }
 
             // Update velocity in m/s
