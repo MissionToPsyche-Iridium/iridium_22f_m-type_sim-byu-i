@@ -1,1 +1,1 @@
-# Note: The latest SDD is Software Design Document v1.1
+# Note: The latest SDD is Software Design Document v2.4
