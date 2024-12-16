@@ -82,4 +82,4 @@ Couldn't start the SPA devekionebt server with command 'npm run dev'.
 
 ### Other resources
 - For more information regarding how to create an ASP.NET Core app with React in Visual Studio, see Microsoft's documentation on the subject here: [Tutorial: Create an ASP.NET Core app with React in Visual Studio](https://learn.microsoft.com/en-us/visualstudio/javascript/tutorial-asp-net-core-with-react?view=vs-2022#prerequisites)
-- For a more in depth guide for those onboarding the project, check the onboarding manual (submission currently pending).
+- For a more in depth guide for those onboarding the project, check the onboarding manual here: [./Documents/Onboarding/Onboarding.pdf](./Documents/Onboarding/Onboarding.pdf)
