@@ -117,7 +117,7 @@ function Simulation() {
 
     // Update param19 when the down arrow key is pressed
     useEffect(() => {
-        setParam20((prev) => ({
+        setParam19((prev) => ({
             ...prev,
             value: isDownPressed ? "On" : "Off",
         }));
@@ -125,7 +125,7 @@ function Simulation() {
 
     // Update param20 when the up arrow key is pressed
     useEffect(() => {
-        setParam19((prev) => ({
+        setParam20((prev) => ({
             ...prev,
             value: isUpPressed ? "On" : "Off",
         }));

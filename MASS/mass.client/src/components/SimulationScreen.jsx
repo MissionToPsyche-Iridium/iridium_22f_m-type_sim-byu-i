@@ -37,13 +37,19 @@ const SimulationScreen = () => {
     const { param13, setParam13 } = useContext(SharedContext);
 
     //Velocity param
-    const {param14, setParam14} = useContext(SharedContext);
+    const { param14, setParam14 } = useContext(SharedContext);
+
+    //Lander damage
+    const { param16, setParam16 } = useContext(SharedContext);
 
     //Time param
     const { param18, setParam18 } = useContext(SharedContext);
 
     //Sampling message
     const { param29, setParam29 } = useContext(SharedContext);
+
+    //Track velocity to assess lander damage upon surface impact
+    let lastVelocity = 0;
 
     //Thruster state params for back-end
     const { param23, setParam23 } = useContext(SharedContext); // Upper thruster on true/false
@@ -160,7 +166,7 @@ const SimulationScreen = () => {
             lastTime = currentTime; // Update lastTime immediately
         
             const mass = 1500; // Mass of the lander in kg
-            const thrust = 1000; // Thrust in newtons
+            const thrust = 500; // Thrust in newtons
             const thrusterAcceleration = (thrust / mass) / 1000; // Thrust in km/s²
         
             // Update simulation only if running
@@ -176,15 +182,18 @@ const SimulationScreen = () => {
                     setParam24((prev) => ({ ...prev, value: false, })); 
                 } 
 
-                // Apply thruster acceleration and set upper and lower thruster states
-                if (param20Ref.current?.value === "On" && param19Ref.current?.value === "Off") {
-                    velocity -= thrusterAcceleration * deltaTime * 6; // Downward thrust
-                    setParam23((prev) => ({ ...prev, value: false, })); // Update upper thruster state to show upper thruster on is false
-                    setParam24((prev) => ({ ...prev, value: true, })); // Update lower thruster state to show lower thruster on is true
-                } else if (param19Ref.current?.value === "On" && param20Ref.current?.value === "Off") {
-                    velocity += thrusterAcceleration * deltaTime * 6; // Upward thrust
-                    setParam23((prev) => ({ ...prev, value: true, })); // Update the upper thruster state to show upper thruster on is true
-                    setParam24((prev) => ({ ...prev, value: false, })); // Update the lower thruster state to show lower thruster on is false
+                // Prevent thruster operation if lander has reached the surface
+                if (height > 0) {
+                    // Apply thruster acceleration and set upper and lower thruster states
+                    if (param20Ref.current?.value === "On" && param19Ref.current?.value === "Off") {
+                        velocity += thrusterAcceleration * deltaTime * 6; // Downward thrust
+                        setParam23((prev) => ({ ...prev, value: false, })); // Update upper thruster state to show upper thruster on is false
+                        setParam24((prev) => ({ ...prev, value: true, })); // Update lower thruster state to show lower thruster on is true
+                    } else if (param19Ref.current?.value === "On" && param20Ref.current?.value === "Off") {
+                        velocity -= thrusterAcceleration * deltaTime * 6; // Upward thrust
+                        setParam23((prev) => ({ ...prev, value: true, })); // Update the upper thruster state to show upper thruster on is true
+                        setParam24((prev) => ({ ...prev, value: false, })); // Update the lower thruster state to show lower thruster on is false
+                    }
                 }
 
                 // Update lander position
@@ -201,7 +210,7 @@ const SimulationScreen = () => {
                 const size = new THREE.Vector3();
                 boundingBox.getSize(size); // Get the size of the bounding box
                 
-                 // Check if the lander's position is within the visible frustum
+                // Check if the lander's position is within the visible frustum
                 const withinVerticalBounds =
                 lander.position.y >= camera.position.y - visibleHeight / 2 &&
                 lander.position.y + (size.y * 4) <= camera.position.y + visibleHeight / 2;
@@ -222,24 +231,51 @@ const SimulationScreen = () => {
                 velocity = 0; // Reset velocity on surface contact
             }
         
+            // Keep track of velocity for landing damage notification
+            if (Math.abs(velocityms) > 0) {
+                lastVelocity = Math.abs(velocityms.toFixed(2));
+            }
+
             // Update formatted simulation time if still above surface
             if (height !== 0) {
                 updateTime(formatTime(simulationTime));
 
                 // Tie parameter to orbital speed display
-                param13.value = Math.sqrt(psycheGravitationalConstant / ((height * 1000) + 113000)).toFixed(2);
+                param13.value = Math.sqrt(psycheGravitationalConstant / ((height * 1000) + 113400)).toFixed(2);
 
                 // Let user know that the lander will auto-sample after landing
                 param29.value = "Auto-sampling will begin upon landing.";
             } 
 
+            // After reaching surface....
             else {
 
                 // If lander is on the surface, there is no orbital speed to show, so zero it out
                 param13.value = 0;
 
-                // As this is a sampling lander, a message of auto-sampling results should be shown to the user at this point 
-                param29.value = "Auto-sampling shows 97% iron oxide, 2% magnesium, 1% copper.";
+                // Consider landing impact, show appropriate auto-sampling message                
+                // At less than 1 m/s^2, the lander struts absorb impact, no lander damage
+                if (lastVelocity <= 1) {
+                    param29.value = "Great landing! Auto-sampling shows 97% iron oxide, 2% magnesium, 1% copper.";
+                    param16.value = 0;
+                }
+
+                // Hard landing
+                else {
+                    const landerDamage = (lastVelocity).toFixed(2) - 1;
+
+                    // Should lander impact at 2 m/s^2 or greater, lander is completely destroyed
+                    if (landerDamage >= 1) {
+                        param29.value = "Lander was completely destroyed, no sampling was possible.";
+                        param16.value = 100;
+                    }
+
+                    // Between 1 m/s^2 and 2 m/s^2, the lander takes some damage, but some equipment remains functional
+                    else {
+                        param16.value = ((landerDamage % 1) * 100).toFixed(0);
+                        param29.value = "Some lander damage, but remaining equipment auto-samples show 97% iron oxide.";
+                    }
+                }
             }
 
             // Update velocity in m/s

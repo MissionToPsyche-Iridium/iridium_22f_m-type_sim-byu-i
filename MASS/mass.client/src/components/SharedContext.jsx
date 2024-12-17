@@ -7,7 +7,7 @@ export const SharedContext = createContext();
 export const SharedProvider = ({ children }) => {
 
     // Create a random ID variable to store the user id
-    const randomID = useState(Math.floor(Math.random() * 50000));
+    const randomID = useState(Math.floor(Math.random() * 5000000));
 
     // Define 29 parameters as objects with title, sub-title, and value
     const [param1, setParam1] = useState({ title: "Surface Gravity", subtitle: "Newtons", value: 309 });
@@ -15,7 +15,7 @@ export const SharedProvider = ({ children }) => {
     const [param3, setParam3] = useState({ title: "Rotation Speed", subtitle: "Hours", value: 4.2 });
     const [param4, setParam4] = useState({ title: "Lander Mass", subtitle: "Kilograms", value: 1500 });
     const [param5, setParam5] = useState({ title: "Max Fuel", subtitle: "Kilograms", value: 200 });
-    const [param6, setParam6] = useState({ title: "Max Impact", subtitle: "m/s²", value: 1 });
+    const [param6, setParam6] = useState({ title: "Max Safe Impact", subtitle: "m/s²", value: 1 });
     const [param7, setParam7] = useState({ title: "Landing Feet Size", subtitle: "Centimeters", value: 22.86 });
     const [param8, setParam8] = useState({ title: "Starting Altitude", subtitle: "Kilometers", value: 400 });
     const [param9, setParam9] = useState({ title: "Max Thrust", subtitle: "Newtons", value: 500 });
