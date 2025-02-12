@@ -1,0 +1,18 @@
+#root, body, html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
