@@ -1,0 +1,89 @@
+
+.main {
+    padding-top: 0;
+
+}
+
+.missionTitle {
+    display: flex;
+    width: 100%;
+    height: 5%;
+    align-items: center;
+}
+
+.innerDiv {
+    flex: 1;
+}
+.displays {
+    width: 100%;
+    height: 60%;
+    flex-grow: 1;
+    display: flex;
+}
+
+.camControls {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    height: 100vh;
+    /* flex-grow: 1; */
+    border: 1px;
+    max-height: 100%;
+}
+
+.canvas-border {
+    width: 90%;
+    height: 100%;
+    flex-grow: 1;
+    border: 2px solid yellow;
+    margin: 2px;
+}
+
+.views {
+    width: 75%;
+    height: 100%;
+    /* flex-grow: 1; */
+    border: 2px solid green;
+    margin: 2px;
+}
+
+.views-left {
+    /* width: 45%;
+    height: 100%;
+    flex-grow: 1; */
+    border: 2px solid blue;
+    margin: 2px;
+    /* background-color: rgb(255, 255, 255); */
+}
+
+.views-right {
+    /* width: 45%;
+    height: 100%;
+    flex-grow: 1; */
+    border: 2px solid red;
+    margin: 2px;
+    /* background-color: rgb(255, 255, 255); */
+}
+
+
+.panels {
+    width: 100%;
+    height: 30%;
+    flex-grow: 1;
+    display: flex;
+
+}
+
+.vehicle {
+    width: 10%;
+    height: 100%;
+    /* flex-grow: 1; */
+
+}
+
+.panel {
+    width: 90%;
+    height: 100%;
+    /* flex-grow: 1; */
+
+}

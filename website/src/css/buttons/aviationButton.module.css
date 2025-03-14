@@ -1,0 +1,39 @@
+/* AviationButton.css */
+.aviation-button {
+    width: 30px;
+    height: 30px;
+    background-color: #5e5e5e; /* Military gray color */
+    border: 2px solid black; /* Thin black border */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 9px;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .led-light {
+    width: 15px; /* Small rectangular light */
+    height: 4px;
+    position: absolute;
+    top: 10px; /* Position in the upper area of the button */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+    background-color: red; /* Default red color */
+    border-radius: 1px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .led-light.green {
+    background-color: rgb(81, 235, 81); /* Green color when ON */
+  }
+  
+  .led-light.red {
+    background-color: red; /* Red color when OFF */
+  }
+  
