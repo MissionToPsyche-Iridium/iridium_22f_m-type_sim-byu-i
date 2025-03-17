@@ -21,7 +21,7 @@ import SampleRocketMainPanel from '../panels/sampleRocketMainPanel';
 import CameraSelectorPanel from '../panels/cameraSelectorPanel';
 import {EffectComposer, Bloom} from '@react-three/postprocessing';
 import PsycheSpacecraft from '../vehicles/psyche/psyMain';
-
+import DebuggingPanel from "../panels/debuggingPanel";
 
 
 import '../../css/pages/simulator.css'
@@ -126,9 +126,8 @@ const SceneMars = () => {
                             </EffectComposer>
                         </Canvas>
                     </div>
-                    <div className="camera2">
-                        {/* <h2>Camera Offline</h2> */}
-
+                    <div className="debuggingMenu" >
+                        <DebuggingPanel name="Debugger" />
                     </div>
 
                 </div>

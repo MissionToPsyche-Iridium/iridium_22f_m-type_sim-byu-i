@@ -23,6 +23,7 @@ import {EffectComposer, Bloom} from '@react-three/postprocessing';
 import AviationButton from '../buttons/aviationButton';
 
 import '../../css/pages/simulator.css'
+import DebuggingPanel from "../panels/debuggingPanel";
 
 
 const ScenePowerUpPsyche = () => {
@@ -85,6 +86,29 @@ const ScenePowerUpPsyche = () => {
 
     const starField = useMemo(() => <StarField />, []);
 
+    // State for TestPsyche position
+    const [testPsychePosition, setTestPsychePosition] = useState(new THREE.Vector3(12500, 12500, 10000));
+
+    // Callback function to update coordinates
+    const updateCoordinates = (axis, amount) => {
+        const newPosition = testPsychePosition.clone(); // Clone the current position
+        switch (axis) {
+            case 'x':
+                newPosition.x += amount;
+                break;
+            case 'y':
+                newPosition.y += amount;
+                break;
+            case 'z':
+                newPosition.z += amount;
+                break;
+            default:
+                break;
+        }
+        setTestPsychePosition(newPosition); // Update the state
+    };
+
+
     return (
         <>
             <div className="main" style={backgroundStyle}>
@@ -128,7 +152,7 @@ const ScenePowerUpPsyche = () => {
                             {/* <Planets.Uranus position={orbits.uranus} trueScale={trueScale}/> */}
                             {/* <Planets.Neptune position={orbits.neptune} trueScale={trueScale}/> */}
                             {/* <Asteroids.Psyche16 position={orbits.psycheAsteroid} trueScale={trueScale} /> */}
-                            <TestPsyche position={new THREE.Vector3(12500, 12500, 10000)} ref={psycheCameraRef} />
+                            <TestPsyche position={testPsychePosition} ref={psycheCameraRef} />
                             {/* {starField} */}
 
                             <EffectComposer>
@@ -136,9 +160,12 @@ const ScenePowerUpPsyche = () => {
                             </EffectComposer>
                         </Canvas>
                     </div>
-                    <div className="camera2">
-                        {/* <h2>Camera Offline</h2> */}
-
+                    <div className="debuggingMenu" >
+                        <DebuggingPanel
+                        name="Debugger"
+                        coordinates={testPsychePosition}
+                        updateCoordinates={updateCoordinates} // Pass the callback function
+                        />
                     </div>
 
                 </div>

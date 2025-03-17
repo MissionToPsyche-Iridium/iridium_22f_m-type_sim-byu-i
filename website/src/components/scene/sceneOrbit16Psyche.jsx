@@ -20,6 +20,7 @@ import RoverMainPanel from '../panels/roverMainPanel';
 import SampleRocketMainPanel from '../panels/sampleRocketMainPanel';
 import CameraSelectorPanel from '../panels/cameraSelectorPanel';
 import {EffectComposer, Bloom} from '@react-three/postprocessing';
+import DebuggingPanel from "../panels/debuggingPanel";
 
 import '../../css/pages/simulator.css'
 
@@ -128,9 +129,8 @@ const SceneOrbit16Psyche = () => {
                             </EffectComposer>
                         </Canvas>
                     </div>
-                    <div className="camera2">
-                        {/* <h2>Camera Offline</h2> */}
-
+                    <div className="debuggingMenu" >
+                        <DebuggingPanel name="Debugger" />
                     </div>
 
                 </div>
