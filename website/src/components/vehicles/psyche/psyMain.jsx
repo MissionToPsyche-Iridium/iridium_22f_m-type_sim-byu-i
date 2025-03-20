@@ -34,8 +34,8 @@ const PsycheSpacecraft = ({position}) => {
     return (
       <>
         <primitive object={vehicle} position={position} scale={scale}>
-            <SolarArray key="solarArrayLeft" id="left" ref={solarArrayLeftRef} isMirrored={false}/>
-            <SolarArray key="solarArrayRight" id="right" ref={solarArrayRightRef} isMirrored={true}/>
+            <SolarArray key="solarArrayLeft" id="left" ref={solarArrayLeftRef} isMirrored={false} initialState={"STOWED"} beginDeploy={true}/>
+            <SolarArray key="solarArrayRight" id="right" ref={solarArrayRightRef} isMirrored={true} initialState={"STOWED"} beginDeploy={true}/>
         </primitive>
       </>
     );
