@@ -1,13 +1,13 @@
 
 import * as THREE from "three";
-import React, { useRef, useState, useEffect, useMemo, forwardRef} from 'react';
+import React, { useRef, useState, useEffect, useMemo, forwardRef } from 'react';
 import Sun from '../../celestialBodies/sun';
 import * as Planets from '../../celestialBodies/planets';
 import * as Asteroids from '../../celestialBodies/asteroids';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { PerspectiveCamera, OrbitControls, View } from '@react-three/drei';
 import StarField from '../../celestialBodies/starField';
-import {SimulatorTime} from '../../celestialBodies/simulatorTime';
+import { SimulatorTime } from '../../celestialBodies/simulatorTime';
 import AnimationLogic from '../../celestialBodies/animationLogic';
 import SolarSystemPositions from '../../celestialBodies/solarSystemPositions';
 import TestPsyche from '../vehicles/test/testPsyche';
@@ -18,11 +18,12 @@ import LanderMainPanel from '../panels/landerMainPanel';
 import RoverMainPanel from '../panels/roverMainPanel';
 import SampleRocketMainPanel from '../panels/sampleRocketMainPanel';
 import CameraSelectorPanel from '../panels/cameraSelectorPanel';
-import {EffectComposer, Bloom} from '@react-three/postprocessing';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 import AviationButton from '../buttons/aviationButton';
 
 import '../../css/pages/simulator.css'
+import DebuggingPanel from "../panels/debuggingPanel";
 
 
 const ScenePowerUpPsyche = () => {
@@ -30,7 +31,7 @@ const ScenePowerUpPsyche = () => {
         backgroundImage: 'url(/assets/textures/seemlessmetal.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        height: '100vh', 
+        height: '100vh',
         width: '100%',
         margin: 0,
         padding: 0,
@@ -39,19 +40,19 @@ const ScenePowerUpPsyche = () => {
     const missionName = "Power Up Psyche";
     const mainCameraRef = useRef();
     const psycheCameraRef = useRef();
-    const time = useRef(new SimulatorTime(new Date(2023, 9, 13, 10,19)));
+    const time = useRef(new SimulatorTime(new Date(2023, 9, 13, 10, 19)));
     const [date, setDate] = useState(time.current.getSimulationDate());
     const [dateText, setDateText] = useState(time.current.getSimulationDate().toLocaleString());
 
     const ssp = useRef(new SolarSystemPositions());
 
     const trueScale = true;
-    const scaleFactor = (trueScale) ?     60000000 : 100 ;
+    const scaleFactor = (trueScale) ? 60000000 : 100;
     // const scaleFactor = (trueScale) ? 149597870.7 : 100 ;
     const camHeight = (trueScale) ? 11000 : 40;
 
     const [orbits, setOrbits] = useState(ssp.current.getPositionsAUScaled(date, scaleFactor));
-    
+
     // const vehiclesUsed = ['FALCON', 'PSYCHE', 'LANDER', 'ROVER', 'SAMPLE ROCKET'];
     const vehiclesUsed = ['FALCON', 'PSYCHE'];
     const [activeVehicle, setActiveVehicle] = useState("none");
@@ -62,7 +63,7 @@ const ScenePowerUpPsyche = () => {
     useEffect(() => {
         if (mainCameraRef.current) {
             mainCameraRef.current.lookAt(0, 0, 0);
-            mainCameraRef.up.set(1,0,0);
+            mainCameraRef.up.set(1, 0, 0);
         }
         changeVehicle(vehiclesUsed[0]);
     }, []);
@@ -85,6 +86,45 @@ const ScenePowerUpPsyche = () => {
 
     const starField = useMemo(() => <StarField />, []);
 
+    // State for TestPsyche position and velocity
+    const [testPsychePosition, setTestPsychePosition] = useState(new THREE.Vector3(12500, 12500, 10000));
+    const [testPsycheVelocity, setTestPsycheVelocity] = useState(new THREE.Vector3(0, 0, 0));
+
+    // Velocity controller component
+    const VelocityController = () => {
+        useFrame((state, delta) => {
+            setTestPsychePosition(prev => {
+                const newPosition = prev.clone();
+                newPosition.addScaledVector(testPsycheVelocity, delta);
+                return newPosition;
+            });
+        });
+        return null;
+    };
+
+    // Callback function to update coordinates
+    const updatePosition = (axis, amount) => {
+        setTestPsychePosition(prev => {
+            const newPosition = prev.clone();
+            newPosition[axis] = amount; // Direct assignment
+            return newPosition;
+        });
+    };
+
+    // Velocity control functions
+    const updateVelocity = (axis, amount) => {
+        setTestPsycheVelocity(prev => {
+            const newVelocity = prev.clone();
+            newVelocity[axis] = amount;
+            return newVelocity;
+        });
+    };
+
+    const resetVelocity = () => {
+        setTestPsycheVelocity(new THREE.Vector3(0, 0, 0));
+    };
+
+
     return (
         <>
             <div className="main" style={backgroundStyle}>
@@ -92,21 +132,23 @@ const ScenePowerUpPsyche = () => {
                     <div className="innerDiv"><h2>Mission: {missionName}</h2></div>
                     <div className="innerDiv"><h2> {dateText}</h2></div>
                 </div>
-                <div className="displays" styles={{ width: '100%', height: '60%'}}>
+                <div className="displays" styles={{ width: '100%', height: '60%' }}>
                     <div className="camControls" >
                         <CameraSelectorPanel name={'Left Camera'} />
                     </div>
                     <div className="views" >
                         <Canvas style={{ width: '100%', height: '100%', background: 'black' }}
                             gl={{ toneMapping: THREE.NoToneMapping }}>
+                            {/* Add Velocity Controller inside Canvas */}
+                            <VelocityController />
                             {/* <View index={0}> */}
                             <AnimationLogic time={time} setDate={setDate} setDateText={setDateText} />
                             <OrbitControls
-                             minAzimuthAngle={-Infinity}
-                             maxAzimuthAngle={Infinity}
-                             minPolarAngle={0}
-                             maxPolarAngle={Math.PI}
-                             />
+                                minAzimuthAngle={-Infinity}
+                                maxAzimuthAngle={Infinity}
+                                minPolarAngle={0}
+                                maxPolarAngle={Math.PI}
+                            />
                             <ambientLight intensity={0.01} />
 
                             <PerspectiveCamera
@@ -128,23 +170,30 @@ const ScenePowerUpPsyche = () => {
                             {/* <Planets.Uranus position={orbits.uranus} trueScale={trueScale}/> */}
                             {/* <Planets.Neptune position={orbits.neptune} trueScale={trueScale}/> */}
                             {/* <Asteroids.Psyche16 position={orbits.psycheAsteroid} trueScale={trueScale} /> */}
-                            <TestPsyche position={new THREE.Vector3(12500, 12500, 10000)} ref={psycheCameraRef} />
+                            <TestPsyche position={testPsychePosition} ref={psycheCameraRef} />
                             {/* {starField} */}
 
                             <EffectComposer>
-                                <Bloom intensity={1.0}/>
+                                <Bloom intensity={1.0} />
                             </EffectComposer>
                         </Canvas>
                     </div>
-                    <div className="camera2">
-                        {/* <h2>Camera Offline</h2> */}
-
+                    <div className="debuggingMenu" >
+                        <DebuggingPanel
+                            name="Debugger"
+                            coordinates={testPsychePosition}
+                            velocity={testPsycheVelocity}
+                            updatePosition={updatePosition}
+                            updateVelocity={updateVelocity}
+                            // addToVelocity={addToVelocity}
+                            resetVelocity={resetVelocity}
+                        />
                     </div>
 
                 </div>
                 <div className="panels">
                     <div className="vehicle">
-                        <VehicleSelectorPanel buttonNames={vehiclesUsed} changeVehicle={changeVehicle}/>
+                        <VehicleSelectorPanel buttonNames={vehiclesUsed} changeVehicle={changeVehicle} />
                     </div>
                     <div className="panel">
                         {/* <h2>Vehicle Controls </h2> */}

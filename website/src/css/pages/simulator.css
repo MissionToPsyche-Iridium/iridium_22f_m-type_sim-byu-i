@@ -31,6 +31,16 @@
     max-height: 100%;
 }
 
+.debuggingMenu {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    height: 100vh;
+    /* flex-grow: 1; */
+    border: 1px;
+    max-height: 100%;
+}
+
 .canvas-border {
     width: 90%;
     height: 100%;
