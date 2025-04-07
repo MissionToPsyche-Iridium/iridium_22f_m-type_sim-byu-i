@@ -4,8 +4,10 @@ import { memo } from 'react';
 
 function getPoints({ numStars = 100 } = {}) {
   function randomSpherePoint() {
-    const DISTANCE_FROM_CENTER = 100000000;
-    const radius = Math.random() * 25 + DISTANCE_FROM_CENTER;
+    
+    // Stars are drawn at a distance of 120,000km from the origin
+    const DISTANCE_FROM_ORIGIN = 1200000;
+    const radius = Math.random() * 25 + DISTANCE_FROM_ORIGIN;
     const u = Math.random();
     const v = Math.random();
     const theta = 2 * Math.PI * u;
@@ -60,7 +62,7 @@ function getPoints({ numStars = 100 } = {}) {
   );
 
   const mat = new THREE.PointsMaterial({
-    size: 1000000, // Adjust size as needed
+    size: 10000, // Adjust size of stars as needed
     vertexColors: true,
     map: texture, // Use circular texture
     blending: THREE.AdditiveBlending, // Use additive blending for brighter effect

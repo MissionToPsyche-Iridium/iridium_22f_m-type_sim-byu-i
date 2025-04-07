@@ -3,10 +3,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import * as THREE from 'three';
 import { useLoader, useFrame } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import SolarArray from '../psyche/psySolarArray';
+import SolarArray from './psySolarArray';
 import { PerspectiveCamera, OrbitControls } from '@react-three/drei';
 
-const PsycheSpacecraft = ({position, registerCamera, activeCamera}) => {
+const PsycheSpacecraft = ({position}) => {
     const objectName = "PsycheSpacecraft";
     const objPath = '/assets/meshes/vehicles/psyche/psycheSpacecraft_a.obj'
     const vehicle = useLoader(OBJLoader, objPath, (loader) => {
@@ -15,7 +15,6 @@ const PsycheSpacecraft = ({position, registerCamera, activeCamera}) => {
     });
     const [cameraAngle, setCameraAngle] = useState(0);
     const psycheCamera = useRef();
-    const [hasRegistered, setHasRegistered] = useState(false);
 
     const sf = 1;
     const scale = new THREE.Vector3(sf,sf,sf);
@@ -24,8 +23,7 @@ const PsycheSpacecraft = ({position, registerCamera, activeCamera}) => {
     
     const solarArrayLeftRef = useRef();
     const solarArrayRightRef = useRef();
-    // const isCameraDefault = true;
-    const cameraID = "Psyche-Out"
+    const isCameraDefault = true;
 
     useEffect(() => {
         // SolarArray and Thruster will inherit material from here.
@@ -36,17 +34,17 @@ const PsycheSpacecraft = ({position, registerCamera, activeCamera}) => {
         });
     }, []); 
 
-    useEffect(() => {
-        if (psycheCamera && psycheCamera.current && !hasRegistered) {
-            // console.log("PsycheCameraReference.current preRegistration: ", psycheCamera.current);
-            // console.log("PsycheCameraReference preRegistration: ", psycheCamera);
-            registerCamera(cameraID);
-            // registerCamera("Psyche-Out", psycheCamera.current);
-            setHasRegistered(true);
-            // console.log("Guard Ran");
-        }
-    }, [psycheCamera, hasRegistered]);
+    // useEffect(() => {
+    //     if (psycheCamera.current) {
+    //         // psycheCamera.current.lookAt([position.x, position.y, position.z]);
+    //         psycheCamera.current.lookAt(...[12000,-3000,1000]);
+    //         // console.log("x :", position.x);
+    //         // console.log("y :", position.y);
+    //         // console.log("z :", position.z);
+    //         // console.log("Camera focus set");
+    //     }
 
+    // }, [psycheCamera.current, cameraAngle]);
 
 
     useFrame(() => {
@@ -67,7 +65,7 @@ const PsycheSpacecraft = ({position, registerCamera, activeCamera}) => {
                 <group rotation={[THREE.MathUtils.degToRad(cameraAngle), THREE.MathUtils.degToRad(cameraAngle), 0]}> 
                 <group position={[0,0,3000]}>
                 <PerspectiveCamera
-                    makeDefault={activeCamera===cameraID}
+                    makeDefault={isCameraDefault}
                     near={1}
                     far={100000000}
                     position={[0, 0, 0]}

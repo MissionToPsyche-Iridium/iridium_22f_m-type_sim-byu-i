@@ -13,11 +13,11 @@ function Simulations() {
         <h1>Simulations to choose from</h1>
         <h3>Psyche Mission Simulations</h3>
         <div className="mission-buttons">
-          <button className="not-available" onClick={() => openNewPage("launch-psyche")}>
+          <button className="available" onClick={() => openNewPage("launch-psyche")}>
             <h4>Launch Psyche</h4>
             <h5>Oct 5, 2023</h5>
           </button>
-          <button className="not-available" onClick={() => openNewPage("separation-from-rocket")}>
+          <button className="available" onClick={() => openNewPage("separation-from-rocket")}>
             <h4>Separation from Rocket</h4>
             <h5>Oct 5, 2023</h5>
           </button>
