@@ -3,6 +3,19 @@ import * as THREE from "three";
 import {SolarSystemData} from './solarSystemData';
 import { useLoader, useThree, useFrame } from '@react-three/fiber';
 
+// Scales sphere to a new size at a closer distance to appear the same
+// angular size in the sky
+function angularSizeScaler(trueRadius, trueDistance, desiredDistance) {
+  return (trueRadius * desiredDistance) / trueDistance;
+};
+
+// Shifts sphere to scaled radius from the origin
+function scaleDistanceToOrigin(truePositionVector, desiredDistance) {
+  const vectorMagnitude = Math.sqrt(truePositionVector.x ** 2 + truePositionVector.y ** 2 + truePositionVector.z ** 2);
+  const scaleFactor = desiredDistance / vectorMagnitude;
+  return truePositionVector.multiplyScalar(scaleFactor);
+};
+
 function QuaternionAdjustment(xRotationDeg, yRotationDeg, zRotationDeg) {
     // Convert to Radians
     const xRotation = THREE.MathUtils.degToRad(xRotationDeg);
@@ -213,7 +226,8 @@ export const Earth = ({position, lightDir, trueScale}) => {
 import moonTexture from '/assets/textures/moonTexture.jpg';
 
 export const Moon = ({position, trueScale}) => {
-    const radius = (trueScale) ? SolarSystemData.getCelestialProfile("moon").meanRadius : 0.03;
+    const radius = SolarSystemData.getCelestialProfile("moon").meanRadius * 1;
+    // const radius = (trueScale) ? SolarSystemData.getCelestialProfile("moon").meanRadius : 0.03;
     const wSegment = 32;
     const hSegment = 32;
     const moonSurface = useLoader(THREE.TextureLoader, moonTexture);
@@ -221,7 +235,7 @@ export const Moon = ({position, trueScale}) => {
     return (
         <mesh position={position} receiveShadow>
             <sphereGeometry args={[radius, wSegment, hSegment]} />
-            <meshStandardMaterial color='LightGray' transparent={false} map={moonSurface} />
+            <meshStandardMaterial color='white' transparent={false} map={moonSurface} />
         </mesh>
     );
 };

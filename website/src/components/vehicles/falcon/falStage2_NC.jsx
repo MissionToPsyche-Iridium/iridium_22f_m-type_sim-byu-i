@@ -1,14 +1,13 @@
 
-
 import React, {useEffect, useRef, useState} from 'react';
 import * as THREE from 'three';
 import { useLoader, useFrame } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { PerspectiveCamera, OrbitControls } from '@react-three/drei';
 
-const FalStage1 = ({position, scaleFactor}) => {
-    const objectName = "falStage1";
-    const objPath = '/assets/meshes/vehicles/falcon/falcon1stStage.obj'
+const FalStage2_NC = ({position, scaleFactor}) => {
+    const objectName = "Fal2ndStage";
+    const objPath = '/assets/meshes/vehicles/falcon/falcon2ndStage.obj'
     const vehicle = useLoader(OBJLoader, objPath, (loader) => {
         loader.manager.onLoad = () => console.log(`${objectName} loaded successfully`);
         loader.manager.onError = (url) => console.log(`ERROR: ${objectName} failed to load ${url}`);
@@ -19,7 +18,6 @@ const FalStage1 = ({position, scaleFactor}) => {
 
     const material = new THREE.MeshStandardMaterial({ color: 'rgb(255, 255, 255)'});
     
-
     useEffect(() => {
         // Add material
         vehicle.traverse((child) => {
@@ -37,7 +35,7 @@ const FalStage1 = ({position, scaleFactor}) => {
     );
 };
 
-export default FalStage1;
+export default FalStage2_NC;
 
 
 

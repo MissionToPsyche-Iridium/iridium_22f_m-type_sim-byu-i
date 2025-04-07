@@ -166,7 +166,9 @@ const SolarArray = ({isMirrored, panelAngle=90, initialState="DEPLOYED", beginDe
         // });
 
       }
-        // setRotorAngle((prev) => prev + 0.25);
+      if (foldState==="DEPLOYED") {
+        setRotorAngle((prev) => (prev + 0.05) % 360);
+      }
         // console.log("barsAngle : ", barsAngle);
         // console.log("phase1Angle : ", phase1Angle);
         // console.log("phase2Angle : ", phase2Angle);

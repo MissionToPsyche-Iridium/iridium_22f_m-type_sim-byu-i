@@ -9,6 +9,8 @@ import SceneTest from '../components/scene/sceneTest';
 import ScenePowerUpPsyche from '../components/scene/scenePowerUpPsyche';
 import SceneMars from '../components/scene/sceneMars';
 import SceneOrbit16Psyche from '../components/scene/sceneOrbit16Psyche';
+import SceneLaunch from '../components/scene/sceneLaunch';
+import ScenePsycheSeparation from '../components/scene/scenePsycheSeparation';
 
 function Simulator() {
     const [mission, setMission] = useState(null);
@@ -19,6 +21,10 @@ function Simulator() {
     }, []);
 
     switch (mission) {
+        case 'launch-psyche':
+            return <SceneLaunch />
+        case 'separation-from-rocket':
+            return <ScenePsycheSeparation />
         case 'initial-checkout':
             return <ScenePowerUpPsyche />;
         case 'mars-gravity-assist':
