@@ -12,14 +12,17 @@ const FalStage2 = ({position, registerCamera, activeCamera}) => {
         loader.manager.onLoad = () => console.log(`${objectName} loaded successfully`);
         loader.manager.onError = (url) => console.log(`ERROR: ${objectName} failed to load ${url}`);
     });
-    const [cameraAngle, setCameraAngle] = useState(0);
+    const [cameraAngleX, setCameraAngleX] = useState(115);
+    const [cameraAngleY, setCameraAngleY] = useState(15);
+    const [cameraAngleZ, setCameraAngleZ] = useState(10);
+
     const externalCamera = useRef();
     const [hasRegistered, setHasRegistered] = useState(false);
 
     const sf = 1;
     const scale = new THREE.Vector3(sf,sf,sf);
 
-    const material = new THREE.MeshStandardMaterial({ color: 'rgb(96, 118, 189)'});
+    const material = new THREE.MeshStandardMaterial({ color: 'rgb(174, 179, 196)'});
     
     const cameraID = "Falcon2 Extn";
 
@@ -49,14 +52,14 @@ const FalStage2 = ({position, registerCamera, activeCamera}) => {
     return (
       <>
         <primitive object={vehicle} position={position} scale={scale}>
-                <group rotation={[THREE.MathUtils.degToRad(cameraAngle), THREE.MathUtils.degToRad(cameraAngle), 0]}> 
+                <group rotation={[THREE.MathUtils.degToRad(cameraAngleX), THREE.MathUtils.degToRad(cameraAngleY), THREE.MathUtils.degToRad(cameraAngleZ)]}> 
                 <group position={[-2000,3500,5000]}>
                 <PerspectiveCamera
                     makeDefault={activeCamera===cameraID}
                     near={1}
                     far={100000000}
                     position={[0, 0, 0]}
-                    fov={45}
+                    fov={15}
                     ref={externalCamera} />
                     <OrbitControls />
 

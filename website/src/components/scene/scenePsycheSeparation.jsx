@@ -12,14 +12,15 @@ import SolarSystemPositions from '../../celestialBodies/solarSystemPositions';
 import VehicleSelectorPanel from '../panels/vehicleSelectorPanel';
 import FalconMainPanel from '../panels/falconMainPanel';
 import PsycheMainPanel from '../panels/psycheMainPanel';
-import LanderMainPanel from '../panels/landerMainPanel';
-import RoverMainPanel from '../panels/roverMainPanel';
-import SampleRocketMainPanel from '../panels/sampleRocketMainPanel';
+// import LanderMainPanel from '../panels/landerMainPanel';
+// import RoverMainPanel from '../panels/roverMainPanel';
+// import SampleRocketMainPanel from '../panels/sampleRocketMainPanel';
 import CameraSelectorPanel from '../panels/cameraSelectorPanel2';
 import {EffectComposer, Bloom} from '@react-three/postprocessing';
 import PsycheSpacecraft from '../vehicles/psyche/psyMain';
 import AviationButton from '../buttons/aviationButton';
 import FalStage2 from '../vehicles/falcon/falStage2';
+import {PsycheController} from '../../controllers/psyche/psycheController.js';
 
 import '../../css/pages/simulator.css'
 
@@ -36,7 +37,11 @@ const ScenePsycheSeparation = () => {
         overflow: 'hidden',
     };
     const missionName = "Psyche Separation";
-    const psycheSpacecraftRef = useRef();
+    // const psycheSpacecraftRef = useRef();
+    const [psycheController] = useState(() => new PsycheController(true, false));
+    const [psycheControllerState, setPsycheControllerState] = useState();
+
+
     const time = useRef(new SimulatorTime(new Date(2023, 9, 13, 10,19)));
     const [date, setDate] = useState(time.current.getSimulationDate());
     const [dateText, setDateText] = useState(time.current.getSimulationDate().toLocaleString());
@@ -135,18 +140,18 @@ const ScenePsycheSeparation = () => {
                              minPolarAngle={0}
                              maxPolarAngle={Math.PI}
                              /> */}
-                            <ambientLight intensity={0.01} />
+                            <ambientLight intensity={0.11} />
                             <PerspectiveCamera
                                 makeDefault={activeCamera==="Main-Out"}
                                 near={1}
-                                far={100000000}
+                                far={10000000}
                                 position={[5000, 0, camHeight]}
                                 fov={45}
                                 ref={mainCameraRef} />
                             <Sun position={orbits.sun} trueScale={false} />
                             <Planets.Earth position={orbits.earth} lightDir={orbits.sun} trueScale={true} />
-                            <Planets.Moon position={orbits.moon} trueScale={true} />
-                            <PsycheSpacecraft position={new THREE.Vector3(13588, 14588, 10088)} registerCamera={registerCamera} activeCamera={activeCamera}/>
+                            {/* <Planets.Moon position={orbits.moon} trueScale={true} /> */}
+                            <PsycheSpacecraft controller={psycheController} position={new THREE.Vector3(13588, 15588, 10088)} registerCamera={registerCamera} activeCamera={activeCamera}/>
                             <FalStage2 position={new THREE.Vector3(13588, 13058, 10088)} registerCamera={registerCamera} activeCamera={activeCamera}/>
                             {starField}
                             <EffectComposer>
@@ -166,7 +171,7 @@ const ScenePsycheSeparation = () => {
                     <div className="panel">
                         {/* <h2>Vehicle Controls </h2> */}
                         {activeVehicle === "FALCON" && <FalconMainPanel />}
-                        {activeVehicle === "PSYCHE" && <PsycheMainPanel />}
+                        {activeVehicle === "PSYCHE" && <PsycheMainPanel controller={psycheController} />}
                         {activeVehicle === "LANDER" && <LanderMainPanel />}
                         {activeVehicle === "ROVER" && <RoverMainPanel />}
                         {activeVehicle === "SAMPLE ROCKET" && <SampleRocketMainPanel />}

@@ -15,27 +15,27 @@ function Simulations() {
         <div className="mission-buttons">
           <button className="available" onClick={() => openNewPage("launch-psyche")}>
             <h4>Launch Psyche</h4>
-            <h5>Oct 5, 2023</h5>
+            <h5>Oct 8, 2023</h5>
           </button>
           <button className="available" onClick={() => openNewPage("separation-from-rocket")}>
             <h4>Separation from Rocket</h4>
-            <h5>Oct 5, 2023</h5>
+            <h5>Oct 8, 2023</h5>
           </button>
           <button className="available" onClick={() => openNewPage("initial-checkout")}>
             <h4>Initial Checkout</h4>
-            <h5>Oct 5, 2023</h5>
+            <h5>Oct 8, 2023</h5>
           </button>
           <button className="not-available" onClick={() => openNewPage("propulsion-checkout")}>
             <h4>Propulsion Checkout</h4>
-            <h5>Oct 8, 2023</h5>
+            <h5>Oct 11, 2023</h5>
           </button>
           <button className="not-available" onClick={() => openNewPage("active-science-instrument-checkout")}>
             <h4>Active Science Instrument Checkout</h4>
-            <h5>Dec 12, 2023</h5>
+            <h5>Dec 15, 2023</h5>
           </button>
           <button className="not-available" onClick={() => openNewPage("cruise-1-to-mars")}>
             <h4>Cruise 1 to Mars</h4>
-            <h5>Jan 13, 2024</h5>
+            <h5>Jan 16, 2024</h5>
           </button>
           <button className="available" onClick={() => openNewPage("mars-gravity-assist")}>
             <h4>Mars Gravity Assist</h4>

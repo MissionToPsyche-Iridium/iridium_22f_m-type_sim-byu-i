@@ -18,14 +18,13 @@ function applyScaling(factor, array) {
   return newArray;
 }
 
-const SolarArray = ({isMirrored, panelAngle=90, controller, deployState, rotorState="STOPPED", identifier}) => {
-// const SolarArray = ({isMirrored, panelAngle=90, controller, deployState="DEPLOYED", rotorState="STOPPED", identifier}) => {
+const SolarArray = ({isMirrored, panelAngle=90, initialState="DEPLOYED", beginDeploy=false}) => {
     const scaleFactor = 1 * ((isMirrored) ? -1 : 1 ); // negative = mirror
     const scale = new THREE.Vector3(scaleFactor,scaleFactor,scaleFactor);
     const panelTexture = useLoader(THREE.TextureLoader, solarTexture);
     // console.log("Panel Texture ", panelTexture);
 
-    const [foldState, setFoldState] = useState("");
+    const [foldState, setFoldState] = useState(initialState);
     const [rotorAngle, setRotorAngle] = useState(panelAngle);
     const [rotorTargetAngle, setRotorTargetAngle] = useState(panelAngle);
 
@@ -40,7 +39,7 @@ const SolarArray = ({isMirrored, panelAngle=90, controller, deployState, rotorSt
     const [phase3Angle, setPhase3Angle] = useState(0);
 
     useEffect(() => {
-      switch (deployState) {
+      switch (foldState) {
         case "STOWED":
           setBarsAngle(90);
           setBarsTargetAngle(90);
@@ -61,20 +60,12 @@ const SolarArray = ({isMirrored, panelAngle=90, controller, deployState, rotorSt
           setPhase3Angle(0)
           setPhase3TargetAngle(0)
           break;
-        case "DEPLOYING":
-          // Do nothing
-          break;
         default:
           // Should default to DEPLOYED state
           console.log("ERROR: Unexpected Solar Array Initialization: ", foldState);
           break;
       };
-    }, [deployState]);
-
-    useState(() => {
-      console.log("Solar Panel : " + deployState);
-      setFoldState(deployState);
-    }, [deployState]);
+    }, []);
 
     useState(() => {
       setRotorTargetAngle(panelAngle % 360);
@@ -89,17 +80,17 @@ const SolarArray = ({isMirrored, panelAngle=90, controller, deployState, rotorSt
     const solarPanel4 = loadObject("Solar Bars", '/assets/meshes/vehicles/psyche/psycheSolarPanel1-4_a.obj');
     const solarPanel5 = loadObject("Solar Bars", '/assets/meshes/vehicles/psyche/psycheSolarPanel1-5_a.obj');
 
-    const barsRotationRate = 1; // deg per frame
+    const barsRotationRate = 0.1; // deg per frame
     const panelRotationRate = 2 * barsRotationRate; // deg per frame
-    const rotorRotationRate = 0.5; // deg per frame
+    const rotorRotationRate = 0.1; // deg per frame
 
     useFrame (() => {
       // Start the Panel deployment
-      if (deployState === "DEPLOYING"){
+      if (foldState === "STOWED" && beginDeploy === true){
         setFoldState("START-PHASE1");
       }
       // Only run if panels are being deploy
-      if (deployState !== "STOWED" && deployState !=="DEPLOYED") {
+      if (foldState !== "STOWED" && foldState !=="DEPLOYED") {
         switch (foldState) {
           case "START-PHASE1":
             setBarsTargetAngle(0);
@@ -158,7 +149,6 @@ const SolarArray = ({isMirrored, panelAngle=90, controller, deployState, rotorSt
             }
             if (phase3Angle === phase3TargetAngle) {
               setFoldState("DEPLOYED");
-              controller.feedBack("SOLAR " + identifier + "_DEPLOYED");
             }
             break;
           default:
@@ -167,8 +157,8 @@ const SolarArray = ({isMirrored, panelAngle=90, controller, deployState, rotorSt
         }
 
       }
-      // if (foldState==="DEPLOYED" && rotorAngle !== rotorTargetAngle) {
-      //   const isClockwise = shouldRotateClockwise(rotorAngle, rotorTargetAngle);
+      if (foldState==="DEPLOYED" && rotorAngle !== rotorTargetAngle) {
+        const isClockwise = shouldRotateClockwise(rotorAngle, rotorTargetAngle);
 
         // setRotorAngle(prev => {
         //   let newAngle = prev + angleChange;
@@ -178,19 +168,14 @@ const SolarArray = ({isMirrored, panelAngle=90, controller, deployState, rotorSt
 
         // });
 
-      // }
-      // if (foldState==="DEPLOYED") {
-      //   setRotorAngle((prev) => (prev + 0.05) % 360);
-      // }
+      }
+      if (foldState==="DEPLOYED") {
+        setRotorAngle((prev) => (prev + 0.05) % 360);
+      }
         // console.log("barsAngle : ", barsAngle);
         // console.log("phase1Angle : ", phase1Angle);
         // console.log("phase2Angle : ", phase2Angle);
         // console.log("phase3Angle : ", phase3Angle);
-      if (rotorState === "CW" && deployState === "DEPLOYED") {
-        setRotorAngle((prev) => (prev + rotorRotationRate) % 360);
-      } else if (rotorState === "CCW" && deployState === "DEPLOYED") {
-        setRotorAngle((prev) => (prev - rotorRotationRate) % 360);
-      }
 
     });
 

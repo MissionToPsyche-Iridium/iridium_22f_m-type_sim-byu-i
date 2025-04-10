@@ -1,0 +1,11 @@
+.standard-button {
+    background-color: #000000;
+    color: white;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 150px;
+    height: 30px;
+    margin: 5px;
+}

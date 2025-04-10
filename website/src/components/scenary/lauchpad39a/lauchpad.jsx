@@ -12,8 +12,8 @@ import Roads from '..//lauchpad39a/roads';
 
 const LauchPad = ({position, registerCamera, activeCamera}) => {
     const oversized = false;
-    // const fallBack = false; 
-    const fallBack = true; 
+    const fallBack = false; 
+    // const fallBack = true; 
     // const sf = 1;
     const sf = (oversized)? 1 : 0.00001;
     const scale = new THREE.Vector3(sf,sf,sf);

@@ -7,8 +7,9 @@ const AnimationLogic = ({ time, setDate, setDateText }) => {
   useFrame(() => {
     frameCount.current += 1;
       if (frameCount.current % 60 === 0) {
-          // time.current.addSeconds(1);
-          time.current.addMinutes(1);
+          // time.current.addSeconds(0.1);
+          time.current.addSeconds(1);
+          // time.current.addMinutes(1);
           // time.current.addHours(6);
           // time.current.addDays(1);
           setDate(time.current.getSimulationDate());

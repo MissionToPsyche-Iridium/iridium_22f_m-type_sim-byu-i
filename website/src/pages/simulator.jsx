@@ -11,6 +11,7 @@ import SceneMars from '../components/scene/sceneMars';
 import SceneOrbit16Psyche from '../components/scene/sceneOrbit16Psyche';
 import SceneLaunch from '../components/scene/sceneLaunch';
 import ScenePsycheSeparation from '../components/scene/scenePsycheSeparation';
+import SceneEnterOrbitA from '..//components/scene/sceneEnterOrbitA';
 
 function Simulator() {
     const [mission, setMission] = useState(null);
@@ -31,6 +32,8 @@ function Simulator() {
             return <SceneMars />;
         case 'orbital-capture':
             return <SceneOrbit16Psyche />;
+        case 'enter-orbit-a':
+            return <SceneEnterOrbitA />;
         default:
             return <SceneDefault />;
 

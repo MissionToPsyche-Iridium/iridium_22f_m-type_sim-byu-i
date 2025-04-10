@@ -33,7 +33,8 @@ export const Psyche16 = ({position, trueScale}) => {
     });
 
     // const radius = (trueScale) ? SolarSystemData.getCelestialProfile("psycheAsteroid").meanRadius : 0.1;
-    const sf = 5000;
+    const sf = 93;
+    // const sf = 0.1;
     const scale = new THREE.Vector3(sf,sf,sf);
 
     const material = new THREE.MeshStandardMaterial({ color: 'rgb(192, 168, 141)'});

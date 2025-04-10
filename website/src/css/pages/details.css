@@ -1,0 +1,19 @@
+p {
+    margin-left: 45px;
+    margin-right: 45px;
+
+}
+
+img {
+    height: auto;
+    width: 600px;
+}
+
+h2 {
+    margin-top: 30px;
+    font-size: 35px;
+}
+
+:root {
+    background-color: white;
+}

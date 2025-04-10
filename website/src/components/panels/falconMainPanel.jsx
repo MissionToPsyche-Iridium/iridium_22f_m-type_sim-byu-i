@@ -19,7 +19,7 @@ function FalconMainPanel() {
     return (
     <div style={panelStyle}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-            <h3>Falcon Controls</h3>
+            <h3>Falcon Heavy Controls</h3>
         </div>
         </div>
     );
