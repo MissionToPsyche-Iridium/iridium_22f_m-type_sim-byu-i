@@ -1,0 +1,1 @@
+# Note: The latest SRS version is 2.4
