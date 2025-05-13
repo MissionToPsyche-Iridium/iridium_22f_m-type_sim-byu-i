@@ -2,7 +2,6 @@
   "name": "website",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://missiontopsyche-iridium.github.io/iridium_22f_m-type_sim-byu-i/website/",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +10,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@react-three/drei": "^10.0.3",
