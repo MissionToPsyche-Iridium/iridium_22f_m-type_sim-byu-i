@@ -6,7 +6,7 @@ import App from './app.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/iridium_22f_m-type_sim-byu-i">
       <App />
     </BrowserRouter>
   </StrictMode>

@@ -28,7 +28,7 @@ import DebuggingPanel from "../panels/debuggingPanel";
 
 const ScenePowerUpPsyche = () => {
     const backgroundStyle = {
-        backgroundImage: 'url(/assets/textures/seemlessmetal.jpg)',
+        backgroundImage: 'url(/iridium_22f_m-type_sim-byu-i/assets/textures/seemlessmetal.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         height: '100vh',

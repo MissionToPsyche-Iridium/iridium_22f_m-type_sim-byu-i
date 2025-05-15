@@ -1,7 +1,7 @@
 
-import NasaLogo from '/assets/images/nasaLogo.png'
-import PsycheLogo from '/assets/images/psycheLogo.png'
-import PsycheSpacecraft from '/assets/images/psycheSpacecraft.jpg'
+import NasaLogo from '/iridium_22f_m-type_sim-byu-i/assets/images/nasaLogo.png'
+import PsycheLogo from '/iridium_22f_m-type_sim-byu-i/assets/images/psycheLogo.png'
+import PsycheSpacecraft from '/iridium_22f_m-type_sim-byu-i/assets/images/psycheSpacecraft.jpg'
 
 import '../css/pages/home.css'
 

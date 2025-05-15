@@ -50,7 +50,7 @@ function getPoints({ numStars = 100 } = {}) {
 
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load(
-    "/assets/textures/starTexture.png", // Ensure this path is correct
+    "/iridium_22f_m-type_sim-byu-i/assets/textures/starTexture.png", // Ensure this path is correct
     () => {
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;

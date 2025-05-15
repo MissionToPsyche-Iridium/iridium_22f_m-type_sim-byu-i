@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import * as THREE from 'three';
 import { useLoader, useFrame } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import solarTexture from '/assets/textures/solar_panel.jpg';
+import solarTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/solar_panel.jpg';
 
 function loadObject(identifier, objPath) {
     return useLoader(OBJLoader, objPath, (loader) => {
@@ -72,13 +72,13 @@ const SolarArray = ({isMirrored, panelAngle=90, initialState="DEPLOYED", beginDe
     }, [panelAngle]);
 
     // Load CAD models
-    const solarRotor = loadObject("Solar Rotor",'/assets/meshes/vehicles/psyche/psycheSolarRotor1_a.obj');
-    const solarBars = loadObject("Solar Bars", '/assets/meshes/vehicles/psyche/psycheSolarBars1_a.obj');
-    const solarPanel1 = loadObject("Solar Bars", '/assets/meshes/vehicles/psyche/psycheSolarPanel1-1_a.obj');
-    const solarPanel2 = loadObject("Solar Bars", '/assets/meshes/vehicles/psyche/psycheSolarPanel1-2_a.obj');
-    const solarPanel3 = loadObject("Solar Bars", '/assets/meshes/vehicles/psyche/psycheSolarPanel1-3_a.obj');
-    const solarPanel4 = loadObject("Solar Bars", '/assets/meshes/vehicles/psyche/psycheSolarPanel1-4_a.obj');
-    const solarPanel5 = loadObject("Solar Bars", '/assets/meshes/vehicles/psyche/psycheSolarPanel1-5_a.obj');
+    const solarRotor = loadObject("Solar Rotor",'/iridium_22f_m-type_sim-byu-i/assets/meshes/vehicles/psyche/psycheSolarRotor1_a.obj');
+    const solarBars = loadObject("Solar Bars", '/iridium_22f_m-type_sim-byu-i/assets/meshes/vehicles/psyche/psycheSolarBars1_a.obj');
+    const solarPanel1 = loadObject("Solar Bars", '/iridium_22f_m-type_sim-byu-i/assets/meshes/vehicles/psyche/psycheSolarPanel1-1_a.obj');
+    const solarPanel2 = loadObject("Solar Bars", '/iridium_22f_m-type_sim-byu-i/assets/meshes/vehicles/psyche/psycheSolarPanel1-2_a.obj');
+    const solarPanel3 = loadObject("Solar Bars", '/iridium_22f_m-type_sim-byu-i/assets/meshes/vehicles/psyche/psycheSolarPanel1-3_a.obj');
+    const solarPanel4 = loadObject("Solar Bars", '/iridium_22f_m-type_sim-byu-i/assets/meshes/vehicles/psyche/psycheSolarPanel1-4_a.obj');
+    const solarPanel5 = loadObject("Solar Bars", '/iridium_22f_m-type_sim-byu-i/assets/meshes/vehicles/psyche/psycheSolarPanel1-5_a.obj');
 
     const barsRotationRate = 0.1; // deg per frame
     const panelRotationRate = 2 * barsRotationRate; // deg per frame

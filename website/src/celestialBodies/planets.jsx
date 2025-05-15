@@ -37,7 +37,7 @@ function QuaternionAdjustment(xRotationDeg, yRotationDeg, zRotationDeg) {
     return combinedQuaternion;
 }
 
-import mercuryTexture from '/assets/textures/mercuryTexture.jpg';
+import mercuryTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/mercuryTexture.jpg';
 export const Mercury = ({position, trueScale}) => {
     const planetTexture = useLoader(THREE.TextureLoader, mercuryTexture);
     const radius = (trueScale) ? SolarSystemData.getCelestialProfile("mercury").meanRadius : 0.5;
@@ -51,7 +51,7 @@ export const Mercury = ({position, trueScale}) => {
     );
 };
 
-import venusTexture from '/assets/textures/venusTexture.jpg';
+import venusTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/venusTexture.jpg';
 export const Venus = ({position, trueScale}) => {
     const planetTexture = useLoader(THREE.TextureLoader, venusTexture);
     const radius = (trueScale) ? SolarSystemData.getCelestialProfile("venus").meanRadius : 0.5;
@@ -106,10 +106,10 @@ void main(void) {
 
 // import VertexShader from "../shaders/earthSurfaceFragmentShader.glsl";
 // import FragmentShader from "../shaders/earthSurfaceVertexShader.glsl";
-import earthTexture from '/assets/textures/earthDay.jpg';
-import earthTextureNight from '/assets/textures/earthNight.jpg';
-import earthClouds from '/assets/textures/earthClouds2.png';
-import earthNormals from '/assets/textures/earthNormal.jpg';
+import earthTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/earthDay.jpg';
+import earthTextureNight from '/iridium_22f_m-type_sim-byu-i/assets/textures/earthNight.jpg';
+import earthClouds from '/iridium_22f_m-type_sim-byu-i/assets/textures/earthClouds2.png';
+import earthNormals from '/iridium_22f_m-type_sim-byu-i/assets/textures/earthNormal.jpg';
 
 export const Earth = ({position, lightDir, trueScale}) => {
     const planetTexture = useLoader(THREE.TextureLoader, earthTexture);
@@ -223,7 +223,7 @@ export const Earth = ({position, lightDir, trueScale}) => {
     );
 };
 
-import moonTexture from '/assets/textures/moonTexture.jpg';
+import moonTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/moonTexture.jpg';
 
 export const Moon = ({position, trueScale}) => {
     const radius = SolarSystemData.getCelestialProfile("moon").meanRadius * 1;
@@ -242,7 +242,7 @@ export const Moon = ({position, trueScale}) => {
 
 
 
-import marsTexture from '/assets/textures/marsTexture.jpg';
+import marsTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/marsTexture.jpg';
 export const Mars = ({position, trueScale}) => {
     const planetTexture = useLoader(THREE.TextureLoader, marsTexture);
     const radius = (trueScale) ? SolarSystemData.getCelestialProfile("mars").meanRadius : 3;
@@ -279,7 +279,7 @@ export const Mars = ({position, trueScale}) => {
     );
 };
 
-import jupiterTexture from '/assets/textures/jupiterTexture.jpg';
+import jupiterTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/jupiterTexture.jpg';
 export const Jupiter = ({position, trueScale}) => {
     const planetTexture = useLoader(THREE.TextureLoader, jupiterTexture);
     const radius = (trueScale) ? SolarSystemData.getCelestialProfile("jupiter").meanRadius : 3;
@@ -293,8 +293,8 @@ export const Jupiter = ({position, trueScale}) => {
     );
 };
 
-import saturnTexture from '/assets/textures/saturnTexture.jpg';
-import saturnTextureRing from '/assets/textures/saturnTextureRingPolar.png';
+import saturnTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/saturnTexture.jpg';
+import saturnTextureRing from '/iridium_22f_m-type_sim-byu-i/assets/textures/saturnTextureRingPolar.png';
 export const Saturn = ({ position, trueScale }) => {
     const planetTexture = useLoader(THREE.TextureLoader, saturnTexture);
     const planetTextureRing = useLoader(THREE.TextureLoader, saturnTextureRing);
@@ -321,7 +321,7 @@ export const Saturn = ({ position, trueScale }) => {
     );
 };
 
-import uranusTexture from '/assets/textures/uranusTexture.png';
+import uranusTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/uranusTexture.png';
 export const Uranus = ({position, trueScale}) => {
     const planetTexture = useLoader(THREE.TextureLoader, uranusTexture);
     const radius = (trueScale) ? SolarSystemData.getCelestialProfile("uranus").meanRadius : 0.7;
@@ -335,7 +335,7 @@ export const Uranus = ({position, trueScale}) => {
     );
 };
 
-import neptuneTexture from '/assets/textures/neptuneTexture.jpg';
+import neptuneTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/neptuneTexture.jpg';
 export const Neptune = ({position, trueScale}) => {
     const planetTexture = useLoader(THREE.TextureLoader, neptuneTexture);
     const radius = (trueScale) ? SolarSystemData.getCelestialProfile("neptune").meanRadius : 0.8;

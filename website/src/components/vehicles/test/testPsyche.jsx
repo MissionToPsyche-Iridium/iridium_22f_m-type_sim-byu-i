@@ -5,7 +5,7 @@ import { PerspectiveCamera } from '@react-three/drei';
 
 const TestPsyche = forwardRef(({position}, ref) => {
     const objectName = "testPsyche";
-    const modelPath = '/assets/meshes/spacecraftWIP.glb';
+    const modelPath = '/iridium_22f_m-type_sim-byu-i/assets/meshes/spacecraftWIP.glb';
     
     // Replace OBJLoader with useGLTF
     const { scene: vehicle } = useGLTF(modelPath, (loader) => {
@@ -46,6 +46,6 @@ const TestPsyche = forwardRef(({position}, ref) => {
 });
 
 // Optional: Preload the model for better performance
-useGLTF.preload('/assets/meshes/spacecraftWIP.glb');
+useGLTF.preload('/iridium_22f_m-type_sim-byu-i/assets/meshes/spacecraftWIP.glb');
 
 export default TestPsyche;

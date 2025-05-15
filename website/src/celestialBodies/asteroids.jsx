@@ -26,7 +26,7 @@ function QuaternionAdjustment(xRotationDeg, yRotationDeg, zRotationDeg) {
 }
 
 export const Psyche16 = ({position, trueScale}) => {
-    const objPath = '/assets/meshes/psycheAsteroid.obj';
+    const objPath = '/iridium_22f_m-type_sim-byu-i/assets/meshes/psycheAsteroid.obj';
     const asteroid = useLoader(OBJLoader, objPath, (loader) => {
         loader.manager.onLoad = () => console.log('Psyche asteroid loaded successfully');
         loader.manager.onError = (url) => console.log('ERROR: Psyche asteroid failed to load ${url}');

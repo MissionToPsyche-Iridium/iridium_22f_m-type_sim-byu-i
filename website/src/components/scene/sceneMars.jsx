@@ -29,7 +29,7 @@ import '../../css/pages/simulator.css'
 
 const SceneMars = () => {
     const backgroundStyle = {
-        backgroundImage: 'url(/assets/textures/seemlessmetal.jpg)',
+        backgroundImage: 'url(/iridium_22f_m-type_sim-byu-i/assets/textures/seemlessmetal.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         height: '100vh', 

@@ -8,7 +8,7 @@ import { PerspectiveCamera, OrbitControls } from '@react-three/drei';
 
 const PsycheSpacecraft = ({position}) => {
     const objectName = "PsycheSpacecraft";
-    const objPath = '/assets/meshes/vehicles/psyche/psycheSpacecraft_a.obj'
+    const objPath = '/iridium_22f_m-type_sim-byu-i/assets/meshes/vehicles/psyche/psycheSpacecraft_a.obj'
     const vehicle = useLoader(OBJLoader, objPath, (loader) => {
         loader.manager.onLoad = () => console.log(`${objectName} loaded successfully`);
         loader.manager.onError = (url) => console.log(`ERROR: ${objectName} failed to load ${url}`);
