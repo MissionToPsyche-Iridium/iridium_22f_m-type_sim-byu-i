@@ -5,7 +5,7 @@ function Simulations() {
 
     const openNewPage = (mission) => {
         sessionStorage.setItem('mission', mission)
-        window.open('/Simulator', '_blank')
+        window.open('/iridium_22f_m-type_sim-byu-i/Simulator ', '_blank')
     };
 
     return (
