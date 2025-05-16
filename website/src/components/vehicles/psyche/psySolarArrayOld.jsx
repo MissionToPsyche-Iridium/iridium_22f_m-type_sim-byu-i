@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import * as THREE from 'three';
 import { useLoader, useFrame } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import solarTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/solar_panel.jpg';
+// import solarTexture from '/iridium_22f_m-type_sim-byu-i/assets/textures/solar_panel.jpg';
 
 function loadObject(identifier, objPath) {
     return useLoader(OBJLoader, objPath, (loader) => {
@@ -21,7 +21,7 @@ function applyScaling(factor, array) {
 const SolarArray = ({isMirrored, panelAngle=90, initialState="DEPLOYED", beginDeploy=false}) => {
     const scaleFactor = 1 * ((isMirrored) ? -1 : 1 ); // negative = mirror
     const scale = new THREE.Vector3(scaleFactor,scaleFactor,scaleFactor);
-    const panelTexture = useLoader(THREE.TextureLoader, solarTexture);
+    const panelTexture = useLoader(THREE.TextureLoader, '/iridium_22f_m-type_sim-byu-i/assets/textures/solar_panel.jpg');
     // console.log("Panel Texture ", panelTexture);
 
     const [foldState, setFoldState] = useState(initialState);
