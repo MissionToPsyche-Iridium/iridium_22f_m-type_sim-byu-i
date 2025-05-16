@@ -1,11 +1,13 @@
 import React from 'react';
 import '../css/pages/simulations.css'
+import { useNavigate } from "react-router";
 
 function Simulations() {
+    let navigate = useNavigate();
 
     const openNewPage = (mission) => {
         sessionStorage.setItem('mission', mission)
-        window.open('/iridium_22f_m-type_sim-byu-i/Simulator ', '_blank')
+        navigate("/Simulator");
     };
 
     return (
